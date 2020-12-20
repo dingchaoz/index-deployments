@@ -1,0 +1,9 @@
+export { IcManager } from "index-coop-contracts/dist/typechain/IcManager";
+export { IndexToken } from "index-coop-contracts/dist/typechain/IndexToken";
+export { MerkleDistributor } from "index-coop-contracts/dist/typechain/MerkleDistributor";
+export { MutualUpgradeMock } from "index-coop-contracts/dist/typechain/MutualUpgradeMock";
+export { RewardsDistributionRecipient } from "index-coop-contracts/dist/typechain/RewardsDistributionRecipient";
+export { StakingRewards } from "index-coop-contracts/dist/typechain/StakingRewards";
+export { StakingRewardsV2 } from "index-coop-contracts/dist/typechain/StakingRewardsV2";
+export { Vesting } from "index-coop-contracts/dist/typechain/Vesting";
+export { Weth9 } from "index-coop-contracts/dist/typechain/Weth9";

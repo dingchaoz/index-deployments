@@ -1,0 +1,14 @@
+declare module 'index-coop-contracts/dist/typechain/BasicIssuanceModuleFactory';
+declare module 'index-coop-contracts/dist/typechain/ControllerFactory';
+declare module 'index-coop-contracts/dist/typechain/IcManagerFactory';
+declare module 'index-coop-contracts/dist/typechain/IndexTokenFactory';
+declare module 'index-coop-contracts/dist/typechain/MerkleDistributorFactory';
+declare module 'index-coop-contracts/dist/typechain/MutualUpgradeMockFactory';
+declare module 'index-coop-contracts/dist/typechain/SetTokenCreatorFactory';
+declare module 'index-coop-contracts/dist/typechain/SetTokenFactory';
+declare module 'index-coop-contracts/dist/typechain/SingleIndexModuleFactory';
+declare module 'index-coop-contracts/dist/typechain/StakingRewardsV2Factory';
+declare module 'index-coop-contracts/dist/typechain/StandardTokenMockFactory';
+declare module 'index-coop-contracts/dist/typechain/StreamingFeeModuleFactory';
+declare module 'index-coop-contracts/dist/typechain/VestingFactory';
+declare module 'index-coop-contracts/dist/typechain/Weth9Factory';
