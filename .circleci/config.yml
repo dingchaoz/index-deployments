@@ -4,13 +4,19 @@ jobs:
   checkout_and_compile:
     docker:
       - image: circleci/node:10.11.0
-    working_directory: ~/index-coop
+    working_directory: ~/index-deployments
     steps:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
       - restore_cache:
           key: module-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Test npm token
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN"
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/index-deployments/.npmrc
       - run:
           name: Fetch Dependencies
           command: yarn install
@@ -24,11 +30,11 @@ jobs:
       - save_cache:
           key: compiled-env-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/index-coop
+            - ~/index-deployments
   test:
     docker:
       - image: circleci/node:10.11.0
-    working_directory: ~/index-coop
+    working_directory: ~/index-deployments
     parallelism: 3
     steps:
       - setup_remote_docker:
@@ -55,7 +61,7 @@ jobs:
   coverage:
     docker:
       - image: circleci/node:10.11.0
-    working_directory: ~/index-coop
+    working_directory: ~/index-deployments
     steps:
       - setup_remote_docker:
           docker_layer_caching: false

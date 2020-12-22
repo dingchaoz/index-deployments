@@ -3,7 +3,7 @@ import { BigNumber } from "ethers/utils";
 import { Address } from "../types";
 import { IcManager } from "../contracts/index";
 
-import { IcManagerFactory } from "index-coop-contracts/dist/typechain/IcManagerFactory";
+import { IcManagerFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IcManagerFactory";
 
 export default class DeployToken {
   private _deployerSigner: Signer;

@@ -3,9 +3,9 @@ import { BigNumber } from "ethers/utils";
 import { Address } from "../types";
 import { IndexToken, MerkleDistributor, Vesting } from "../contracts";
 
-import { IndexTokenFactory } from "index-coop-contracts/dist/typechain/IndexTokenFactory";
-import { MerkleDistributorFactory } from "index-coop-contracts/dist/typechain/MerkleDistributorFactory";
-import { VestingFactory } from "index-coop-contracts/dist/typechain/VestingFactory";
+import { IndexTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IndexTokenFactory";
+import { MerkleDistributorFactory } from "@setprotocol/index-coop-contracts/dist/typechain/MerkleDistributorFactory";
+import { VestingFactory } from "@setprotocol/index-coop-contracts/dist/typechain/VestingFactory";
 
 export default class DeployToken {
   private _deployerSigner: Signer;

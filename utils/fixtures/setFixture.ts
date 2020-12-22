@@ -23,7 +23,7 @@ import {
   MAX_UINT_256,
 } from "../constants";
 
-import { SetTokenFactory } from "index-coop-contracts/dist/typechain/SetTokenFactory";
+import { SetTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/SetTokenFactory";
 
 export class SetFixture {
   private _provider: Web3Provider | JsonRpcProvider;

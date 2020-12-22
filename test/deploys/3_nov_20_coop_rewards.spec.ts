@@ -13,7 +13,7 @@ import {
 } from "@utils/deploys/output-helper";
 import { NOVEMBER_MERKLE_DISTRIBUTION } from "@utils/deploys/rewards/nov20Distribution";
 
-import { MerkleDistributorFactory } from "index-coop-contracts/dist/typechain/MerkleDistributorFactory";
+import { MerkleDistributorFactory } from "@setprotocol/index-coop-contracts/dist/typechain/MerkleDistributorFactory";
 
 const expect = getWaffleExpect();
 

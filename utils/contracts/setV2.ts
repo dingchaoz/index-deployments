@@ -1,8 +1,8 @@
 // External Set Protocol Contracts
-export { SetTokenCreator } from "index-coop-contracts/dist/typechain/SetTokenCreator";
-export { SetToken } from "index-coop-contracts/dist/typechain/SetToken";
-export { BasicIssuanceModule } from "index-coop-contracts/dist/typechain/BasicIssuanceModule";
-export { Controller } from "index-coop-contracts/dist/typechain/Controller";
-export { SingleIndexModule } from "index-coop-contracts/dist/typechain/SingleIndexModule";
-export { StreamingFeeModule } from "index-coop-contracts/dist/typechain/StreamingFeeModule";
-export { StandardTokenMock } from "index-coop-contracts/dist/typechain/StandardTokenMock";
+export { SetTokenCreator } from "@setprotocol/index-coop-contracts/typechain/SetTokenCreator";
+export { SetToken } from "@setprotocol/index-coop-contracts/typechain/SetToken";
+export { BasicIssuanceModule } from "@setprotocol/index-coop-contracts/typechain/BasicIssuanceModule";
+export { Controller } from "@setprotocol/index-coop-contracts/typechain/Controller";
+export { SingleIndexModule } from "@setprotocol/index-coop-contracts/typechain/SingleIndexModule";
+export { StreamingFeeModule } from "@setprotocol/index-coop-contracts/typechain/StreamingFeeModule";
+export { StandardTokenMock } from "@setprotocol/index-coop-contracts/typechain/StandardTokenMock";

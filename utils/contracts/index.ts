@@ -1,9 +1,10 @@
-export { IcManager } from "index-coop-contracts/dist/typechain/IcManager";
-export { IndexToken } from "index-coop-contracts/dist/typechain/IndexToken";
-export { MerkleDistributor } from "index-coop-contracts/dist/typechain/MerkleDistributor";
-export { MutualUpgradeMock } from "index-coop-contracts/dist/typechain/MutualUpgradeMock";
-export { RewardsDistributionRecipient } from "index-coop-contracts/dist/typechain/RewardsDistributionRecipient";
-export { StakingRewards } from "index-coop-contracts/dist/typechain/StakingRewards";
-export { StakingRewardsV2 } from "index-coop-contracts/dist/typechain/StakingRewardsV2";
-export { Vesting } from "index-coop-contracts/dist/typechain/Vesting";
-export { Weth9 } from "index-coop-contracts/dist/typechain/Weth9";
+export { IcManager } from "@setprotocol/index-coop-contracts//typechain/IcManager";
+export { IndexToken } from "@setprotocol/index-coop-contracts/typechain/IndexToken";
+export { MerkleDistributor } from "@setprotocol/index-coop-contracts/typechain/MerkleDistributor";
+export { MutualUpgradeMock } from "@setprotocol/index-coop-contracts/typechain/MutualUpgradeMock";
+export { RewardsDistributionRecipient } from "@setprotocol/index-coop-contracts/typechain/RewardsDistributionRecipient";
+export { StakingRewards } from "@setprotocol/index-coop-contracts/typechain/StakingRewards";
+export { StakingRewardsV2 } from "@setprotocol/index-coop-contracts/typechain/StakingRewardsV2";
+export { Vesting } from "@setprotocol/index-coop-contracts/typechain/Vesting";
+export { Weth9 } from "@setprotocol/index-coop-contracts/typechain/Weth9";
+

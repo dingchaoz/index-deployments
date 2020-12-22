@@ -13,7 +13,7 @@ import {
   getContractAddress,
 } from "@utils/deploys/output-helper";
 
-import { StakingRewardsV2Factory } from "index-coop-contracts/dist/typechain/StakingRewardsV2Factory";
+import { StakingRewardsV2Factory } from "@setprotocol/index-coop-contracts/dist/typechain/StakingRewardsV2Factory";
 import { ONE_DAY_IN_SECONDS } from "@utils/constants";
 
 const expect = getWaffleExpect();

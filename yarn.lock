@@ -631,6 +631,21 @@
     "@sentry/types" "5.29.2"
     tslib "^1.9.3"
 
+"@setprotocol/index-coop-contracts@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@setprotocol/index-coop-contracts/-/index-coop-contracts-0.0.2.tgz#3b139b72257a134e7db358c3a8dd2267c7527602"
+  integrity sha512-YE9/nnTxUxjdSVeBy/AV4SEbqsaD7A/cX4IbstDEhWs2EP3LlI9Hr7vl3EGeGLUzRHycIn8XAz7jprzKYW8bgg==
+  dependencies:
+    "@nomiclabs/buidler" "^1.3.4"
+    "@nomiclabs/buidler-ethers" "^1.3.3"
+    "@nomiclabs/buidler-waffle" "^1.3.3"
+    buidler-typechain "0.1.1"
+    ethereumjs-util "^7.0.5"
+    fs-extra "^5.0.0"
+    module-alias "^2.2.2"
+    replace-in-file "^6.1.0"
+    typechain "^2.0.0"
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -4925,21 +4940,6 @@ indent-string@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/indent-string/-/indent-string-4.0.0.tgz#624f8f4497d619b2d9768531d58f4122854d7251"
   integrity sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==
-
-index-coop-contracts@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/index-coop-contracts/-/index-coop-contracts-0.0.1.tgz#bd1d6c6323d425446ff723395c4f2f6938054e75"
-  integrity sha512-AZURLxjrE0vXL/nu/xCaUFMAYt6SYm4SnPK/YeaE4MPZTmYdtk0v7cmHS8vwqvguNUXZxD8CTOwT76ZHcYaNhQ==
-  dependencies:
-    "@nomiclabs/buidler" "^1.3.4"
-    "@nomiclabs/buidler-ethers" "^1.3.3"
-    "@nomiclabs/buidler-waffle" "^1.3.3"
-    buidler-typechain "0.1.1"
-    ethereumjs-util "^7.0.5"
-    fs-extra "^5.0.0"
-    module-alias "^2.2.2"
-    replace-in-file "^6.1.0"
-    typechain "^2.0.0"
 
 inflight@^1.0.4:
   version "1.0.6"

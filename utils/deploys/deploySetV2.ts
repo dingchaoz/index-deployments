@@ -12,14 +12,14 @@ import {
 } from "../contracts/setV2";
 import { Weth9 } from "../contracts/index";
 import { ether } from "../common";
-import { ControllerFactory } from "index-coop-contracts/dist/typechain/ControllerFactory";
-import { BasicIssuanceModuleFactory } from "index-coop-contracts/dist/typechain/BasicIssuanceModuleFactory";
-import { SingleIndexModuleFactory } from "index-coop-contracts/dist/typechain/SingleIndexModuleFactory";
-import { StreamingFeeModuleFactory } from "index-coop-contracts/dist/typechain/StreamingFeeModuleFactory";
-import { SetTokenFactory } from "index-coop-contracts/dist/typechain/SetTokenFactory";
-import { SetTokenCreatorFactory } from "index-coop-contracts/dist/typechain/SetTokenCreatorFactory";
-import { StandardTokenMockFactory } from "index-coop-contracts/dist/typechain/StandardTokenMockFactory";
-import { Weth9Factory } from "index-coop-contracts/dist/typechain/Weth9Factory";
+import { ControllerFactory } from "@setprotocol/index-coop-contracts/dist/typechain/ControllerFactory";
+import { BasicIssuanceModuleFactory } from "@setprotocol/index-coop-contracts/dist/typechain/BasicIssuanceModuleFactory";
+import { SingleIndexModuleFactory } from "@setprotocol/index-coop-contracts/dist/typechain/SingleIndexModuleFactory";
+import { StreamingFeeModuleFactory } from "@setprotocol/index-coop-contracts/dist/typechain/StreamingFeeModuleFactory";
+import { SetTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/SetTokenFactory";
+import { SetTokenCreatorFactory } from "@setprotocol/index-coop-contracts/dist/typechain/SetTokenCreatorFactory";
+import { StandardTokenMockFactory } from "@setprotocol/index-coop-contracts/dist/typechain/StandardTokenMockFactory";
+import { Weth9Factory } from "@setprotocol/index-coop-contracts/dist/typechain/Weth9Factory";
 
 export default class DeploySetV2 {
   private _deployerSigner: Signer;

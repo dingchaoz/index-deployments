@@ -20,7 +20,7 @@ import {
 } from "@utils/deploys/output-helper";
 import { MERKLE_DISTRIBUTION } from "@utils/deploys/merkleDistribution";
 import { ether, parseBalanceMap } from "@utils/index";
-import { IndexTokenFactory } from "index-coop-contracts/dist/typechain/IndexTokenFactory";
+import { IndexTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IndexTokenFactory";
 
 import { Account, Address, DistributionFormat } from "@utils/types";
 

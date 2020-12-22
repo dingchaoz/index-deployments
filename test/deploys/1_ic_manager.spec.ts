@@ -14,7 +14,7 @@ import {
 } from "@utils/deploys/output-helper";
 
 import { IC_MANAGER } from "../../deploy/1_ic_manager";
-import { IcManagerFactory } from "index-coop-contracts/dist/typechain/IcManagerFactory";
+import { IcManagerFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IcManagerFactory";
 
 const expect = getWaffleExpect();
 
