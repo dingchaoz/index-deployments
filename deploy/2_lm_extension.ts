@@ -12,16 +12,20 @@ import {
   ensureOutputsFile,
   findDependency,
   getContractAddress,
+  getCurrentStage,
   getNetworkConstant,
   removeNetwork,
   writeContractAndTransactionToOutputs,
   writeTransactionToOutputs,
   getNetworkId
 } from "@utils/deploys/output-helper";
+import { stageAlreadyFinished, trackFinishedStage } from "@utils/buidler";
 
 import { Account, Address, DistributionFormat } from "@utils/types";
 
-const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
+const CURRENT_STAGE = getCurrentStage(__filename);
+
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
   const { deploy, rawTx } = deployments;
 
@@ -85,6 +89,8 @@ const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
       }
       return await getContractAddress(contractName);
   }
-}
+});
+
+func.skip = stageAlreadyFinished(CURRENT_STAGE);
 
 export default func;

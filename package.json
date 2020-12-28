@@ -25,7 +25,7 @@
       "coverage": "yarn clean && yarn build && npx buidler coverage --temp artifacts --network coverage",
       "deploy:kovan": "buidler --network kovan deploy",
       "deploy:production": "buidler --network production deploy",
-      "deploy:local": "yarn run clean-dev-deployment && buidler --network localhost deploy",
+      "deploy:local": "buidler --network localhost deploy",
       "fix-typechain": "node scripts/fix-typechain.js && yarn rename-extensions",
       "flatten": "npx waffle flatten",
       "lint": "yarn run lint-sol && yarn run lint-ts",
