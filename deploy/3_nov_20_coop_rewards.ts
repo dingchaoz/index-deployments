@@ -10,12 +10,14 @@ import {
 import {
   ensureOutputsFile,
   getContractAddress,
+  getCurrentStage,
   getNetworkConstant,
   removeNetwork,
   writeContractAndTransactionToOutputs,
 } from "@utils/deploys/output-helper";
 import { NOVEMBER_MERKLE_DISTRIBUTION } from "@utils/deploys/rewards/nov20Distribution";
 import { ether, parseBalanceMap } from "@utils/index";
+import { stageAlreadyFinished, trackFinishedStage } from "@utils/buidler";
 
 import { DistributionFormat } from "@utils/types";
 
@@ -23,7 +25,9 @@ const distributionArray: DistributionFormat[] = NOVEMBER_MERKLE_DISTRIBUTION;
 
 const merkleRootObject = parseBalanceMap(distributionArray); // Merkle root object
 
-const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
+const CURRENT_STAGE = getCurrentStage(__filename);
+
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
   const { deploy, rawTx } = deployments;
 
@@ -64,6 +68,9 @@ const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
     );
     await writeContractAndTransactionToOutputs("RewardsNov20MerkleDistributor", merkleDistributorDeploy.address, merkleDistributorDeploy.receipt.transactionHash, "Deployed RewardsNov20MerkleDistributor");
   }
-};
+});
+
+func.skip = stageAlreadyFinished(CURRENT_STAGE);
+
 export default func;
 

@@ -1,6 +1,8 @@
 import fs from "fs-extra";
 import * as _ from "lodash";
 
+import path from "path";
+
 require("dotenv").config({ path: "./.env"});
 
 const privateKey: string | undefined = process.env.DEPLOYMENT_PRIVATE_KEY;
@@ -11,6 +13,13 @@ const deploymentNetworkId: number = parseInt(process.env.DEPLOYMENT_NETWORK_ID a
 const OUTPUTS_PATH = `./deployments/${getDeploymentNetworkKey()}.json`;
 
 import dependencies from "./dependencies";
+
+export function getCurrentStage(fileName: string): number {
+  const baseFile = path.basename(fileName);
+  const splitStr = baseFile.split("_");
+
+  return Number(splitStr[0]);
+}
 
 export async function ensureOutputsFile() {
   await fs.ensureFile(OUTPUTS_PATH);

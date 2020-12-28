@@ -14,10 +14,12 @@ import {
   getContractAddress,
   getNetworkConstant,
   removeNetwork,
+  getCurrentStage,
   writeContractAndTransactionToOutputs,
   writeTransactionToOutputs
 } from "@utils/deploys/output-helper";
 import { ether, getRandomAddress } from "@utils/index";
+import { stageAlreadyFinished, trackFinishedStage } from "@utils/buidler";
 import { DEPENDENCY } from "@utils/deploys/dependencies"
 
 import { Account, Address } from "@utils/types";
@@ -34,7 +36,9 @@ export const IC_MANAGER = {
   FEE_SPLIT: ether(.7),
 }
 
-const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
+const CURRENT_STAGE = getCurrentStage(__filename);
+
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
   const { deploy, rawTx } = deployments;
 
@@ -92,5 +96,8 @@ const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
       await writeContractAndTransactionToOutputs("ICManager", indexDeploy.address, indexDeploy.receipt.transactionHash, "Deployed ICManager");
     }
   }
-}
+});
+
+func.skip = stageAlreadyFinished(CURRENT_STAGE);
+
 export default func;

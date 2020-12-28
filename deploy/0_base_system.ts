@@ -13,6 +13,8 @@ import {
   findDependency,
   getContractAddress,
   getNetworkConstant,
+  getCurrentStage,
+  getLastDeploymentStage,
   removeNetwork,
   writeContractAndTransactionToOutputs,
   writeTransactionToOutputs,
@@ -21,6 +23,7 @@ import {
 import { MERKLE_DISTRIBUTION } from "@utils/deploys/merkleDistribution";
 import { ether, parseBalanceMap } from "@utils/index";
 import { IndexTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IndexTokenFactory";
+import { stageAlreadyFinished, trackFinishedStage } from "@utils/buidler";
 
 import { Account, Address, DistributionFormat } from "@utils/types";
 
@@ -116,7 +119,9 @@ const VESTING_TIMES: { [networkId: string]: any } = {
   },
 }
 
-const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
+const CURRENT_STAGE = getCurrentStage(__filename);
+
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
   const { deploy, rawTx } = deployments;
 
@@ -438,6 +443,9 @@ const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
       await writeTransactionToOutputs(transferToDFPHash.transactionHash, comment);
     }
   }
-};
+});
+
+func.skip = stageAlreadyFinished(CURRENT_STAGE);
+
 export default func;
 
