@@ -2,7 +2,7 @@ import "module-alias/register";
 import { deployments } from "@nomiclabs/buidler";
 
 import { Account } from "@utils/types";
-import { StakingRewardsV2 } from "@utils/contracts/index";
+import { StakingRewardsV2 } from "@deployments/utils/contracts/index";
 import {
   addSnapshotBeforeRestoreAfterEach,
   getAccounts,
@@ -11,10 +11,10 @@ import {
 import {
   findDependency,
   getContractAddress,
-} from "@utils/deploys/output-helper";
+} from "@deployments/utils/deploys/outputHelper";
 
 import { StakingRewardsV2Factory } from "@setprotocol/index-coop-contracts/dist/typechain/StakingRewardsV2Factory";
-import { ONE_DAY_IN_SECONDS } from "@utils/constants";
+import { ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
 
 const expect = getWaffleExpect();
 

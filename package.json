@@ -18,7 +18,7 @@
       "chain": "npx buidler node --no-deploy",
       "clean": "rm -f coverage.json; rm -rf .coverage_cache; rm -rf .coverage_contracts; rm -rf cache; rm -rf coverage; rm -rf typechain; rm -rf artifacts",
       "clean-artifacts": "rm -rf contracts && rm -rf artifacts && rm -rf external",
-      "clean-dev-deployment": "rm -rf deployments/50-development.json",
+      "clean-dev-deployment": "rm -rf deployments/outputs/50-development.json",
       "compile": "npx buidler compile",
       "copy-contracts": "yarn clean-artifacts && mkdir contracts && cp -rf node_modules/@setprotocol/index-coop-contracts/contracts/* ./contracts/. && mkdir artifacts && cp -rf node_modules/@setprotocol/index-coop-contracts/artifacts/* ./artifacts/. && mkdir external && cp -rf node_modules/@setprotocol/index-coop-contracts/external/* ./external/.",
       "copy-external-abi": "cp -r external/abi/**/* artifacts",
@@ -91,7 +91,8 @@
     },
     "_moduleAliases": {
       "@utils": "utils",
-      "@typechain": "typechain"
+      "@typechain": "typechain",
+      "@deployments": "deployments"
     },
     "husky": {
       "hooks": {
@@ -106,6 +107,12 @@
         "yarn lint-ts --fix"
       ],
       "utils/**/*.ts": [
+        "yarn lint-ts --fix"
+      ],
+      "deploy/**/*.ts": [
+        "yarn lint-ts --fix"
+      ],
+      "deployments/**/*.ts": [
         "yarn lint-ts --fix"
       ]
     }

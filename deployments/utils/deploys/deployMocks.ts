@@ -1,5 +1,5 @@
 import { Signer } from "ethers";
-import { Address } from "../types";
+import { Address } from "../../../utils/types";
 import { MutualUpgradeMock } from "../contracts/index";
 
 import { MutualUpgradeMockFactory } from "@setprotocol/index-coop-contracts/dist/typechain/MutualUpgradeMockFactory";

@@ -1,5 +1,5 @@
 import { BuidlerRuntimeEnvironment } from "@nomiclabs/buidler/types";
-import { getLastDeploymentStage, writeStateToOutputs } from "@utils/deploys/output-helper";
+import { getLastDeploymentStage, writeStateToOutputs } from "@deployments/utils/deploys/outputHelper";
 
 export function trackFinishedStage(
   currentStage: number,

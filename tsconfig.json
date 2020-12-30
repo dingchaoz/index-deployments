@@ -14,9 +14,16 @@
     "paths": {
         "@utils/*": ["utils/*"],
         "@typechain/*": ["typechain/*"],
+        "@deployments/*": ["deployments/*"]
     }
   },
-  "include": ["./test/**/*.ts", "./utils/**/*.ts", "./deploy/**/*.ts", "./typechain/**/*.ts", "types/**/*"],
+  "include": [
+    "./test/**/*.ts",
+    "./utils/**/*.ts",
+    "./deploy/**/*.ts",
+    "./typechain/**/*.ts",
+    "types/**/*",
+    "./deployments/**/*.ts",],
   "files": [
     "./buidler.config.ts",
     "node_modules/@nomiclabs/buidler-ethers/src/type-extensions.d.ts",

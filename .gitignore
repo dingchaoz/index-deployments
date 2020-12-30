@@ -5,11 +5,11 @@
 /dist
 /etherscan
 /flatten
-/deployments/kovan
+/deployments/outputs/kovan
 /deployments/localhost_31337
-/deployments/staging_mainnet_1
-/deployments/production_1
-/deployments/50-development.json
+/deployments/outputs/staging_mainnet_1
+/deployments/outputs/production_1
+/deployments/outputs/50-development.json
 /node_modules
 /transpiled
 /types/generated/*

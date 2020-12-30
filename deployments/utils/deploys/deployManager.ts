@@ -1,6 +1,6 @@
 import { Signer } from "ethers";
 import { BigNumber } from "ethers/utils";
-import { Address } from "../types";
+import { Address } from "../../../utils/types";
 import { IcManager } from "../contracts/index";
 
 import { IcManagerFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IcManagerFactory";

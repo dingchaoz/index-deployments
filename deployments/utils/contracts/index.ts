@@ -1,4 +1,4 @@
-export { IcManager } from "@setprotocol/index-coop-contracts//typechain/IcManager";
+export { IcManager } from "@setprotocol/index-coop-contracts/typechain/IcManager";
 export { IndexToken } from "@setprotocol/index-coop-contracts/typechain/IndexToken";
 export { MerkleDistributor } from "@setprotocol/index-coop-contracts/typechain/MerkleDistributor";
 export { MutualUpgradeMock } from "@setprotocol/index-coop-contracts/typechain/MutualUpgradeMock";

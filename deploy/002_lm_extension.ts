@@ -1,5 +1,4 @@
 import "module-alias/register";
-import { ethers } from "@nomiclabs/buidler";
 import { BigNumber } from "ethers/utils";
 
 import {
@@ -7,7 +6,7 @@ import {
   DeployFunction,
 } from "@nomiclabs/buidler/types";
 
-import { ADDRESS_ZERO, ZERO_BYTES, ZERO, MAX_UINT_256, ONE_DAY_IN_SECONDS, ONE_YEAR_IN_SECONDS } from "@utils/constants";
+import { EMPTY_BYTES, ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
 import {
   ensureOutputsFile,
   findDependency,
@@ -16,20 +15,25 @@ import {
   getNetworkConstant,
   removeNetwork,
   writeContractAndTransactionToOutputs,
-  writeTransactionToOutputs,
-  getNetworkId
-} from "@utils/deploys/output-helper";
-import { stageAlreadyFinished, trackFinishedStage } from "@utils/buidler";
+} from "@deployments/utils/deploys/outputHelper";
+import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
+import { Address } from "@utils/types";
+import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
+import {
+  CONTRACT_NAMES,
+} from "@deployments/constants/002_lm_extension";
 
-import { Account, Address, DistributionFormat } from "@utils/types";
+const {
+  DPI_ETH_UNI_POOL,
+  TREASURY_MULTI_SIG,
+} = DEPENDENCY;
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
 const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
-  const { deploy, rawTx } = deployments;
+  const { deploy } = deployments;
 
-  const [ownerWallet] = await ethers.signers();
   const { deployer } = await getNamedAccounts();
   // Configure development deployment
   const networkConstant = await getNetworkConstant();
@@ -39,37 +43,48 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       await removeNetwork(networkConstant);
     }
   } catch (error) {
-    console.log('*** No addresses to wipe *** ');
+    console.log("*** No addresses to wipe *** ");
   }
 
   await ensureOutputsFile();
 
   let treasuryMultisigAddress: Address;
   if (networkConstant === "production") {
-    treasuryMultisigAddress = await findDependency("TREASURY_MULTI_SIG");
+    treasuryMultisigAddress = await findDependency(TREASURY_MULTI_SIG);
   } else {
     treasuryMultisigAddress = deployer;
-    await writeContractAndTransactionToOutputs("TREASURY_MULTI_SIG", treasuryMultisigAddress, "0x", "Created Mock TREASURY_MULTI_SIG");
+    await writeContractAndTransactionToOutputs(TREASURY_MULTI_SIG, treasuryMultisigAddress, EMPTY_BYTES, "Created Mock TREASURY_MULTI_SIG");
   }
 
-  let uniswapLPReward = await findDependency("DPI_ETH_UNI_POOL");
+  let uniswapLPReward = await findDependency(DPI_ETH_UNI_POOL);
   if (uniswapLPReward === "") {
     uniswapLPReward = deployer;
-    await writeContractAndTransactionToOutputs("DPI_ETH_UNI_POOL", uniswapLPReward, "0x", "Created Mock DPI_ETH_UNI_POOL");
+    await writeContractAndTransactionToOutputs(DPI_ETH_UNI_POOL, uniswapLPReward, EMPTY_BYTES, "Created Mock DPI_ETH_UNI_POOL");
   }
 
   // Deploy INDEX token
-  const checkIndexTokenAddress = await getContractAddress("IndexToken");
+  const checkIndexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
   if (checkIndexTokenAddress === "") {
     const indexTokenDeploy = await deploy(
-      "IndexToken",
+      CONTRACT_NAMES.INDEX_TOKEN,
       { from: deployer, args: [deployer], log: true }
     );
-    await writeContractAndTransactionToOutputs("IndexToken", indexTokenDeploy.address, indexTokenDeploy.receipt.transactionHash, "Deployed IndexToken");
+    await writeContractAndTransactionToOutputs(
+      CONTRACT_NAMES.INDEX_TOKEN,
+      indexTokenDeploy.address,
+      indexTokenDeploy.receipt.transactionHash,
+      "Deployed IndexToken"
+    );
   }
-  const indexTokenAddress = await getContractAddress("IndexToken");
+  const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
-  await deployNewStakingContract("StakingRewardsV2 - December", treasuryMultisigAddress, indexTokenAddress, uniswapLPReward, ONE_DAY_IN_SECONDS.mul(30))
+  await deployNewStakingContract(
+    CONTRACT_NAMES.STAKING_REWARDS_V2_DECEMBER,
+    treasuryMultisigAddress,
+    indexTokenAddress,
+    uniswapLPReward,
+    ONE_DAY_IN_SECONDS.mul(30)
+  );
 
   async function deployNewStakingContract(
     contractName: string,
@@ -82,7 +97,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       const checkStakingRewardsAddress = await getContractAddress(contractName);
       if (checkStakingRewardsAddress === "") {
         const stakingRewardsDeploy = await deploy(
-          "StakingRewardsV2",
+          CONTRACT_NAMES.STAKING_REWARDS_V2,
           { from: deployer, args: [distributor, rewardToken, stakingToken, duration], log: true }
         );
         await writeContractAndTransactionToOutputs(contractName, stakingRewardsDeploy.address, stakingRewardsDeploy.receipt.transactionHash, `Deployed ${ contractName }`);

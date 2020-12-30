@@ -1,6 +1,6 @@
 import { Signer } from "ethers";
 import { BigNumberish } from "ethers/utils";
-import { Address } from "../types";
+import { Address } from "../../../utils/types";
 import {
   Controller,
   BasicIssuanceModule,
@@ -11,7 +11,7 @@ import {
   StandardTokenMock
 } from "../contracts/setV2";
 import { Weth9 } from "../contracts/index";
-import { ether } from "../common";
+import { ether } from "../../../utils/common";
 import { ControllerFactory } from "@setprotocol/index-coop-contracts/dist/typechain/ControllerFactory";
 import { BasicIssuanceModuleFactory } from "@setprotocol/index-coop-contracts/dist/typechain/BasicIssuanceModuleFactory";
 import { SingleIndexModuleFactory } from "@setprotocol/index-coop-contracts/dist/typechain/SingleIndexModuleFactory";

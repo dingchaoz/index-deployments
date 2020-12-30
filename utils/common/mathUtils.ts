@@ -1,6 +1,6 @@
 import { BigNumber } from "ethers/utils";
 
-import { PRECISE_UNIT, ZERO } from "../constants";
+import { PRECISE_UNIT, ZERO } from "../../deployments/utils/constants";
 
 export const preciseMul = (a: BigNumber, b: BigNumber): BigNumber => {
   return a.mul(b).div(PRECISE_UNIT);

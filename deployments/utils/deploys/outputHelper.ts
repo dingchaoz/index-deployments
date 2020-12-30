@@ -10,7 +10,7 @@ const privateKey: string | undefined = process.env.DEPLOYMENT_PRIVATE_KEY;
 const deploymentConstants: string | undefined = process.env.DEPLOYMENT_CONSTANT;
 const deploymentNetworkId: number = parseInt(process.env.DEPLOYMENT_NETWORK_ID as any);
 
-const OUTPUTS_PATH = `./deployments/${getDeploymentNetworkKey()}.json`;
+const OUTPUTS_PATH = `./deployments/outputs/${getDeploymentNetworkKey()}.json`;
 
 import dependencies from "./dependencies";
 
