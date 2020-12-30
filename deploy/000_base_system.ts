@@ -7,117 +7,48 @@ import {
   DeployFunction,
 } from "@nomiclabs/buidler/types";
 
-import { ADDRESS_ZERO, ZERO_BYTES, ZERO, MAX_UINT_256, ONE_DAY_IN_SECONDS, ONE_YEAR_IN_SECONDS } from "@utils/constants";
 import {
   ensureOutputsFile,
   findDependency,
   getContractAddress,
   getNetworkConstant,
   getCurrentStage,
-  getLastDeploymentStage,
   removeNetwork,
   writeContractAndTransactionToOutputs,
   writeTransactionToOutputs,
-  getNetworkId
-} from "@utils/deploys/output-helper";
-import { MERKLE_DISTRIBUTION } from "@utils/deploys/merkleDistribution";
-import { ether, parseBalanceMap } from "@utils/index";
+} from "@deployments/utils/deploys/outputHelper";
+
 import { IndexTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IndexTokenFactory";
-import { stageAlreadyFinished, trackFinishedStage } from "@utils/buidler";
+import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
+import { Address } from "@utils/types";
+import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
 
-import { Account, Address, DistributionFormat } from "@utils/types";
+import {
+  CONTRACT_NAMES,
+  VESTING_TIMES,
+  MERKLE_ROOT_OBJECT,
+  UNISWAP_LP_REWARD_AMOUNT,
+  MERKLE_DISTRIBUTOR_AMOUNT,
+  TREASURY_IMMEDIATE_OWNERSHIP_AMOUNT,
+  TREASURY_INDEX_METHODOLOGY_OWNERSHIP_AMOUNT,
+  TREASURY_YEAR_ONE_OWNERSHIP_AMOUNT,
+  TREASURY_YEAR_TWO_OWNERSHIP_AMOUNT,
+  TREASURY_YEAR_THREE_OWNERSHIP_AMOUNT,
+  SET_LABS_YEAR_ONE_OWNERSHIP_AMOUNT,
+  SET_LABS_YEAR_TWO_OWNERSHIP_AMOUNT,
+  SET_LABS_YEAR_THREE_OWNERSHIP_AMOUNT,
+  DFP_YEAR_ONE_OWNERSHIP_AMOUNT,
+  DFP_YEAR_TWO_OWNERSHIP_AMOUNT,
+  DFP_YEAR_THREE_OWNERSHIP_AMOUNT,
+} from "@deployments/constants/000_base_system";
+import { EMPTY_BYTES } from "@deployments/utils/constants";
 
-const EMPTY_ARGS: any[] = [];
-
-const distributionArray: DistributionFormat[] = MERKLE_DISTRIBUTION;
-
-const merkleRootObject = parseBalanceMap(distributionArray); // Merkle root object
-const uniswapLPRewardAmount = ether(900000); // 900k tokens; 9% supply
-const merkleDistributorAmount = ether(100000); // 100k tokens; 1% supply
-
-const treasuryImmediateOwnershipAmount = ether(500000); // 500k tokens; 5% supply
-
-const treasuryIndexMethodologyOwnershipAmount = ether(750000) // 750k tokens; 7.5% supply
-
-// Treasury vesting amounts 47.5%
-const treasuryYearOneOwnershipAmount = ether(2375000); // 2.375m tokens; 23.75% supply
-const treasuryYearTwoOwnershipAmount = ether(1425000); // 1.425m tokens; 14.25% supply
-const treasuryYearThreeOwnershipAmount = ether(950000); // 950k tokens; 9.5% supply
-
-// Set Labs vesting amounts 28%
-const setLabsYearOneOwnershipAmount = ether(1400000); // 1.4m tokens; 14% supply
-const setLabsYearTwoOwnershipAmount = ether(840000); // 840k tokens; 8.4% supply
-const setLabsYearThreeOwnershipAmount = ether(560000); // 560k tokens; 5.6% supply
-
-// DeFi Pulse vesting amounts 2%
-const dfpYearOneOwnershipAmount = ether(100000); // 100k tokens; 1% supply
-const dfpYearTwoOwnershipAmount = ether(60000); // 60k tokens; 0.6% supply
-const dfpYearThreeOwnershipAmount = ether(40000); // 40k tokens; 0.4% supply
-
-// Vesting parameters
-const anchorTime = new BigNumber(Math.floor(Date.now() / 1000)).add(60);
-const VESTING_TIMES: { [networkId: string]: any } = {
-  vestingIndexMethodologyBegin: {
-    production: new BigNumber(1607281200),                   // 12/06/2020 @ 7:00pm UTC
-    staging: new BigNumber(1607281200),
-    development: anchorTime.add(ONE_DAY_IN_SECONDS.mul(60)),
-  },
-  vestingIndexMethodologyCliff: {
-    production: new BigNumber(1607281200),                   // 12/06/2020 @ 7:00pm UTC
-    staging: new BigNumber(1607281200),
-    development: anchorTime.add(ONE_DAY_IN_SECONDS.mul(60))
-  },
-  vestingIndexMethodologyEnd: {
-    production: new BigNumber(1653937200),                   // 5/30/2022 @ 7:00pm UTC
-    staging: new BigNumber(1653937200),
-    development: anchorTime.add(ONE_DAY_IN_SECONDS.mul(600))
-  },
-  vestingYearOneBegin: {
-    production: new BigNumber(1602010800),                   // 10/6/2020 Tuesday 12PM PST
-    staging: new BigNumber(1602010800),
-    development: anchorTime
-  },
-  vestingYearOneCliff: {
-    production: new BigNumber(1602010800),                   // 10/6/2020 Tuesday 12PM PST
-    staging: new BigNumber(1602010800),
-    development: anchorTime
-  },
-  vestingYearOneEnd: {
-    production: new BigNumber(1633546800),                   // 10/6/2021
-    staging: new BigNumber(1633546800),
-    development: anchorTime.add(ONE_YEAR_IN_SECONDS)
-  },
-  vestingYearTwoBegin: {
-    production: new BigNumber(1633546800),                   // 10/6/2021
-    staging: new BigNumber(1633546800),
-    development: anchorTime.add(ONE_YEAR_IN_SECONDS)
-  },
-  vestingYearTwoCliff: {
-    production: new BigNumber(1633546800),                   // 10/6/2021
-    staging: new BigNumber(1633546800),
-    development: anchorTime.add(ONE_YEAR_IN_SECONDS)
-  },
-  vestingYearTwoEnd: {
-    production: new BigNumber(1665082800),                   // 10/6/2022
-    staging: new BigNumber(1665082800),
-    development: anchorTime.add(ONE_YEAR_IN_SECONDS.mul(2))
-  },
-  vestingYearThreeBegin: {
-    production: new BigNumber(1665082800),                   // 10/6/2022
-    staging: new BigNumber(1665082800),
-    development: anchorTime.add(ONE_YEAR_IN_SECONDS.mul(2))
-  },
-  vestingYearThreeCliff: {
-    production: new BigNumber(1665082800),                   // 10/6/2022
-    staging: new BigNumber(1665082800),
-    development: anchorTime.add(ONE_YEAR_IN_SECONDS.mul(2))
-  },
-  vestingYearThreeEnd: {
-    production: new BigNumber(1696618800),                   // 10/6/2023
-    staging: new BigNumber(1696618800),
-    development: anchorTime.add(ONE_YEAR_IN_SECONDS.mul(3))
-  },
-}
+const {
+  TREASURY_MULTI_SIG,
+  DFP_MULTI_SIG,
+  SET_LABS,
+  DPI_ETH_UNI_POOL,
+} = DEPENDENCY;
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
@@ -135,81 +66,96 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       await removeNetwork(networkConstant);
     }
   } catch (error) {
-    console.log('*** No addresses to wipe *** ');
+    console.log("*** No addresses to wipe *** ");
   }
 
   await ensureOutputsFile();
 
-  console.log(JSON.stringify(merkleRootObject.claims));
+  console.log(JSON.stringify(MERKLE_ROOT_OBJECT.claims));
 
   // Retrieve dependencies
-  let uniswapLPReward = await findDependency("DPI_ETH_UNI_POOL");
+  let uniswapLPReward = await findDependency(DPI_ETH_UNI_POOL);
   if (uniswapLPReward === "") {
     uniswapLPReward = deployer;
   }
 
   let setLabsAddress;
   if (networkConstant === "production") {
-    setLabsAddress = await findDependency("SET_LABS");
+    setLabsAddress = await findDependency(SET_LABS);
   } else {
     setLabsAddress = deployer;
   }
 
   let treasuryMultisigAddress;
   if (networkConstant === "production") {
-    treasuryMultisigAddress = await findDependency("TREASURY_MULTI_SIG");
+    treasuryMultisigAddress = await findDependency(TREASURY_MULTI_SIG);
   } else {
     treasuryMultisigAddress = deployer;
-    await writeContractAndTransactionToOutputs("TREASURY_MULTI_SIG", treasuryMultisigAddress, "0x", "Created Mock TREASURY_MULTI_SIG");
+    await writeContractAndTransactionToOutputs(TREASURY_MULTI_SIG, treasuryMultisigAddress, EMPTY_BYTES, "Created Mock TREASURY_MULTI_SIG");
   }
 
   let dfpMultisigAddress;
   if (networkConstant === "production") {
-    dfpMultisigAddress = await findDependency("DFP_MULTI_SIG");
+    dfpMultisigAddress = await findDependency(DFP_MULTI_SIG);
   } else {
     dfpMultisigAddress = deployer;
-    await writeContractAndTransactionToOutputs("DFP_MULTI_SIG", dfpMultisigAddress, "0x", "Created Mock DFP_MULTI_SIG");
+    await writeContractAndTransactionToOutputs(DFP_MULTI_SIG, dfpMultisigAddress, EMPTY_BYTES, "Created Mock DFP_MULTI_SIG");
   }
 
   // Deploy INDEX token
-  const checkIndexTokenAddress = await getContractAddress("IndexToken");
+  const checkIndexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
   if (checkIndexTokenAddress === "") {
     const indexTokenDeploy = await deploy(
-      "IndexToken",
+      CONTRACT_NAMES.INDEX_TOKEN,
       { from: deployer, args: [deployer], log: true }
     );
-    await writeContractAndTransactionToOutputs("IndexToken", indexTokenDeploy.address, indexTokenDeploy.receipt.transactionHash, "Deployed IndexToken");
+    await writeContractAndTransactionToOutputs(
+      CONTRACT_NAMES.INDEX_TOKEN,
+      indexTokenDeploy.address,
+      indexTokenDeploy.receipt.transactionHash,
+      "Deployed IndexToken"
+    );
   }
-  const indexTokenAddress = await getContractAddress("IndexToken");
+  const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
   // Deploy Merkle Distributor contract
-  const checkMerkleDistributorAddress = await getContractAddress("MerkleDistributor");
+  const checkMerkleDistributorAddress = await getContractAddress(CONTRACT_NAMES.MERKLE_DISTRIBUTOR);
   if (checkMerkleDistributorAddress === "") {
     const merkleDistributorDeploy = await deploy(
-      "MerkleDistributor",
-      { from: deployer, args: [indexTokenAddress, merkleRootObject.merkleRoot], log: true }
+      CONTRACT_NAMES.MERKLE_DISTRIBUTOR,
+      { from: deployer, args: [indexTokenAddress, MERKLE_ROOT_OBJECT.merkleRoot], log: true }
     );
-    await writeContractAndTransactionToOutputs("MerkleDistributor", merkleDistributorDeploy.address, merkleDistributorDeploy.receipt.transactionHash, "Deployed MerkleDistributor");
+    await writeContractAndTransactionToOutputs(
+      CONTRACT_NAMES.MERKLE_DISTRIBUTOR,
+      merkleDistributorDeploy.address,
+      merkleDistributorDeploy.receipt.transactionHash,
+      "Deployed MerkleDistributor"
+    );
   }
-  const merkleDistributorAddress = await getContractAddress("MerkleDistributor");
+  const merkleDistributorAddress = await getContractAddress(CONTRACT_NAMES.MERKLE_DISTRIBUTOR);
 
   // Deploy Uniswap LP staking rewards contract
-  const checkStakingRewardsAddress = await getContractAddress("StakingRewards");
+  const checkStakingRewardsAddress = await getContractAddress(CONTRACT_NAMES.STAKING_REWARDS);
   if (checkStakingRewardsAddress === "") {
     const stakingRewardsDeploy = await deploy(
-      "StakingRewards",
+      CONTRACT_NAMES.STAKING_REWARDS,
       { from: deployer, args: [treasuryMultisigAddress, indexTokenAddress, uniswapLPReward], log: true }
     );
-    await writeContractAndTransactionToOutputs("StakingRewards", stakingRewardsDeploy.address, stakingRewardsDeploy.receipt.transactionHash, "Deployed StakingRewards");
+    await writeContractAndTransactionToOutputs(
+      CONTRACT_NAMES.STAKING_REWARDS,
+      stakingRewardsDeploy.address,
+      stakingRewardsDeploy.receipt.transactionHash,
+      "Deployed StakingRewards"
+    );
   }
-  const stakingRewardsAddress = await getContractAddress("StakingRewards");
+  const stakingRewardsAddress = await getContractAddress(CONTRACT_NAMES.STAKING_REWARDS);
 
   // Deploy Treasury index methodology vesting contract
   const treasuryIndexMethodologyVestingAddress = await deployVesting(
-    "IndexMethodologyTreasuryVesting",
+    CONTRACT_NAMES.INDEX_METHODOLOGY_TREASURY_VESTING,
     indexTokenAddress,
     treasuryMultisigAddress,
-    treasuryIndexMethodologyOwnershipAmount,
+    TREASURY_INDEX_METHODOLOGY_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingIndexMethodologyBegin[networkConstant],
     VESTING_TIMES.vestingIndexMethodologyCliff[networkConstant],
     VESTING_TIMES.vestingIndexMethodologyEnd[networkConstant],
@@ -218,10 +164,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy Treasury 1 year treasury vesting contract
   const treasuryYearOneVestingAddress = await deployVesting(
-    "YearOneTreasuryVesting",
+    CONTRACT_NAMES.YEAR_ONE_TREASURY_VESTING,
     indexTokenAddress,
     treasuryMultisigAddress,
-    treasuryYearOneOwnershipAmount,
+    TREASURY_YEAR_ONE_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearOneBegin[networkConstant],
     VESTING_TIMES.vestingYearOneCliff[networkConstant],
     VESTING_TIMES.vestingYearOneEnd[networkConstant],
@@ -230,10 +176,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy Treasury 2 year treasury vesting contract
   const treasuryYearTwoVestingAddress = await deployVesting(
-    "YearTwoTreasuryVesting",
+    CONTRACT_NAMES.YEAR_TWO_TREASURY_VESTING,
     indexTokenAddress,
     treasuryMultisigAddress,
-    treasuryYearTwoOwnershipAmount,
+    TREASURY_YEAR_TWO_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearTwoBegin[networkConstant],
     VESTING_TIMES.vestingYearTwoCliff[networkConstant],
     VESTING_TIMES.vestingYearTwoEnd[networkConstant],
@@ -242,10 +188,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy Treasury 3 year treasury vesting contract
   const treasuryYearThreeVestingAddress = await deployVesting(
-    "YearThreeTreasuryVesting",
+    CONTRACT_NAMES.YEAR_THREE_TREASURY_VESTING,
     indexTokenAddress,
     treasuryMultisigAddress,
-    treasuryYearThreeOwnershipAmount,
+    TREASURY_YEAR_THREE_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearThreeBegin[networkConstant],
     VESTING_TIMES.vestingYearThreeCliff[networkConstant],
     VESTING_TIMES.vestingYearThreeEnd[networkConstant],
@@ -254,10 +200,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy Set Labs 1 year vesting contract
   const setLabsYearOneVestingAddress = await deployVesting(
-    "YearOneSetLabsVesting",
+    CONTRACT_NAMES.YEAR_ONE_SET_LABS_VESTING,
     indexTokenAddress,
     setLabsAddress,
-    setLabsYearOneOwnershipAmount,
+    SET_LABS_YEAR_ONE_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearOneBegin[networkConstant],
     VESTING_TIMES.vestingYearOneCliff[networkConstant],
     VESTING_TIMES.vestingYearOneEnd[networkConstant],
@@ -266,10 +212,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy Set Labs 2 year vesting contract
   const setLabsYearTwoVestingAddress = await deployVesting(
-    "YearTwoSetLabsVesting",
+    CONTRACT_NAMES.YEAR_TWO_SET_LABS_VESTING,
     indexTokenAddress,
     setLabsAddress,
-    setLabsYearTwoOwnershipAmount,
+    SET_LABS_YEAR_TWO_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearTwoBegin[networkConstant],
     VESTING_TIMES.vestingYearTwoCliff[networkConstant],
     VESTING_TIMES.vestingYearTwoEnd[networkConstant],
@@ -278,10 +224,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy Set Labs 3 year vesting contract
   const setLabsYearThreeVestingAddress = await deployVesting(
-    "YearThreeSetLabsVesting",
+    CONTRACT_NAMES.YEAR_THREE_SET_LABS_VESTING,
     indexTokenAddress,
     setLabsAddress,
-    setLabsYearThreeOwnershipAmount,
+    SET_LABS_YEAR_THREE_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearThreeBegin[networkConstant],
     VESTING_TIMES.vestingYearThreeCliff[networkConstant],
     VESTING_TIMES.vestingYearThreeEnd[networkConstant],
@@ -290,10 +236,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy DFP 1 year vesting contract
   const dfpYearOneVestingAddress = await deployVesting(
-    "YearOneDFPVesting",
+    CONTRACT_NAMES.YEAR_ONE_DFP_VESTING,
     indexTokenAddress,
     dfpMultisigAddress,
-    dfpYearOneOwnershipAmount,
+    DFP_YEAR_ONE_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearOneBegin[networkConstant],
     VESTING_TIMES.vestingYearOneCliff[networkConstant],
     VESTING_TIMES.vestingYearOneEnd[networkConstant],
@@ -302,10 +248,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy DFP 2 year vesting contract
   const dfpYearTwoVestingAddress = await deployVesting(
-    "YearTwoDFPVesting",
+    CONTRACT_NAMES.YEAR_TWO_DFP_VESTING,
     indexTokenAddress,
     dfpMultisigAddress,
-    dfpYearTwoOwnershipAmount,
+    DFP_YEAR_TWO_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearTwoBegin[networkConstant],
     VESTING_TIMES.vestingYearTwoCliff[networkConstant],
     VESTING_TIMES.vestingYearTwoEnd[networkConstant],
@@ -314,10 +260,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Deploy DFP 3 year vesting contract
   const dfpYearThreeVestingAddress = await deployVesting(
-    "YearThreeDFPVesting",
+    CONTRACT_NAMES.YEAR_THREE_DFP_VESTING,
     indexTokenAddress,
     dfpMultisigAddress,
-    dfpYearThreeOwnershipAmount,
+    DFP_YEAR_THREE_OWNERSHIP_AMOUNT,
     VESTING_TIMES.vestingYearThreeBegin[networkConstant],
     VESTING_TIMES.vestingYearThreeCliff[networkConstant],
     VESTING_TIMES.vestingYearThreeEnd[networkConstant],
@@ -330,79 +276,79 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   await transferIndexTokenFromDeployer(
     treasuryMultisigAddress,
-    treasuryImmediateOwnershipAmount,
+    TREASURY_IMMEDIATE_OWNERSHIP_AMOUNT,
     "Transferred immediately vested INDEX to Treasury Multisig"
   );
 
   await transferIndexTokenFromDeployer(
     treasuryIndexMethodologyVestingAddress,
-    treasuryIndexMethodologyOwnershipAmount,
+    TREASURY_INDEX_METHODOLOGY_OWNERSHIP_AMOUNT,
     "Transferred INDEX to index methodology vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     merkleDistributorAddress,
-    merkleDistributorAmount,
+    MERKLE_DISTRIBUTOR_AMOUNT,
     "Transferred INDEX to Merkle Distributor"
   );
 
   await transferIndexTokenFromDeployer(
     stakingRewardsAddress,
-    uniswapLPRewardAmount,
+    UNISWAP_LP_REWARD_AMOUNT,
     "Transferred INDEX to Uniswap LP StakingRewards"
   );
 
   await transferIndexTokenFromDeployer(
     treasuryYearOneVestingAddress,
-    treasuryYearOneOwnershipAmount,
+    TREASURY_YEAR_ONE_OWNERSHIP_AMOUNT,
     "Transferred INDEX to Treasury 1yr vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     treasuryYearTwoVestingAddress,
-    treasuryYearTwoOwnershipAmount,
+    TREASURY_YEAR_TWO_OWNERSHIP_AMOUNT,
     "Transferred INDEX to Treasury 2yr vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     treasuryYearThreeVestingAddress,
-    treasuryYearThreeOwnershipAmount,
+    TREASURY_YEAR_THREE_OWNERSHIP_AMOUNT,
     "Transferred INDEX to Treasury 3yr vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     setLabsYearOneVestingAddress,
-    setLabsYearOneOwnershipAmount,
+    SET_LABS_YEAR_ONE_OWNERSHIP_AMOUNT,
     "Transferred INDEX to Set Labs 1yr vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     setLabsYearTwoVestingAddress,
-    setLabsYearTwoOwnershipAmount,
+    SET_LABS_YEAR_TWO_OWNERSHIP_AMOUNT,
     "Transferred INDEX to Set Labs 2yr vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     setLabsYearThreeVestingAddress,
-    setLabsYearThreeOwnershipAmount,
+    SET_LABS_YEAR_THREE_OWNERSHIP_AMOUNT,
     "Transferred INDEX to Set Labs 3yr vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     dfpYearOneVestingAddress,
-    dfpYearOneOwnershipAmount,
+    DFP_YEAR_ONE_OWNERSHIP_AMOUNT,
     "Transferred INDEX to DFP 1yr vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     dfpYearTwoVestingAddress,
-    dfpYearTwoOwnershipAmount,
+    DFP_YEAR_TWO_OWNERSHIP_AMOUNT,
     "Transferred INDEX to DFP 2yr vesting contract"
   );
 
   await transferIndexTokenFromDeployer(
     dfpYearThreeVestingAddress,
-    dfpYearThreeOwnershipAmount,
+    DFP_YEAR_THREE_OWNERSHIP_AMOUNT,
     "Transferred INDEX to DFP 3yr vesting contract"
   );
 
@@ -419,7 +365,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
     const checkVestingAddress = await getContractAddress(contractName);
     if (checkVestingAddress === "") {
       const vestingDeploy = await deploy(
-        "Vesting",
+        CONTRACT_NAMES.VESTING,
         { from: deployer, args: [indexTokenAddress, recipient, vestingAmount, vestingBegin, vestingCliff, vestingEnd], log: true }
       );
       await writeContractAndTransactionToOutputs(contractName, vestingDeploy.address, vestingDeploy.receipt.transactionHash, description);
@@ -432,7 +378,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
     if (recipientBalance.eq(0)) {
       const transferData = indexTokenInstance.interface.functions.transfer.encode([
         recipient,
-        quantity
+        quantity,
       ]);
       const transferToDFPHash: any = await rawTx({
         from: deployer,

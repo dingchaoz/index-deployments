@@ -1,14 +1,3 @@
-import { ethers } from "@nomiclabs/buidler";
-import { Blockchain } from "./common";
-import { Address } from "./types";
-
-const provider = ethers.provider;
-export const getBlockchainUtils = () => new Blockchain(provider);
-
-import { SetFixture } from "./fixtures";
-
-export const getSetFixture = (ownerAddress: Address) => new SetFixture(provider, ownerAddress);
-
 export {
   getAccounts,
   getEthBalance,
@@ -21,7 +10,7 @@ export {
   getRandomAddress,
   increaseTimeAsync,
   mineBlockAsync,
-} from "./buidler";
+} from "./test";
 
 export {
   divDown,
@@ -38,9 +27,3 @@ export {
   preciseMulCeilInt,
   preciseDivCeilInt,
 } from "./common";
-
-export {
-  BalanceTree,
-  MerkleTree,
-  parseBalanceMap,
-} from "./merkleUtils";

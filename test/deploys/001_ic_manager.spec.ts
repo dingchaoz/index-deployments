@@ -2,7 +2,7 @@ import "module-alias/register";
 import { deployments } from "@nomiclabs/buidler";
 
 import { Account } from "@utils/types";
-import { IcManager } from "@utils/contracts/index";
+import { IcManager } from "@deployments/utils/contracts/index";
 import {
   addSnapshotBeforeRestoreAfterEach,
   getAccounts,
@@ -11,9 +11,9 @@ import {
 import {
   findDependency,
   getContractAddress,
-} from "@utils/deploys/output-helper";
+} from "@deployments/utils/deploys/outputHelper";
 
-import { IC_MANAGER } from "../../deploy/1_ic_manager";
+import { IC_MANAGER } from "@deployments/constants/001_ic_manager";
 import { IcManagerFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IcManagerFactory";
 
 const expect = getWaffleExpect();

@@ -2,7 +2,7 @@ import "module-alias/register";
 import { deployments } from "@nomiclabs/buidler";
 
 import { Account } from "@utils/types";
-import { MerkleDistributor } from "@utils/contracts/index";
+import { MerkleDistributor } from "@deployments/utils/contracts/index";
 import {
   addSnapshotBeforeRestoreAfterEach,
   getAccounts,
@@ -10,8 +10,8 @@ import {
 } from "@utils/index";
 import {
   getContractAddress,
-} from "@utils/deploys/output-helper";
-import { NOVEMBER_MERKLE_DISTRIBUTION } from "@utils/deploys/rewards/nov20Distribution";
+} from "@deployments/utils/deploys/outputHelper";
+import { NOVEMBER_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/nov20Distribution";
 
 import { MerkleDistributorFactory } from "@setprotocol/index-coop-contracts/dist/typechain/MerkleDistributorFactory";
 

@@ -1,7 +1,7 @@
 import { BigNumber } from "ethers/utils";
 import BalanceTree from "./balanceTree";
 import { ZERO } from "../constants";
-import { DistributionFormat, MerkleDistributorInfo } from "../types";
+import { DistributionFormat, MerkleDistributorInfo } from "../../../utils/types";
 
 
 export function parseBalanceMap(balances: DistributionFormat[]): MerkleDistributorInfo {

@@ -3,11 +3,7 @@ export {
   getEthBalance,
   getRandomAccount,
   getRandomAddress,
-} from "./accountUtils";
-export {
-  stageAlreadyFinished,
-  trackFinishedStage,
-} from "./deployUtils";
+} from "../accountUtils";
 export {
   addSnapshotBeforeRestoreAfterEach,
   getLastBlockTimestamp,

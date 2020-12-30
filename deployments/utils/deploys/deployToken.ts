@@ -1,7 +1,7 @@
 import { Signer } from "ethers";
 import { BigNumber } from "ethers/utils";
-import { Address } from "../types";
-import { IndexToken, MerkleDistributor, Vesting } from "../contracts";
+import { Address } from "../../../utils/types";
+import { IndexToken, MerkleDistributor, Vesting } from "@deployments/utils/contracts";
 
 import { IndexTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IndexTokenFactory";
 import { MerkleDistributorFactory } from "@setprotocol/index-coop-contracts/dist/typechain/MerkleDistributorFactory";

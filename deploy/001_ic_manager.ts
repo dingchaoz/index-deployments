@@ -1,13 +1,11 @@
 import "module-alias/register";
-import { ethers } from "@nomiclabs/buidler";
-import { BigNumber } from "ethers/utils";
 
 import {
   BuidlerRuntimeEnvironment,
   DeployFunction,
 } from "@nomiclabs/buidler/types";
 
-import { } from "@utils/constants";
+import { EMPTY_BYTES } from "@deployments/utils/constants";
 import {
   ensureOutputsFile,
   findDependency,
@@ -16,13 +14,14 @@ import {
   removeNetwork,
   getCurrentStage,
   writeContractAndTransactionToOutputs,
-  writeTransactionToOutputs
-} from "@utils/deploys/output-helper";
-import { ether, getRandomAddress } from "@utils/index";
-import { stageAlreadyFinished, trackFinishedStage } from "@utils/buidler";
-import { DEPENDENCY } from "@utils/deploys/dependencies"
-
-import { Account, Address } from "@utils/types";
+} from "@deployments/utils/deploys/outputHelper";
+import { getRandomAddress } from "@utils/index";
+import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
+import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
+import {
+  CONTRACT_NAMES,
+  IC_MANAGER,
+} from "@deployments/constants/001_ic_manager";
 
 const {
   DFP_MULTI_SIG,
@@ -32,17 +31,12 @@ const {
   TREASURY_MULTI_SIG,
 } = DEPENDENCY;
 
-export const IC_MANAGER = {
-  FEE_SPLIT: ether(.7),
-}
-
 const CURRENT_STAGE = getCurrentStage(__filename);
 
 const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
-  const { deploy, rawTx } = deployments;
+  const { deploy } = deployments;
 
-  const [ownerWallet] = await ethers.signers();
   const { deployer } = await getNamedAccounts();
   // Configure development deployment
   const networkConstant = await getNetworkConstant();
@@ -52,7 +46,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       await removeNetwork(networkConstant);
     }
   } catch (error) {
-    console.log('*** No addresses to wipe *** ');
+    console.log("*** No addresses to wipe *** ");
   }
 
   await ensureOutputsFile();
@@ -67,22 +61,22 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   async function polyFillForDevelopment(): Promise<void> {
     if (await findDependency(DPI) === "") {
-      await writeContractAndTransactionToOutputs("DPI", await getRandomAddress(), "0x", "Created Mock DPI");
+      await writeContractAndTransactionToOutputs(DPI, await getRandomAddress(), EMPTY_BYTES, "Created Mock DPI");
     }
 
     if (await findDependency(SINGLE_INDEX_MODULE) === "") {
-      await writeContractAndTransactionToOutputs("SINGLE_INDEX_MODULE", await getRandomAddress(), "0x", "Created Mock SINGLE_INDEX_MODULE");
+      await writeContractAndTransactionToOutputs(SINGLE_INDEX_MODULE, await getRandomAddress(), EMPTY_BYTES, "Created Mock SINGLE_INDEX_MODULE");
     }
 
     if (await findDependency(STREAMING_FEE_MODULE) === "") {
-      await writeContractAndTransactionToOutputs("STREAMING_FEE_MODULE", await getRandomAddress(), "0x", "Created Mock STREAMING_FEE_MODULE");
+      await writeContractAndTransactionToOutputs(STREAMING_FEE_MODULE, await getRandomAddress(), EMPTY_BYTES, "Created Mock STREAMING_FEE_MODULE");
     }
 
     console.log("Polyfilled dependencies");
   }
 
   async function deployICManager(): Promise<void> {
-    const checkSingleIndexModuleAddress = await getContractAddress("ICManager");
+    const checkSingleIndexModuleAddress = await getContractAddress(CONTRACT_NAMES.IC_MANAGER);
     if (checkSingleIndexModuleAddress === "") {
       const params: string[] = [
         await findDependency(DPI),
@@ -90,10 +84,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
         await findDependency(STREAMING_FEE_MODULE),
         await findDependency(TREASURY_MULTI_SIG),
         await findDependency(DFP_MULTI_SIG),
-        IC_MANAGER.FEE_SPLIT
+        IC_MANAGER.FEE_SPLIT,
       ];
-      const indexDeploy = await deploy("ICManager", { from: deployer, args: params, log: true });
-      await writeContractAndTransactionToOutputs("ICManager", indexDeploy.address, indexDeploy.receipt.transactionHash, "Deployed ICManager");
+      const indexDeploy = await deploy(CONTRACT_NAMES.IC_MANAGER, { from: deployer, args: params, log: true });
+      await writeContractAndTransactionToOutputs(CONTRACT_NAMES.IC_MANAGER, indexDeploy.address, indexDeploy.receipt.transactionHash, "Deployed ICManager");
     }
   }
 });

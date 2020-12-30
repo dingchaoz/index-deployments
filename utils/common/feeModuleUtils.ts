@@ -1,9 +1,9 @@
 import { BigNumber } from "ethers/utils";
 
 import { preciseMul, preciseMulCeilInt } from "./mathUtils";
-import { ONE_YEAR_IN_SECONDS, PRECISE_UNIT } from "../constants";
+import { ONE_YEAR_IN_SECONDS, PRECISE_UNIT } from "../../deployments/utils/constants";
 import { Address } from "../types";
-import { StreamingFeeModule } from "../contracts/setV2";
+import { StreamingFeeModule } from "../../deployments/utils/contracts/setV2";
 
 export const getStreamingFee = async(
   feeModule: StreamingFeeModule,
