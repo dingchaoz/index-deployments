@@ -620,10 +620,10 @@
     "@sentry/types" "5.29.2"
     tslib "^1.9.3"
 
-"@setprotocol/index-coop-contracts@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@setprotocol/index-coop-contracts/-/index-coop-contracts-0.0.3.tgz#bf9b08af923d04a27665d7e6cef66fad6129dc28"
-  integrity sha512-5XLG9oeSY8M8gCOmBszH6yDHMXXi9LUYcrEYvHRGg8GXuNxojz84OeW/o7Q6vxri+dJC8NgbEpwQ7DovwjmOGg==
+"@setprotocol/index-coop-contracts@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@setprotocol/index-coop-contracts/-/index-coop-contracts-0.0.4.tgz#083b8f565d891d48aa5de0865bd4a8a79a2dcf3f"
+  integrity sha512-wNCgJML5CZk11hwcOFQwmxQfNpuq0OGWJrO5Mllc0AiEPRDK5ZJd4PDxGxTPCQ2Eqw+0jUxwm3tNd1JuWK8LqQ==
   dependencies:
     ethereumjs-util "^7.0.5"
     fs-extra "^5.0.0"
