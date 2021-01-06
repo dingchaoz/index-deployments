@@ -1,11 +1,9 @@
 import "module-alias/register";
-import { ethers } from "@nomiclabs/buidler";
-import { BigNumber } from "ethers/utils";
+import { ethers } from "hardhat";
+import { BigNumber } from "@ethersproject/bignumber";
 
-import {
-  BuidlerRuntimeEnvironment,
-  DeployFunction,
-} from "@nomiclabs/buidler/types";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { DeployFunction } from "hardhat-deploy/types";
 
 import {
   ensureOutputsFile,
@@ -18,7 +16,7 @@ import {
   writeTransactionToOutputs,
 } from "@deployments/utils/deploys/outputHelper";
 
-import { IndexTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IndexTokenFactory";
+import { IndexToken__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/IndexToken__factory";
 import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
 import { Address } from "@utils/types";
 import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
@@ -52,11 +50,11 @@ const {
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
-const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
   const { deploy, rawTx } = deployments;
 
-  const [ownerWallet] = await ethers.signers();
+  const [ownerWallet] = await ethers.getSigners();
   const { deployer } = await getNamedAccounts();
   // Configure development deployment
   const networkConstant = await getNetworkConstant();
@@ -109,12 +107,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       CONTRACT_NAMES.INDEX_TOKEN,
       { from: deployer, args: [deployer], log: true }
     );
-    await writeContractAndTransactionToOutputs(
-      CONTRACT_NAMES.INDEX_TOKEN,
-      indexTokenDeploy.address,
-      indexTokenDeploy.receipt.transactionHash,
-      "Deployed IndexToken"
-    );
+    indexTokenDeploy.receipt &&
+      await writeContractAndTransactionToOutputs(
+        CONTRACT_NAMES.INDEX_TOKEN,
+        indexTokenDeploy.address,
+        indexTokenDeploy.receipt.transactionHash,
+        "Deployed IndexToken"
+      );
   }
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
@@ -125,12 +124,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       CONTRACT_NAMES.MERKLE_DISTRIBUTOR,
       { from: deployer, args: [indexTokenAddress, MERKLE_ROOT_OBJECT.merkleRoot], log: true }
     );
-    await writeContractAndTransactionToOutputs(
-      CONTRACT_NAMES.MERKLE_DISTRIBUTOR,
-      merkleDistributorDeploy.address,
-      merkleDistributorDeploy.receipt.transactionHash,
-      "Deployed MerkleDistributor"
-    );
+    merkleDistributorDeploy.receipt &&
+      await writeContractAndTransactionToOutputs(
+        CONTRACT_NAMES.MERKLE_DISTRIBUTOR,
+        merkleDistributorDeploy.address,
+        merkleDistributorDeploy.receipt.transactionHash,
+        "Deployed MerkleDistributor"
+      );
   }
   const merkleDistributorAddress = await getContractAddress(CONTRACT_NAMES.MERKLE_DISTRIBUTOR);
 
@@ -141,12 +141,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       CONTRACT_NAMES.STAKING_REWARDS,
       { from: deployer, args: [treasuryMultisigAddress, indexTokenAddress, uniswapLPReward], log: true }
     );
-    await writeContractAndTransactionToOutputs(
-      CONTRACT_NAMES.STAKING_REWARDS,
-      stakingRewardsDeploy.address,
-      stakingRewardsDeploy.receipt.transactionHash,
-      "Deployed StakingRewards"
-    );
+    stakingRewardsDeploy.receipt &&
+      await writeContractAndTransactionToOutputs(
+        CONTRACT_NAMES.STAKING_REWARDS,
+        stakingRewardsDeploy.address,
+        stakingRewardsDeploy.receipt.transactionHash,
+        "Deployed StakingRewards"
+      );
   }
   const stakingRewardsAddress = await getContractAddress(CONTRACT_NAMES.STAKING_REWARDS);
 
@@ -272,7 +273,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Transfer INDEX tokens
 
-  const indexTokenInstance = await new IndexTokenFactory(ownerWallet).attach(indexTokenAddress);
+  const indexTokenInstance = await new IndexToken__factory(ownerWallet).attach(indexTokenAddress);
 
   await transferIndexTokenFromDeployer(
     treasuryMultisigAddress,
@@ -368,7 +369,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
         CONTRACT_NAMES.VESTING,
         { from: deployer, args: [indexTokenAddress, recipient, vestingAmount, vestingBegin, vestingCliff, vestingEnd], log: true }
       );
-      await writeContractAndTransactionToOutputs(contractName, vestingDeploy.address, vestingDeploy.receipt.transactionHash, description);
+      vestingDeploy.receipt &&
+        await writeContractAndTransactionToOutputs(
+          contractName,
+          vestingDeploy.address,
+          vestingDeploy.receipt.transactionHash,
+          description
+        );
     }
     return await getContractAddress(contractName);
   }
@@ -376,7 +383,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   async function transferIndexTokenFromDeployer(recipient: Address, quantity: BigNumber, comment: string): Promise<void> {
     const recipientBalance = await indexTokenInstance.balanceOf(recipient);
     if (recipientBalance.eq(0)) {
-      const transferData = indexTokenInstance.interface.functions.transfer.encode([
+      const transferData = indexTokenInstance.interface.encodeFunctionData("transfer", [
         recipient,
         quantity,
       ]);

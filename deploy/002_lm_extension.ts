@@ -1,10 +1,8 @@
 import "module-alias/register";
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "@ethersproject/bignumber";
 
-import {
-  BuidlerRuntimeEnvironment,
-  DeployFunction,
-} from "@nomiclabs/buidler/types";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { DeployFunction } from "hardhat-deploy/types";
 
 import { EMPTY_BYTES, ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
 import {
@@ -30,7 +28,7 @@ const {
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
-const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
   const { deploy } = deployments;
 
@@ -69,12 +67,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       CONTRACT_NAMES.INDEX_TOKEN,
       { from: deployer, args: [deployer], log: true }
     );
-    await writeContractAndTransactionToOutputs(
-      CONTRACT_NAMES.INDEX_TOKEN,
-      indexTokenDeploy.address,
-      indexTokenDeploy.receipt.transactionHash,
-      "Deployed IndexToken"
-    );
+    indexTokenDeploy.receipt &&
+      await writeContractAndTransactionToOutputs(
+        CONTRACT_NAMES.INDEX_TOKEN,
+        indexTokenDeploy.address,
+        indexTokenDeploy.receipt.transactionHash,
+        "Deployed IndexToken"
+      );
   }
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
@@ -100,7 +99,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
           CONTRACT_NAMES.STAKING_REWARDS_V2,
           { from: deployer, args: [distributor, rewardToken, stakingToken, duration], log: true }
         );
-        await writeContractAndTransactionToOutputs(contractName, stakingRewardsDeploy.address, stakingRewardsDeploy.receipt.transactionHash, `Deployed ${ contractName }`);
+        stakingRewardsDeploy.receipt &&
+          await writeContractAndTransactionToOutputs(
+            contractName,
+            stakingRewardsDeploy.address,
+            stakingRewardsDeploy.receipt.transactionHash,
+            `Deployed ${ contractName }`
+          );
       }
       return await getContractAddress(contractName);
   }

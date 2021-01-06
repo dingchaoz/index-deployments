@@ -1,5 +1,5 @@
 import "module-alias/register";
-import { deployments } from "@nomiclabs/buidler";
+import { deployments } from "hardhat";
 
 import { Account } from "@utils/types";
 import { MerkleDistributor } from "@deployments/utils/contracts/index";
@@ -13,7 +13,7 @@ import {
 } from "@deployments/utils/deploys/outputHelper";
 import { DECEMBER_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/dec20Distribution";
 
-import { MerkleDistributorFactory } from "@setprotocol/index-coop-contracts/dist/typechain/MerkleDistributorFactory";
+import { MerkleDistributor__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/MerkleDistributor__factory";
 
 const expect = getWaffleExpect();
 
@@ -30,7 +30,7 @@ describe("RewardsDec20MerkleDistributor", () => {
     await deployments.fixture();
 
     const deployedMerkleDistributorContract = await getContractAddress("RewardsDec20MerkleDistributor");
-    distributorContractInstance = new MerkleDistributorFactory(deployer.wallet).attach(deployedMerkleDistributorContract);
+    distributorContractInstance = new MerkleDistributor__factory(deployer.wallet).attach(deployedMerkleDistributorContract);
   });
 
   addSnapshotBeforeRestoreAfterEach();

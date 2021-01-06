@@ -1,9 +1,9 @@
 import { Signer } from "ethers";
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "@ethersproject/bignumber";
 import { Address } from "../../../utils/types";
-import { IcManager } from "../contracts/index";
+import { ICManager } from "../contracts/index";
 
-import { IcManagerFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IcManagerFactory";
+import { ICManager__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/ICManager__factory";
 
 export default class DeployToken {
   private _deployerSigner: Signer;
@@ -19,8 +19,8 @@ export default class DeployToken {
     operator: Address,
     methodologist: Address,
     coopFeeSplit: BigNumber
-  ): Promise<IcManager> {
-    return await new IcManagerFactory(this._deployerSigner).deploy(
+  ): Promise<ICManager> {
+    return await new ICManager__factory(this._deployerSigner).deploy(
       set,
       indexModule,
       feeModule,

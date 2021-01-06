@@ -1,27 +1,22 @@
 import "module-alias/register";
-import { BigNumber } from "ethers/utils";
-import { ethers } from "@nomiclabs/buidler";
+import { BigNumber } from "@ethersproject/bignumber";
 
 import { Address, Account } from "@utils/types";
-import {} from "@utils/constants";
+import {} from "@utils/index";
 import {} from "@utils/contracts";
 import DeployHelper from "@utils/deploys";
 import {
   addSnapshotBeforeRestoreAfterEach,
-  ether,
   getAccounts,
   getSystemFixture,
   getWaffleExpect,
 } from "@utils/index";
-import { SystemFixture } from "@utils/fixtures";
-import { ContractTransaction } from "ethers";
 
 const expect = getWaffleExpect();
 
 describe("SPEC TITLE", () => {
   let owner: Account;
   let deployer: DeployHelper;
-  let setup: SystemFixture;
 
   before(async () => {
     [

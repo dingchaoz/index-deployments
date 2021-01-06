@@ -1,4 +1,4 @@
-import { JsonRpcProvider, Web3Provider } from "ethers/providers";
+import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 
 import { ethers } from "ethers";
 
@@ -25,6 +25,6 @@ export class ProtocolUtils {
     });
 
     const parsed = iface.parseLog(logs[logs.length - 1]);
-    return parsed.values._setToken;
+    return parsed.args._setToken;
   }
 }

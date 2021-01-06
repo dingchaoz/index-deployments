@@ -1,12 +1,13 @@
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signer-with-address";
 import {
   ContractTransaction as ContractTransactionType,
   Wallet as WalletType
 } from "ethers";
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "@ethersproject/bignumber";
 
 export type Account = {
   address: Address;
-  wallet: Wallet;
+  wallet: SignerWithAddress;
 };
 
 export type Address = string;

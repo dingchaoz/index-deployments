@@ -1,8 +1,8 @@
 import "module-alias/register";
-import { deployments } from "@nomiclabs/buidler";
+import { deployments } from "hardhat";
 
 import { Account } from "@utils/types";
-import { IcManager } from "@deployments/utils/contracts/index";
+import { ICManager } from "@deployments/utils/contracts/index";
 import {
   addSnapshotBeforeRestoreAfterEach,
   getAccounts,
@@ -14,14 +14,14 @@ import {
 } from "@deployments/utils/deploys/outputHelper";
 
 import { IC_MANAGER } from "@deployments/constants/001_ic_manager";
-import { IcManagerFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IcManagerFactory";
+import { ICManager__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/ICManager__factory";
 
 const expect = getWaffleExpect();
 
 describe("ICManager", () => {
   let deployer: Account;
 
-  let manager: IcManager;
+  let manager: ICManager;
 
   before(async () => {
     [
@@ -31,7 +31,7 @@ describe("ICManager", () => {
     await deployments.fixture();
 
     const icManagerDeploy  = await getContractAddress("ICManager");
-    manager = new IcManagerFactory(deployer.wallet).attach(icManagerDeploy);
+    manager = new ICManager__factory(deployer.wallet).attach(icManagerDeploy);
   });
 
   addSnapshotBeforeRestoreAfterEach();

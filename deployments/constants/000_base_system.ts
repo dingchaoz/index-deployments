@@ -1,4 +1,4 @@
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "@ethersproject/bignumber";
 
 import { ONE_DAY_IN_SECONDS, ONE_YEAR_IN_SECONDS } from "@deployments/utils/constants";
 import { MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/merkleDistribution";
@@ -51,66 +51,66 @@ export const DFP_YEAR_TWO_OWNERSHIP_AMOUNT = ether(60000); // 60k tokens; 0.6% s
 export const DFP_YEAR_THREE_OWNERSHIP_AMOUNT = ether(40000); // 40k tokens; 0.4% supply
 
 // Vesting parameters
-const anchorTime = new BigNumber(Math.floor(Date.now() / 1000)).add(60);
+const anchorTime = BigNumber.from(Math.floor(Date.now() / 1000)).add(60);
 export const VESTING_TIMES: { [networkId: string]: any } = {
   vestingIndexMethodologyBegin: {
-    production: new BigNumber(1607281200),                   // 12/06/2020 @ 7:00pm UTC
-    staging: new BigNumber(1607281200),
+    production: BigNumber.from(1607281200),                   // 12/06/2020 @ 7:00pm UTC
+    staging: BigNumber.from(1607281200),
     development: anchorTime.add(ONE_DAY_IN_SECONDS.mul(60)),
   },
   vestingIndexMethodologyCliff: {
-    production: new BigNumber(1607281200),                   // 12/06/2020 @ 7:00pm UTC
-    staging: new BigNumber(1607281200),
+    production: BigNumber.from(1607281200),                   // 12/06/2020 @ 7:00pm UTC
+    staging: BigNumber.from(1607281200),
     development: anchorTime.add(ONE_DAY_IN_SECONDS.mul(60)),
   },
   vestingIndexMethodologyEnd: {
-    production: new BigNumber(1653937200),                   // 5/30/2022 @ 7:00pm UTC
-    staging: new BigNumber(1653937200),
+    production: BigNumber.from(1653937200),                   // 5/30/2022 @ 7:00pm UTC
+    staging: BigNumber.from(1653937200),
     development: anchorTime.add(ONE_DAY_IN_SECONDS.mul(600)),
   },
   vestingYearOneBegin: {
-    production: new BigNumber(1602010800),                   // 10/6/2020 Tuesday 12PM PST
-    staging: new BigNumber(1602010800),
+    production: BigNumber.from(1602010800),                   // 10/6/2020 Tuesday 12PM PST
+    staging: BigNumber.from(1602010800),
     development: anchorTime,
   },
   vestingYearOneCliff: {
-    production: new BigNumber(1602010800),                   // 10/6/2020 Tuesday 12PM PST
-    staging: new BigNumber(1602010800),
+    production: BigNumber.from(1602010800),                   // 10/6/2020 Tuesday 12PM PST
+    staging: BigNumber.from(1602010800),
     development: anchorTime,
   },
   vestingYearOneEnd: {
-    production: new BigNumber(1633546800),                   // 10/6/2021
-    staging: new BigNumber(1633546800),
+    production: BigNumber.from(1633546800),                   // 10/6/2021
+    staging: BigNumber.from(1633546800),
     development: anchorTime.add(ONE_YEAR_IN_SECONDS),
   },
   vestingYearTwoBegin: {
-    production: new BigNumber(1633546800),                   // 10/6/2021
-    staging: new BigNumber(1633546800),
+    production: BigNumber.from(1633546800),                   // 10/6/2021
+    staging: BigNumber.from(1633546800),
     development: anchorTime.add(ONE_YEAR_IN_SECONDS),
   },
   vestingYearTwoCliff: {
-    production: new BigNumber(1633546800),                   // 10/6/2021
-    staging: new BigNumber(1633546800),
+    production: BigNumber.from(1633546800),                   // 10/6/2021
+    staging: BigNumber.from(1633546800),
     development: anchorTime.add(ONE_YEAR_IN_SECONDS),
   },
   vestingYearTwoEnd: {
-    production: new BigNumber(1665082800),                   // 10/6/2022
-    staging: new BigNumber(1665082800),
+    production: BigNumber.from(1665082800),                   // 10/6/2022
+    staging: BigNumber.from(1665082800),
     development: anchorTime.add(ONE_YEAR_IN_SECONDS.mul(2)),
   },
   vestingYearThreeBegin: {
-    production: new BigNumber(1665082800),                   // 10/6/2022
-    staging: new BigNumber(1665082800),
+    production: BigNumber.from(1665082800),                   // 10/6/2022
+    staging: BigNumber.from(1665082800),
     development: anchorTime.add(ONE_YEAR_IN_SECONDS.mul(2)),
   },
   vestingYearThreeCliff: {
-    production: new BigNumber(1665082800),                   // 10/6/2022
-    staging: new BigNumber(1665082800),
+    production: BigNumber.from(1665082800),                   // 10/6/2022
+    staging: BigNumber.from(1665082800),
     development: anchorTime.add(ONE_YEAR_IN_SECONDS.mul(2)),
   },
   vestingYearThreeEnd: {
-    production: new BigNumber(1696618800),                   // 10/6/2023
-    staging: new BigNumber(1696618800),
+    production: BigNumber.from(1696618800),                   // 10/6/2023
+    staging: BigNumber.from(1696618800),
     development: anchorTime.add(ONE_YEAR_IN_SECONDS.mul(3)),
   },
 };

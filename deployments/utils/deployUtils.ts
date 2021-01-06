@@ -1,19 +1,19 @@
-import { BuidlerRuntimeEnvironment } from "@nomiclabs/buidler/types";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { getLastDeploymentStage, writeStateToOutputs } from "@deployments/utils/deploys/outputHelper";
 
 export function trackFinishedStage(
   currentStage: number,
-  func: (env: BuidlerRuntimeEnvironment) => Promise<void>
-): (env: BuidlerRuntimeEnvironment) => Promise<void> {
-  return async (env: BuidlerRuntimeEnvironment) => {
+  func: (env: HardhatRuntimeEnvironment) => Promise<void>
+): (env: HardhatRuntimeEnvironment) => Promise<void> {
+  return async (env: HardhatRuntimeEnvironment) => {
     await func(env);
 
     await writeStateToOutputs("last_deployment_stage", currentStage);
   };
 }
 
-export function stageAlreadyFinished(currentStage: number): (env: BuidlerRuntimeEnvironment) => Promise <boolean> {
-  return async (env: BuidlerRuntimeEnvironment) => {
+export function stageAlreadyFinished(currentStage: number): (env: HardhatRuntimeEnvironment) => Promise <boolean> {
+  return async (env: HardhatRuntimeEnvironment) => {
     const lastStage = await getLastDeploymentStage();
 
     return currentStage < lastStage;

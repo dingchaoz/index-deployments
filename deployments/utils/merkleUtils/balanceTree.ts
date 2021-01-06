@@ -1,5 +1,6 @@
 import MerkleTree from "./merkleTree";
-import { BigNumber, solidityKeccak256 } from "ethers/utils";
+import { BigNumber } from "@ethersproject/bignumber";
+import { solidityKeccak256 } from "ethers/lib/utils";
 
 export default class BalanceTree {
   private readonly tree: MerkleTree;
