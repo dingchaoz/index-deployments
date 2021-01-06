@@ -1,11 +1,11 @@
 import { Signer } from "ethers";
-import { BigNumber } from "ethers/utils";
+import { BigNumber } from "@ethersproject/bignumber";
 import { Address } from "../../../utils/types";
 import { IndexToken, MerkleDistributor, Vesting } from "@deployments/utils/contracts";
 
-import { IndexTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IndexTokenFactory";
-import { MerkleDistributorFactory } from "@setprotocol/index-coop-contracts/dist/typechain/MerkleDistributorFactory";
-import { VestingFactory } from "@setprotocol/index-coop-contracts/dist/typechain/VestingFactory";
+import { IndexToken__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/IndexToken__factory";
+import { MerkleDistributor__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/MerkleDistributor__factory";
+import { Vesting__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/Vesting__factory";
 
 export default class DeployToken {
   private _deployerSigner: Signer;
@@ -15,11 +15,11 @@ export default class DeployToken {
   }
 
   public async deployIndexToken(initialAccount: Address): Promise<IndexToken> {
-    return await new IndexTokenFactory(this._deployerSigner).deploy(initialAccount);
+    return await new IndexToken__factory(this._deployerSigner).deploy(initialAccount);
   }
 
   public async deployMerkleDistributor(token: Address, merkleRoot: string): Promise<MerkleDistributor> {
-    return await new MerkleDistributorFactory(this._deployerSigner).deploy(token, merkleRoot);
+    return await new MerkleDistributor__factory(this._deployerSigner).deploy(token, merkleRoot);
   }
 
   public async deployVesting(
@@ -30,7 +30,7 @@ export default class DeployToken {
     vestingCliff: BigNumber,
     vestingEnd: BigNumber
   ): Promise<Vesting> {
-    return await new VestingFactory(this._deployerSigner).deploy(
+    return await new Vesting__factory(this._deployerSigner).deploy(
       token,
       recipient,
       vestingAmount,

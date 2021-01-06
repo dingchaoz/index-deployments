@@ -13,7 +13,7 @@ import {
   getContractAddress,
 } from "@deployments/utils/deploys/outputHelper";
 
-import { StakingRewardsV2Factory } from "@setprotocol/index-coop-contracts/dist/typechain/StakingRewardsV2Factory";
+import { StakingRewardsV2__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/StakingRewardsV2__factory";
 import { ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
 
 const expect = getWaffleExpect();
@@ -31,7 +31,7 @@ describe("StakingRewardsV2 - December", () => {
     await deployments.fixture();
 
     const rewardsDeploy  = await getContractAddress("StakingRewardsV2 - December");
-    stakingRewards = new StakingRewardsV2Factory(deployer.wallet).attach(rewardsDeploy);
+    stakingRewards = new StakingRewardsV2__factory(deployer.wallet).attach(rewardsDeploy);
   });
 
   addSnapshotBeforeRestoreAfterEach();

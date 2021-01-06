@@ -16,7 +16,7 @@ import {
   writeTransactionToOutputs,
 } from "@deployments/utils/deploys/outputHelper";
 
-import { IndexTokenFactory } from "@setprotocol/index-coop-contracts/dist/typechain/IndexTokenFactory";
+import { IndexToken__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/IndexToken__factory";
 import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
 import { Address } from "@utils/types";
 import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
@@ -273,7 +273,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   // Transfer INDEX tokens
 
-  const indexTokenInstance = await new IndexTokenFactory(ownerWallet).attach(indexTokenAddress);
+  const indexTokenInstance = await new IndexToken__factory(ownerWallet).attach(indexTokenAddress);
 
   await transferIndexTokenFromDeployer(
     treasuryMultisigAddress,
@@ -383,7 +383,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   async function transferIndexTokenFromDeployer(recipient: Address, quantity: BigNumber, comment: string): Promise<void> {
     const recipientBalance = await indexTokenInstance.balanceOf(recipient);
     if (recipientBalance.eq(0)) {
-      const transferData = indexTokenInstance.interface.functions.transfer.encode([
+      const transferData = indexTokenInstance.interface.encodeFunctionData("transfer", [
         recipient,
         quantity,
       ]);
