@@ -1,5 +1,5 @@
 import "module-alias/register";
-import { deployments } from "@nomiclabs/buidler";
+import { deployments } from "hardhat";
 
 import { Account } from "@utils/types";
 import { StakingRewardsV2 } from "@deployments/utils/contracts/index";

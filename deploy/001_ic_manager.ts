@@ -1,9 +1,7 @@
 import "module-alias/register";
 
-import {
-  BuidlerRuntimeEnvironment,
-  DeployFunction,
-} from "@nomiclabs/buidler/types";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { DeployFunction } from "hardhat-deploy/types";
 
 import { EMPTY_BYTES } from "@deployments/utils/constants";
 import {
@@ -33,7 +31,7 @@ const {
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
-const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: BuidlerRuntimeEnvironment) {
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = bre;
   const { deploy } = deployments;
 
@@ -87,7 +85,12 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
         IC_MANAGER.FEE_SPLIT,
       ];
       const indexDeploy = await deploy(CONTRACT_NAMES.IC_MANAGER, { from: deployer, args: params, log: true });
-      await writeContractAndTransactionToOutputs(CONTRACT_NAMES.IC_MANAGER, indexDeploy.address, indexDeploy.receipt.transactionHash, "Deployed ICManager");
+      indexDeploy.receipt && await writeContractAndTransactionToOutputs(
+        CONTRACT_NAMES.IC_MANAGER,
+        indexDeploy.address,
+        indexDeploy.receipt.transactionHash,
+        "Deployed ICManager"
+      );
     }
   }
 });
