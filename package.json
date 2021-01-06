@@ -54,9 +54,7 @@
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@openzeppelin/contracts": "^3.1.0",
     "@typechain/ethers-v5": "^5.0.0",
-    "@typechain/truffle-v4": "^2.0.2",
     "@typechain/truffle-v5": "^2.0.2",
-    "@typechain/web3-v1": "^1.0.0",
     "@types/chai": "^4.2.11",
     "@types/fs-extra": "^5.0.0",
     "@types/lodash": "^4.14.86",
@@ -65,7 +63,7 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.1",
     "dotenv": "^8.2.0",
-    "ethereum-waffle": "^2.5.1",
+    "ethereum-waffle": "^3.2.1",
     "ethers": "^5.0.24",
     "hardhat": "^2.0.6",
     "hardhat-deploy": "^0.7.0-beta.39",
@@ -88,8 +86,7 @@
     "ethereumjs-util": "^7.0.5",
     "fs-extra": "^5.0.0",
     "module-alias": "^2.2.2",
-    "replace-in-file": "^6.1.0",
-    "typechain": "^2.0.0"
+    "replace-in-file": "^6.1.0"
   },
   "_moduleAliases": {
     "@utils": "utils",
