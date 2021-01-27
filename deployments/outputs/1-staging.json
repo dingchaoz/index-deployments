@@ -19,7 +19,7 @@
     "YearOneDFPVesting": "0x5cF10B688e822Ef12Cf8d3B1B10C6f76963663e6",
     "YearTwoDFPVesting": "0x82272ac672bA9CA5D5d163063EaFeD46d23B7874",
     "YearThreeDFPVesting": "0x2aa0e078CF8cFD24639A493fa968EB415cEe5Ff5",
-    "ICManager": "0x32bb838c572faf6c7040a59c8f1ee699862ec9ee",
+    "ICManager-DPI": "0x32bb838c572faf6c7040a59c8f1ee699862ec9ee",
     "StakingRewardsV2 - December": "0x1D72f38A40DC105a4eCE1c0880eF558055552D68",
     "RewardsNov20MerkleDistributor": "0x9B88ed915538068762f282cc696B322FeC151888",
     "RewardsDec20MerkleDistributor": "0x9613F65c1F3A8Bc65f0f888384E82e38De3E85DB"

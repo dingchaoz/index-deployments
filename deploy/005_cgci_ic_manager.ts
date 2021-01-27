@@ -20,11 +20,11 @@ import {
   CONTRACT_NAMES,
   OUTPUT_NAMES,
   IC_MANAGER,
-} from "@deployments/constants/001_ic_manager";
+} from "@deployments/constants/005_cgci_ic_manager";
 
 const {
-  DFP_MULTI_SIG,
-  DPI,
+  COINSHARES_MULTI_SIG,
+  CGCI,
   SINGLE_INDEX_MODULE,
   STREAMING_FEE_MODULE,
   TREASURY_MULTI_SIG,
@@ -59,8 +59,8 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   //
 
   async function polyFillForDevelopment(): Promise<void> {
-    if (await findDependency(DPI) === "") {
-      await writeContractAndTransactionToOutputs(DPI, await getRandomAddress(), EMPTY_BYTES, "Created Mock DPI");
+    if (await findDependency(CGCI) === "") {
+      await writeContractAndTransactionToOutputs(CGCI, await getRandomAddress(), EMPTY_BYTES, "Created Mock CGCI");
     }
 
     if (await findDependency(SINGLE_INDEX_MODULE) === "") {
@@ -78,11 +78,11 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
     const checkSingleIndexModuleAddress = await getContractAddress(OUTPUT_NAMES.IC_MANAGER);
     if (checkSingleIndexModuleAddress === "") {
       const params: string[] = [
-        await findDependency(DPI),
+        await findDependency(CGCI),
         await findDependency(SINGLE_INDEX_MODULE),
         await findDependency(STREAMING_FEE_MODULE),
         await findDependency(TREASURY_MULTI_SIG),
-        await findDependency(DFP_MULTI_SIG),
+        await findDependency(COINSHARES_MULTI_SIG),
         IC_MANAGER.FEE_SPLIT,
       ];
       const indexDeploy = await deploy(CONTRACT_NAMES.IC_MANAGER, { from: deployer, args: params, log: true });
@@ -90,7 +90,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
         OUTPUT_NAMES.IC_MANAGER,
         indexDeploy.address,
         indexDeploy.receipt.transactionHash,
-        "Deployed ICManager-DPI"
+        "Deployed ICManager-CGCI"
       );
     }
   }

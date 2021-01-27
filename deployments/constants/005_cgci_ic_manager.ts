@@ -5,9 +5,9 @@ export const CONTRACT_NAMES = {
 };
 
 export const OUTPUT_NAMES = {
-  IC_MANAGER: "ICManager-DPI"
+  IC_MANAGER: "ICManager-CGCI"
 }
 
 export const IC_MANAGER = {
-  FEE_SPLIT: ether(.7),
+  FEE_SPLIT: ether(.4),
 };
