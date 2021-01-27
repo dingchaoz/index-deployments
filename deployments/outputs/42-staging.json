@@ -2,7 +2,8 @@
   "state": {
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
-    "network_id": 42
+    "network_id": 42,
+    "last_deployment_stage": 3
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",

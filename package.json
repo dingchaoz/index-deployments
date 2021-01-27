@@ -23,6 +23,7 @@
     "copy-contracts": "yarn clean-artifacts && mkdir contracts && cp -rf node_modules/@setprotocol/index-coop-contracts/contracts/* ./contracts/. && mkdir artifacts && cp -rf node_modules/@setprotocol/index-coop-contracts/artifacts/* ./artifacts/. && mkdir external && cp -rf node_modules/@setprotocol/index-coop-contracts/external/* ./external/.",
     "coverage": "yarn clean && yarn build && npx hardhat coverage --temp artifacts --network coverage",
     "deploy:kovan": "hardhat --network kovan deploy",
+    "deploy:staging_mainnet": "buidler --network staging_mainnet deploy",
     "deploy:production": "hardhat --network production deploy",
     "deploy:local": "hardhat --network localhost deploy",
     "fix-typechain": "node scripts/fix-typechain.js && yarn rename-extensions",
