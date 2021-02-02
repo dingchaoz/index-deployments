@@ -3,7 +3,7 @@
     "network_key": "1-staging",
     "human_friendly_name": "main-net-staging",
     "network_id": 1,
-    "last_deployment_stage": 4
+    "last_deployment_stage": 5
   },
   "addresses": {
     "IndexToken": "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
@@ -22,7 +22,8 @@
     "ICManager": "0x32bb838c572faf6c7040a59c8f1ee699862ec9ee",
     "StakingRewardsV2 - December": "0x1D72f38A40DC105a4eCE1c0880eF558055552D68",
     "RewardsNov20MerkleDistributor": "0x9B88ed915538068762f282cc696B322FeC151888",
-    "RewardsDec20MerkleDistributor": "0x9613F65c1F3A8Bc65f0f888384E82e38De3E85DB"
+    "RewardsDec20MerkleDistributor": "0x9613F65c1F3A8Bc65f0f888384E82e38De3E85DB",
+    "RewardsJan21MerkleDistributor": "0xaE6dCbcAcc7fE0b8da020e69b5edd5De6Da75f91"
   },
   "transactions": {
     "0": {
@@ -169,6 +170,11 @@
       "id": "0x1f9049f629610706f8a8314b0e3efe573401871ee3b506ed2f1189b5650e4422",
       "timestamp": 1609916531805,
       "description": "Deployed RewardsDec20MerkleDistributor"
+    },
+    "29": {
+      "id": "0xb98496d473efca2fdb8e50d099a36b17136b9c58f883488ba9de57ab2844868b",
+      "timestamp": 1612302343011,
+      "description": "Deployed RewardsJan21MerkleDistributor"
     }
   }
 }
