@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 6
+    "last_deployment_stage": 8
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -28,7 +28,16 @@
     "TREASURY_MULTI_SIG": "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
     "DFP_MULTI_SIG": "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
     "ICManager": "0xa8fd6ccd349cd05d21aee91757ae986f61b3eafe",
-    "RewardsNov20MerkleDistributor": "0xAf099B9bAdC400EA2c07BB21729461889487438E"
+    "RewardsNov20MerkleDistributor": "0xAf099B9bAdC400EA2c07BB21729461889487438E",
+    "StakingRewardsV2 - December": "0xE1f85effeC304043b4F7C04E1F74C8e58d0B37D8",
+    "RewardsDec20MerkleDistributor": "0x4ce3669D5271c22e3A50EEC40BAc0B6Bb8ef7A55",
+    "SupplyCapIssuanceHook": "0xdaB3aaD60DdCc9A4BF93e97Ba0CD794d18393861",
+    "RewardsFeb21MerkleDistributor": "0x4BC90444DF69B0F22faa446d4C31eDc399f7EbC8",
+    "BaseManager": "0xC8C64614945aAC7c4eC2b3F72C23E2C16Dc8F454",
+    "FeeSplitAdapter": "0x7528369249f18CE18cD5d2aAA23D19765E38d518",
+    "StakingRewardsV2 - ETHFLI": "0x0DdC0a6D0e92a2d931bd85379DfF113b1b634EA7",
+    "FlexibleLeverageStrategyAdapter - DEPRECATED": "0x9Cd8860325b83FB7c3f151c82f269442A4f8B50b",
+    "FlexibleLeverageStrategyAdapter": "0x9B08a1738AB089348F514f3Ba55f20b8d801505c"
   },
   "transactions": {
     "0": {
@@ -480,6 +489,131 @@
       "id": "0xab922307b19a1b9008e1513b91ffa24a3d48686149a22897284e76cafbffd6f9",
       "timestamp": 1607468228646,
       "description": "Deployed RewardsNov20MerkleDistributor"
+    },
+    "90": {
+      "id": "0x53627968b50ac5194bbd52506d84633e8c348771d4824bd55907866e5fcfb4d9",
+      "timestamp": 1614124465026,
+      "description": "Deployed StakingRewardsV2 - December"
+    },
+    "91": {
+      "id": "0x9cff9680f587cebb841ea361530afac00eac1d6bf2cdb19e5b122f37daa7de48",
+      "timestamp": 1614124480620,
+      "description": "Deployed RewardsDec20MerkleDistributor"
+    },
+    "92": {
+      "id": "0xd8045d10bb834d9b6cf60cff2ac9e93b832d607bfe87670a58cb7d3471ba41bd",
+      "timestamp": 1614124480620,
+      "description": "Deployed ICManagerV2"
+    },
+    "93": {
+      "id": "0xfc50dd3c7a2f6dff79fee68c8e4b618172572e3db64b5ed58ccfb62ba02d1565",
+      "timestamp": 1614125420470,
+      "description": "Deployed FlexibleLeverageStrategyAdapter"
+    },
+    "94": {
+      "id": "0xded351cc8634b33f2b6cdd1fe77e59173f9766ed1bb4e55ed567028ae6121256",
+      "timestamp": 1614125441320,
+      "description": "Deployed Fee Split Adapter"
+    },
+    "95": {
+      "id": "0x75b1a2d1477da48fe1c49b991ba08e883e84d597c936f5e14f03108fad8adc83",
+      "timestamp": 1614125458288,
+      "description": "Initialize adapters on ICManagerV2"
+    },
+    "96": {
+      "id": "0x9f89fdf5464e5e40bd87c3018ede0bbd8d93250dca3e42a93ab68b6b02cc4e16",
+      "timestamp": 1614125474885,
+      "description": "Deployed StakingRewardsV2 - ETHFLI"
+    },
+    "97": {
+      "id": "0xef6e42d6d0834f8e2eb015e22ca01fac8382df7413a2d9cdac835e9a2433dfc5",
+      "timestamp": 1614715792911,
+      "description": "Deployed SupplyCapIssuanceHook"
+    },
+    "98": {
+      "id": "0x4ff55bc7b3a6f08e1719c6e107f0cc3580e8b991b9d1432c8ffbde0006ca96f9",
+      "timestamp": 1614715807309,
+      "description": "Deployed BaseManager"
+    },
+    "99": {
+      "id": "0x1636828ee3fe1029d7d73d56b46ad7df6a824588a93b2e9b7ecfcf2ed22eee7c",
+      "timestamp": 1614733776508,
+      "description": "Deployed StakingRewardsV2 - ETHFLI"
+    },
+    "100": {
+      "id": "0xc960fd5ebf7197ca9259e2be5400759b0edecafa89ea535a991bb3f74832b892",
+      "timestamp": 1614733852563,
+      "description": "Deployed FlexibleLeverageStrategyAdapter"
+    },
+    "101": {
+      "id": "0x02bf223c2fb158920f70595fe7ae8d4427ffec538c2899014b914d64facf50fe",
+      "timestamp": 1614733861504,
+      "description": "Deployed Fee Split Adapter"
+    },
+    "102": {
+      "id": "0x4a07a4ff7a656a7c61e2b1f40dc9b7724f5e022d1006d326de1f19554b756560",
+      "timestamp": 1614733870221,
+      "description": "Add adapter on BaseManager"
+    },
+    "103": {
+      "id": "0x0cefbbd13b2341cf68456668810637cbd1fe87a17d9434ad341626aa2c2c9a4f",
+      "timestamp": 1614733887013,
+      "description": "Add adapter on BaseManager"
+    },
+    "104": {
+      "id": "0xf17193ecdad903f8d2adc130f9882b5386dcde81f9bcee2086cf9d924aa161d6",
+      "timestamp": 1615014718312,
+      "description": "Deployed RewardsFeb21MerkleDistributor"
+    },
+    "105": {
+      "id": "0xb38b28f7f4e00f6e357f9ae28eda7d274f8e92315f7bdbd4ace139fa0809df3f",
+      "timestamp": 1615014727803,
+      "description": "Deployed BaseManager"
+    },
+    "106": {
+      "id": "0x0b47ecc480a5e2b4f74880074e897d1fc720dda18e179885d7e0181987739e61",
+      "timestamp": 1615014742042,
+      "description": "Deployed FlexibleLeverageStrategyAdapter"
+    },
+    "107": {
+      "id": "0x7ac2f4609aa90e3778edd7febd1b91c812457e0263d520e2c502fb8d38edfd83",
+      "timestamp": 1615014754509,
+      "description": "Deployed Fee Split Adapter"
+    },
+    "108": {
+      "id": "0xeb8f57e4586a1be4dd0ec910885d999c17d024a278915f74e0c932036202c317",
+      "timestamp": 1615014768974,
+      "description": "Add adapter on BaseManager"
+    },
+    "109": {
+      "id": "0xf438ebb2a455b6bfa2b0727413232d86d4859506ab3c32af5f6df9c59b966391",
+      "timestamp": 1615014785302,
+      "description": "Add adapter on BaseManager"
+    },
+    "110": {
+      "id": "0xf1c4a444727ec619678169247fc6d0432fd95ed2cb65ffc7e6b987afd8b501f3",
+      "timestamp": 1615014800768,
+      "description": "Deployed StakingRewardsV2 - ETHFLI"
+    },
+    "111": {
+      "id": "0x45b8b7db09075eda5fe1211e173c13800d8f0bb653a9fade8ab41a73068c5c1e",
+      "timestamp": 1615153743908,
+      "description": "Deployed FlexibleLeverageStrategyAdapter"
+    },
+    "112": {
+      "id": "0xdd4d194db472c50167ef89f466f7c656ad2b72fe854e2abd009f575392f7d40c",
+      "timestamp": 1615153757749,
+      "description": "Add adapter on BaseManager"
+    },
+    "113": {
+      "id": "0x17006f2ac929eab68bfb6e217fb38224742137de239918ebf0be99b72c4865e3",
+      "timestamp": 1615485409587,
+      "description": "Deployed FlexibleLeverageStrategyAdapter"
+    },
+    "114": {
+      "id": "0x1490500d58c359d4d7957be17d9e898ec88f63755849557a04c27a1e0c4580da",
+      "timestamp": 1615485424488,
+      "description": "Add adapter on BaseManager"
     }
   }
 }
