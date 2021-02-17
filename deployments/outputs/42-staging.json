@@ -2,7 +2,8 @@
   "state": {
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
-    "network_id": 42
+    "network_id": 42,
+    "last_deployment_stage": 5
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -27,7 +28,10 @@
     "TREASURY_MULTI_SIG": "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
     "DFP_MULTI_SIG": "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
     "ICManager": "0xa8fd6ccd349cd05d21aee91757ae986f61b3eafe",
-    "RewardsNov20MerkleDistributor": "0xAf099B9bAdC400EA2c07BB21729461889487438E"
+    "RewardsNov20MerkleDistributor": "0xAf099B9bAdC400EA2c07BB21729461889487438E",
+    "RewardsDec20MerkleDistributor": "0xf9aD50524C61704Aa36a3f0B089d5738aFA07a5f",
+    "ICManagerV2": "0x29bD79888933347f9A394C436248e6AbCBecE31B",
+    "FlexibleLeverageStrategyAdapter": "0xd434a1bDD41689160ecd24F78df7C354f054166A"
   },
   "transactions": {
     "0": {
@@ -479,6 +483,26 @@
       "id": "0xab922307b19a1b9008e1513b91ffa24a3d48686149a22897284e76cafbffd6f9",
       "timestamp": 1607468228646,
       "description": "Deployed RewardsNov20MerkleDistributor"
+    },
+    "90": {
+      "id": "0x705857b7930d32dc57a20b75e6cdd5727d92831e0f299ae71cd0e3f8f692d1c1",
+      "timestamp": 1613527968162,
+      "description": "Deployed RewardsDec20MerkleDistributor"
+    },
+    "91": {
+      "id": "0x1c40bac1cfab428efd5bac1701d1945c9e5ac284c69d2dd78debd36f3b742c79",
+      "timestamp": 1613527982389,
+      "description": "Deployed ICManagerV2"
+    },
+    "92": {
+      "id": "0xce4516e0d45ce0a528e769c359bcbd04420722512b98a8f7a5b242414ccaf540",
+      "timestamp": 1613527993354,
+      "description": "Deployed FlexibleLeverageStrategyAdapter"
+    },
+    "93": {
+      "id": "0x294f6a3e9fa39961e052817b322b7c968e750f3c428e6f8d567d8d946700e956",
+      "timestamp": 1613528003404,
+      "description": "Add FlexibleLeverageStrategyAdapter to ICManagerV2"
     }
   }
 }

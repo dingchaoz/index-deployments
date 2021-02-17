@@ -20,13 +20,13 @@ export default {
   },
   ETHFLI: {
     1: "",
-    42: "",
+    42: "0x426fd489f1eba738ba06b545a49c8df6d49ac5c5",
   },
 
   // Set Protocol Contracts
   COMPOUND_LEVERAGE_MODULE: {
     1: "",
-    42: "",
+    42: "0x579AbEEE14a52A4CA6707a4590c524Dc149D56a1",
   },
   STREAMING_FEE_MODULE: {
     1: "0x08f866c74205617B6F3903EF481798EcED10cDEC",
