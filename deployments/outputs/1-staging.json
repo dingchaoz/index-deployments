@@ -23,8 +23,8 @@
     "StakingRewardsV2 - December": "0x1D72f38A40DC105a4eCE1c0880eF558055552D68",
     "RewardsNov20MerkleDistributor": "0x9B88ed915538068762f282cc696B322FeC151888",
     "RewardsDec20MerkleDistributor": "0x7d3Ce3AF10D8caeC4D9C249c1977178EDd76e5D8",
-    "ICManagerV2": "0xDF689f19dC8B4659Ce54387e449c7388b48411d3",
-    "FlexibleLeverageStrategyAdapter": "0x3A98C831D29d0454B9D1b58283D2043201cC0df9"
+    "ICManagerV2": "0x0195522030df301be7ac0f6c755c979165100fb2",
+    "FlexibleLeverageStrategyAdapter": "0x02FC0017C9A26dE19dc6DB0C227cacF19447e03C"
   },
   "transactions": {
     "0": {
@@ -173,18 +173,23 @@
       "description": "Deployed RewardsDec20MerkleDistributor"
     },
     "29": {
-      "id": "0xe37b8b6affce7ceb30094d4cee906d968a72b19017d6f17dc4afd80f4463c2f5",
+      "id": "0x30d5b600726fbf8b417b046d77fe1a29bfd112d2c1bfcad84d5a641c6ae71108",
       "timestamp": 1613528375088,
       "description": "Deployed ICManagerV2"
     },
     "30": {
-      "id": "0xc1ada4b2ea9d7f74641b3c1c43fa7da944cfe71bce634537c44effc04e9b9a28",
-      "timestamp": 1613528389168,
+      "id": "0xaa115712ccec9c8245506e8ad8fdede085ccd2f7c977e720fc186ad1783bfa52",
+      "timestamp": 1613536774539,
       "description": "Deployed FlexibleLeverageStrategyAdapter"
     },
     "31": {
-      "id": "0x5c3ffd6872eb5c007620d0cd6c4e670067bb8aa0607e0c364b26b68905a3ef47",
-      "timestamp": 1613528430534,
+      "id": "0x2c3fefde5c3265b6adf0304b931dfe3e4c0ec3e3d6b95b0796b6eda50d690d05",
+      "timestamp": 1613536824114,
+      "description": "Add FlexibleLeverageStrategyAdapter to ICManagerV2"
+    },
+    "32": {
+      "id": "0x6c49b695a671fa2d43bb14ad9098af0d2d266ace6868468b8c128fe068188a82",
+      "timestamp": 1613536857842,
       "description": "Add FlexibleLeverageStrategyAdapter to ICManagerV2"
     }
   }

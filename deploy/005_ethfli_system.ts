@@ -184,13 +184,23 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
     const adapterAddress = await getContractAddress(adapterName);
     if (!await icManagerInstance.isAdapter(adapterAddress)) {
       const adapterData = icManagerInstance.interface.encodeFunctionData("addAdapter", [adapterAddress]);
-      const addAdapterTransaction: any = await rawTx({
+      const firstAddAdapterTransaction: any = await rawTx({
         from: deployer,
         to: icManagerInstance.address,
         data: adapterData,
         log: true,
       });
-      await writeTransactionToOutputs(addAdapterTransaction.transactionHash, `Add ${adapterName} to ICManagerV2`);
+      await writeTransactionToOutputs(firstAddAdapterTransaction.transactionHash, `Add ${adapterName} to ICManagerV2`);
+
+      if (!await icManagerInstance.isAdapter(adapterAddress)) {
+        const secondAddAdapterTransaction: any = await rawTx({
+          from: deployer,
+          to: icManagerInstance.address,
+          data: adapterData,
+          log: true,
+        });
+        await writeTransactionToOutputs(secondAddAdapterTransaction.transactionHash, `Add ${adapterName} to ICManagerV2`);
+      }
     }
   }
 });
