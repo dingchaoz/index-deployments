@@ -1,4 +1,6 @@
+export { FlexibleLeverageStrategyAdapter } from "@setprotocol/index-coop-contracts/typechain/FlexibleLeverageStrategyAdapter";
 export { ICManager } from "@setprotocol/index-coop-contracts/typechain/ICManager";
+export { ICManagerV2 } from "@setprotocol/index-coop-contracts/typechain/ICManagerV2";
 export { IndexToken } from "@setprotocol/index-coop-contracts/typechain/IndexToken";
 export { MerkleDistributor } from "@setprotocol/index-coop-contracts/typechain/MerkleDistributor";
 export { MutualUpgradeMock } from "@setprotocol/index-coop-contracts/typechain/MutualUpgradeMock";
