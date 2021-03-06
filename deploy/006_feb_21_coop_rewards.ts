@@ -15,7 +15,7 @@ import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
 import {
   CONTRACT_NAMES,
   MERKLE_ROOT_OBJECT,
-} from "@deployments/constants/007_feb_21_coop_rewards";
+} from "@deployments/constants/006_feb_21_coop_rewards";
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
