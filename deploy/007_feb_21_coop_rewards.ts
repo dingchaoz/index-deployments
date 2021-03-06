@@ -15,7 +15,7 @@ import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
 import {
   CONTRACT_NAMES,
   MERKLE_ROOT_OBJECT,
-} from "@deployments/constants/003_nov_20_coop_rewards";
+} from "@deployments/constants/007_feb_21_coop_rewards";
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
@@ -37,6 +37,8 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   await ensureOutputsFile();
 
+  console.log(JSON.stringify(MERKLE_ROOT_OBJECT.claims));
+
   // Deploy INDEX token
   const checkIndexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
   if (checkIndexTokenAddress === "") {
@@ -55,7 +57,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
   // Deploy Merkle Distributor contract
-  const checkMerkleDistributorAddress = await getContractAddress(CONTRACT_NAMES.REWARDS_NOV20_MERKLE_DISTRIBUTOR);
+  const checkMerkleDistributorAddress = await getContractAddress(CONTRACT_NAMES.REWARDS_FEB21_MERKLE_DISTRIBUTOR);
   if (checkMerkleDistributorAddress === "") {
     const merkleDistributorDeploy = await deploy(
       CONTRACT_NAMES.MERKLE_DISTRIBUTOR,
@@ -63,10 +65,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
     );
     merkleDistributorDeploy.receipt &&
       await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.REWARDS_NOV20_MERKLE_DISTRIBUTOR,
+        CONTRACT_NAMES.REWARDS_FEB21_MERKLE_DISTRIBUTOR,
         merkleDistributorDeploy.address,
         merkleDistributorDeploy.receipt.transactionHash,
-        "Deployed RewardsNov20MerkleDistributor"
+        "Deployed RewardsFeb21MerkleDistributor"
       );
   }
 });

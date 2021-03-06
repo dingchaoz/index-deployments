@@ -1,4 +1,4 @@
-import { JANUARY_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/jan21Distribution";
+import { JANUARY_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/003_jan21Distribution";
 import { parseBalanceMap } from "@deployments/utils";
 
 import { DistributionFormat } from "@utils/types";
