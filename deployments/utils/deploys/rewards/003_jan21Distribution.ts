@@ -129,5 +129,5 @@ export const JANUARY_MERKLE_DISTRIBUTION = [
   {
     "address": "0x3136111d944950503e26a7b9fe7b2cc62ab5912e",
     "earnings": ether(10),
-  }
+  },
 ] as DistributionFormat[];

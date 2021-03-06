@@ -11,7 +11,7 @@ import {
 import {
   getContractAddress,
 } from "@deployments/utils/deploys/outputHelper";
-import { JANUARY_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/jan21Distribution";
+import { JANUARY_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/003_jan21Distribution";
 
 import { MerkleDistributor__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/MerkleDistributor__factory";
 

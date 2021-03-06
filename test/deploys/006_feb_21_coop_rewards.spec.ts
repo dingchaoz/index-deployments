@@ -11,13 +11,13 @@ import {
 import {
   getContractAddress,
 } from "@deployments/utils/deploys/outputHelper";
-import { DECEMBER_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/002_dec20Distribution";
+import { FEBRUARY_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/004_feb21Distribution";
 
 import { MerkleDistributor__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/MerkleDistributor__factory";
 
 const expect = getWaffleExpect();
 
-describe("RewardsDec20MerkleDistributor", () => {
+describe("RewardsFeb21MerkleDistributor", () => {
   let deployer: Account;
 
   let distributorContractInstance: MerkleDistributor;
@@ -29,20 +29,20 @@ describe("RewardsDec20MerkleDistributor", () => {
 
     await deployments.fixture();
 
-    const deployedMerkleDistributorContract = await getContractAddress("RewardsDec20MerkleDistributor");
+    const deployedMerkleDistributorContract = await getContractAddress("RewardsFeb21MerkleDistributor");
     distributorContractInstance = new MerkleDistributor__factory(deployer.wallet).attach(deployedMerkleDistributorContract);
   });
 
   addSnapshotBeforeRestoreAfterEach();
 
-  describe("RewardsDec20MerkleDistributor", async () => {
+  describe("RewardsFeb21MerkleDistributor", async () => {
     it("should have the correct token address", async () => {
       const indexToken = await distributorContractInstance.token();
       expect(indexToken).to.eq(await getContractAddress("IndexToken"));
     });
 
     it("should have the correct unclaimed", async () => {
-      for (let rootIndex = 0; rootIndex < DECEMBER_MERKLE_DISTRIBUTION.length; rootIndex++) {
+      for (let rootIndex = 0; rootIndex < FEBRUARY_MERKLE_DISTRIBUTION.length; rootIndex++) {
         const isClaimed = await distributorContractInstance.isClaimed(rootIndex);
         expect(isClaimed).to.eq(false);
       }
