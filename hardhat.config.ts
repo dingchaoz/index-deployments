@@ -5,6 +5,7 @@ import { TASK_COMPILE_SOLIDITY_COMPILE } from "hardhat/builtin-tasks/task-names"
 import { execSync } from "child_process";
 import { privateKeys } from "./utils/wallets";
 import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-etherscan";
 import "hardhat-typechain";
 import "solidity-coverage";
 import "hardhat-deploy";
@@ -50,6 +51,9 @@ const config: HardhatUserConfig = {
       url: "http://127.0.0.1:8555", // Coverage launches its own ganache-cli client
       timeout: 100000,
     },
+  },
+  etherscan: {
+    apiKey: `${process.env.ETHERSCAN_API_KEY}`
   },
   typechain: {
     outDir: "typechain",
