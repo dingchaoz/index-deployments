@@ -85,7 +85,7 @@ describe("ETHFLI System", () => {
     });
 
     it("should set the contract addresses", async () => {
-      const strategy = await flexibleLeverageStrategyAdapterInstance.strategy();
+      const strategy = await flexibleLeverageStrategyAdapterInstance.getStrategy();
 
       expect(strategy.setToken).to.eq(await findDependency("ETHFLI"));
       expect(strategy.leverageModule).to.eq(await findDependency("COMPOUND_LEVERAGE_MODULE"));
@@ -98,7 +98,7 @@ describe("ETHFLI System", () => {
     });
 
     it("should set the correct methodology parameters", async () => {
-      const methodology = await flexibleLeverageStrategyAdapterInstance.methodology();
+      const methodology = await flexibleLeverageStrategyAdapterInstance.getMethodology();
 
       expect(methodology.targetLeverageRatio).to.eq(ether(2));
       expect(methodology.minLeverageRatio).to.eq(ether(1.7));
@@ -108,7 +108,7 @@ describe("ETHFLI System", () => {
     });
 
     it("should set the correct execution parameters", async () => {
-      const execution = await flexibleLeverageStrategyAdapterInstance.execution();
+      const execution = await flexibleLeverageStrategyAdapterInstance.getExecution();
 
       expect(execution.exchangeName).to.eq("UniswapV2ExchangeAdapter");
       expect(execution.exchangeData).to.eq(EMPTY_BYTES);
@@ -119,7 +119,7 @@ describe("ETHFLI System", () => {
     });
 
     it("should set the correct incentive parameters", async () => {
-      const incentive = await flexibleLeverageStrategyAdapterInstance.incentive();
+      const incentive = await flexibleLeverageStrategyAdapterInstance.getIncentive();
 
       expect(incentive.incentivizedTwapMaxTradeSize).to.eq(ether(1200));
       expect(incentive.incentivizedTwapCooldownPeriod).to.eq(BigNumber.from(1));
