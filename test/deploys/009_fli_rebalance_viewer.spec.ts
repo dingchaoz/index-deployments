@@ -18,7 +18,7 @@ import { FLIRebalanceViewer__factory } from "@setprotocol/index-coop-contracts/d
 
 const expect = getWaffleExpect();
 
-describe.only("FLIRebalanceViewer", () => {
+describe("FLIRebalanceViewer", () => {
   let deployer: Account;
 
   let rebalanceViewer: FLIRebalanceViewer;

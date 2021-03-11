@@ -79,7 +79,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       const uniswapRouter = await findDependency(UNISWAP_V2_ROUTER);
       const fliStrategyAdapter = await findDependency(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER);
       const cEther = await findDependency(C_ETH);
-      console.log(uniswapRouter, fliStrategyAdapter, cEther);
+
       const fliRebalanceViewer = await deploy(
         CONTRACT_NAMES.FLI_REBALANCE_VIEWER,
         { from: deployer, args: [uniswapRouter, fliStrategyAdapter, cEther], log: true }

@@ -16,6 +16,6 @@ export function stageAlreadyFinished(currentStage: number): (env: HardhatRuntime
   return async (env: HardhatRuntimeEnvironment) => {
     const lastStage = await getLastDeploymentStage();
 
-    return currentStage < lastStage;
+    return currentStage <= lastStage;
   };
 }
