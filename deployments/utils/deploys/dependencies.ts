@@ -10,6 +10,10 @@ export default {
     1: "0x4d5ef58aac27d99935e5b6b4a6778ff292059991",
     42: "0x64cf6e538ce757645a953376c0f1be6fab8a2e09",
   },
+  C_ETH: {
+    1: "0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5",
+    42: "0xefa3e50f493d39a1b53698c549ad35fbf4b1053c",
+  },
 
   // Set Protocol Contracts
   STREAMING_FEE_MODULE: {
@@ -31,6 +35,12 @@ export default {
   DFP_MULTI_SIG: {
     1: "0x673d140Eed36385cb784e279f8759f495C97cF03",
   },
+
+  // Exchanges
+  UNISWAP_V2_ROUTER: {
+    1: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+    42: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+  },
   HUMAN_FRIENDLY_NAMES: {
     1: "main-net",
     42: "kovan",
@@ -47,4 +57,6 @@ export const DEPENDENCY = {
   SINGLE_INDEX_MODULE: "SINGLE_INDEX_MODULE",
   STREAMING_FEE_MODULE: "STREAMING_FEE_MODULE",
   DPI_ETH_UNI_POOL: "DPI_ETH_UNI_POOL",
+  UNISWAP_V2_ROUTER: "UNISWAP_V2_ROUTER",
+  C_ETH: "C_ETH",
 };

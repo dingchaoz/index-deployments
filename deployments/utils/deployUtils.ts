@@ -8,7 +8,7 @@ export function trackFinishedStage(
   return async (env: HardhatRuntimeEnvironment) => {
     await func(env);
 
-    await writeStateToOutputs("last_deployment_stage", currentStage);
+    await writeStateToOutputs("last_deployment_stage", currentStage + 1);
   };
 }
 
