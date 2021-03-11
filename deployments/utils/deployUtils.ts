@@ -8,7 +8,7 @@ export function trackFinishedStage(
   return async (env: HardhatRuntimeEnvironment) => {
     await func(env);
 
-    await writeStateToOutputs("last_deployment_stage", currentStage);
+    await writeStateToOutputs("last_deployment_stage", currentStage + 1);
   };
 }
 
@@ -16,6 +16,6 @@ export function stageAlreadyFinished(currentStage: number): (env: HardhatRuntime
   return async (env: HardhatRuntimeEnvironment) => {
     const lastStage = await getLastDeploymentStage();
 
-    return currentStage <= lastStage;
+    return currentStage < lastStage;
   };
 }
