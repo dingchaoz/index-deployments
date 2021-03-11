@@ -1,3 +1,4 @@
+export { FLIRebalanceViewer } from "@setprotocol/index-coop-contracts/typechain/FLIRebalanceViewer";
 export { ICManager } from "@setprotocol/index-coop-contracts/typechain/ICManager";
 export { IndexToken } from "@setprotocol/index-coop-contracts/typechain/IndexToken";
 export { MerkleDistributor } from "@setprotocol/index-coop-contracts/typechain/MerkleDistributor";

@@ -2,6 +2,7 @@ declare module '@setprotocol/index-coop-contracts/dist/typechain/BasicIssuanceMo
 declare module '@setprotocol/index-coop-contracts/dist/typechain/factories/BasicIssuanceModule__factory';
 declare module '@setprotocol/index-coop-contracts/dist/typechain/Controller';
 declare module '@setprotocol/index-coop-contracts/dist/typechain/factories/Controller__factory';
+declare module '@setprotocol/index-coop-contracts/dist/typechain/factories/FLIRebalanceViewer__factory';
 declare module '@setprotocol/index-coop-contracts/dist/typechain/ICManager';
 declare module '@setprotocol/index-coop-contracts/dist/typechain/factories/ICManager__factory';
 declare module '@setprotocol/index-coop-contracts/dist/typechain/IndexToken';
