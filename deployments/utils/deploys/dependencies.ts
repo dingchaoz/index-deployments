@@ -44,10 +44,6 @@ export default {
     1: "0x25100726b25a6ddb8f8e68988272e1883733966e",
     42: "0x8398f4710d35c8f15a7e4eced3e7b6a0e909d019",
   },
-  FlexibleLeverageStrategyAdapter: {
-    1: "0xCD78aac04D234F1E08CcD858eF334d4748b75CdA",
-    42: "0x9B08a1738AB089348F514f3Ba55f20b8d801505c",
-  },
 
   // Compound Contracts
   C_ETH: {
