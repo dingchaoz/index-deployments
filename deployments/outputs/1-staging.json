@@ -3,7 +3,7 @@
     "network_key": "1-staging",
     "human_friendly_name": "main-net-staging",
     "network_id": 1,
-    "last_deployment_stage": 8
+    "last_deployment_stage": 10
   },
   "addresses": {
     "IndexToken": "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
@@ -29,7 +29,8 @@
     "BaseManager": "0x64fe9141c8E407887535471815aF3D31B5E355D5",
     "FlexibleLeverageStrategyAdapter - DEPRECATED": "0x21e71a0F8905868a6d840847b650df5fc2079b0b",
     "FeeSplitAdapter": "0x19b8350EE78D7dC92CC41bEe1a8a6b633b3b5166",
-    "FlexibleLeverageStrategyAdapter": "0xCD78aac04D234F1E08CcD858eF334d4748b75CdA"
+    "FlexibleLeverageStrategyAdapter": "0xCD78aac04D234F1E08CcD858eF334d4748b75CdA",
+    "Eth2xFLIRebalanceViewer": "0x8c127E10d30423852229aFE3bC07731DA6AFd5B6"
   },
   "transactions": {
     "0": {
@@ -236,6 +237,11 @@
       "id": "0x9ace8183ee14fcce7c4c444e778be0ec7e135d632eb437b224e4de9d3e891bc3",
       "timestamp": 1615485232428,
       "description": "Add adapter on BaseManager"
+    },
+    "41": {
+      "id": "0x65f339d0ea49f367a564f075918b1ff057e492b3e32ef25a51eea2fcff9ecc1d",
+      "timestamp": 1615494867165,
+      "description": "Deployed Eth2xFLIRebalanceViewer"
     }
   }
 }

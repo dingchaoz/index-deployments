@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 8
+    "last_deployment_stage": 10
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -37,7 +37,8 @@
     "FeeSplitAdapter": "0x7528369249f18CE18cD5d2aAA23D19765E38d518",
     "StakingRewardsV2 - ETHFLI": "0x0DdC0a6D0e92a2d931bd85379DfF113b1b634EA7",
     "FlexibleLeverageStrategyAdapter - DEPRECATED": "0x9Cd8860325b83FB7c3f151c82f269442A4f8B50b",
-    "FlexibleLeverageStrategyAdapter": "0x9B08a1738AB089348F514f3Ba55f20b8d801505c"
+    "FlexibleLeverageStrategyAdapter": "0x9B08a1738AB089348F514f3Ba55f20b8d801505c",
+    "Eth2xFLIRebalanceViewer": "0x9d939F9938D037B33217f109d917a36527F13f28"
   },
   "transactions": {
     "0": {
@@ -614,6 +615,11 @@
       "id": "0x1490500d58c359d4d7957be17d9e898ec88f63755849557a04c27a1e0c4580da",
       "timestamp": 1615485424488,
       "description": "Add adapter on BaseManager"
+    },
+    "115": {
+      "id": "0x1ec60a25fd7dc0fd6fd755eeb5751012f7187e21bbcf3400c35c05b603beee0b",
+      "timestamp": 1615488628194,
+      "description": "Deployed Eth2xFLIRebalanceViewer"
     }
   }
 }
