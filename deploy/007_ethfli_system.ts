@@ -81,6 +81,8 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   await polyFillForDevelopment();
 
+  await deploySupplyCapIssuanceHook();
+
   await deployBaseManager();
 
   await deployFlexibleLeverageStrategyAdapter();
@@ -89,8 +91,6 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   await addAdapter(CONTRACT_NAMES.BASE_MANAGER, CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER);
   await addAdapter(CONTRACT_NAMES.BASE_MANAGER, CONTRACT_NAMES.FEE_SPLIT_ADAPTER);
-
-  await deploySupplyCapIssuanceHook();
 
   //
   // Helper Functions
