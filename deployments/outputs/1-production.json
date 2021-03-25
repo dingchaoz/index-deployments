@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 6
+    "last_deployment_stage": 10
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -24,7 +24,12 @@
     "RewardsNov20MerkleDistributor": "0xa6bb7b6B2C5C3477F20686B98Ea09796F8f93184",
     "RewardsDec20MerkleDistributor": "0xEB1CbC809b21DddC71F0F9eDc234eeE6fB29aCEE",
     "RewardsJan21MerkleDistributor": "0x319B852cd28B1CbEb029A3017E787B98e62Fd4e2",
-    "RewardsFeb21MerkleDistributor": "0xCa3C3570beb35E5d3D85BCd8ad8F88BefaccFF10"
+    "RewardsFeb21MerkleDistributor": "0xCa3C3570beb35E5d3D85BCd8ad8F88BefaccFF10",
+    "SupplyCapIssuanceHook": "0x0F1171C24B06ADed18d2d23178019A3B256401D3",
+    "BaseManager": "0x445307De5279cD4B1BcBf38853f81b190A806075",
+    "FlexibleLeverageStrategyAdapter": "0x1335D01a4B572C37f800f45D9a4b36A53a898a9b",
+    "FeeSplitAdapter": "0x26F81381018543eCa9353bd081387F68fAE15CeD",
+    "Eth2xFLIRebalanceViewer": "0xB1ad22Ab3bae47D82B879215B9Fc25eb6b76Fe26"
   },
   "transactions": {
     "0": {
@@ -181,6 +186,46 @@
       "id": "0xda611e0de848477ceef17afc141eeb478de319bf21bb5c75c706c3d237d0b838",
       "timestamp": 1614995356144,
       "description": "Deployed RewardsFeb21MerkleDistributor"
+    },
+    "31": {
+      "id": "0x0a8293124630c713014c51a5265a579cf7db4d4bc9f10c5cd0756597c3eddb1c",
+      "timestamp": 1615662711771,
+      "description": "Deployed SupplyCapIssuanceHook"
+    },
+    "32": {
+      "id": "0x4cc4a235a1a9d99712fc0072d73d58dd44e754ed97728d5574464b0f7d8499c7",
+      "timestamp": 1615713068120,
+      "description": "Deployed BaseManager"
+    },
+    "33": {
+      "id": "0x441098a773606776ed6a6ae6eba8ef0f2cf6ebf034fe8e10c3f57c666548541b",
+      "timestamp": 1615713093691,
+      "description": "Deployed FlexibleLeverageStrategyAdapter"
+    },
+    "34": {
+      "id": "0xd8dc810477f629cd2a4bb704571b64e60d1539dbd83b7c98dfcd46d334f47fc7",
+      "timestamp": 1615713124769,
+      "description": "Deployed Fee Split Adapter"
+    },
+    "35": {
+      "id": "0x733e41453c005c9c179066b613ccc07d4bf262f7b2872a46de74af568580a518",
+      "timestamp": 1615713140241,
+      "description": "Add adapter on BaseManager"
+    },
+    "36": {
+      "id": "0x2bde5dab5ea322a33aa18d745de65666665591f7227782cef19c995e20d5de22",
+      "timestamp": 1615713149917,
+      "description": "Add adapter on BaseManager"
+    },
+    "37": {
+      "id": "0xd6e620cb9748b5854137d71b31965ccdaddab26e1f379100e4b15a5fd63bd99d",
+      "timestamp": 1615713164867,
+      "description": "Deployed Eth2xFLIRebalanceViewer"
+    },
+    "38": {
+      "id": "0x3c44648eba05a5d0268231045eb5f0dd3034c6bff788d90f5f648a8da30d4067",
+      "timestamp": 1615713164867,
+      "description": "Updated Caller Statuses on FlexibleLeverageStrategyAdapter"
     }
   }
 }

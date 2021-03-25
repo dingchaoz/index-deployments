@@ -19,21 +19,21 @@ export default {
     42: "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
   },
   ETHFLI: {
-    1: "",
+    1: "0xaa6e8127831c9de45ae56bb1b0d4d4da6e5665bd",
     42: "0x0437c39a59c42E367C00BC3C95999fEb799bce1a",
   },
   ETHFLI_UNI_POOL: {
-    1: "",
+    1: "0xf91c12dae1313d0be5d7a27aa559b1171cc1eac5",
     42: "0x6af994df1fa038d8e727ffab02a5950da4d706f0",
   },
 
   // Set Protocol Contracts
   DEBT_ISSUANCE_MODULE: {
-    1: "",
+    1: "0x39F024d621367C044BacE2bf0Fb15Fb3612eCB92",
     42: "0xe34031E7F4D8Ba4eFab190ce5f4D8451eD1B6A82",
   },
   COMPOUND_LEVERAGE_MODULE: {
-    1: "",
+    1: "0x8d5174eD1dd217e240fDEAa52Eb7f4540b04F419",
     42: "0x676C7B527c706801e64AD2108aA1F0Ddc83807D0",
   },
   STREAMING_FEE_MODULE: {
