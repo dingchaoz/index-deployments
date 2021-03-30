@@ -11,6 +11,7 @@
     "utils",
     "scripts",
     "typechain",
+    "tasks",
     "tsconfig.json"
   ],
   "scripts": {
@@ -26,6 +27,9 @@
     "deploy:staging_mainnet": "hardhat --network staging_mainnet deploy",
     "deploy:production": "hardhat --network production deploy",
     "deploy:local": "hardhat --network localhost deploy",
+    "etherscan:kovan": "hardhat set:etherscan:verify --network kovan",
+    "etherscan:staging_mainnet": "hardhat set:etherscan:verify --network staging_mainnet",
+    "etherscan:production": "hardhat set:etherscan:verify --network production",
     "fix-typechain": "node scripts/fix-typechain.js && yarn rename-extensions",
     "flatten": "npx waffle flatten",
     "lint": "yarn run lint-sol && yarn run lint-ts",

@@ -10,9 +10,22 @@ const privateKey: string | undefined = process.env.DEPLOYMENT_PRIVATE_KEY;
 const deploymentConstants: string | undefined = process.env.DEPLOYMENT_CONSTANT;
 const deploymentNetworkId: number = parseInt(process.env.DEPLOYMENT_NETWORK_ID as any);
 
-const OUTPUTS_PATH = `./deployments/outputs/${getDeploymentNetworkKey()}.json`;
+export const log = console.log;
+export const OUTPUTS_PATH = `./deployments/outputs/${getDeploymentNetworkKey()}.json`;
 
 import dependencies from "./dependencies";
+
+export type ContractDeploymentData = {
+  id: string,
+  name: string,
+  description: string,
+  contractAddress: string,
+  constructorArgs?: any[],
+  libraries?: object,
+  verified?: boolean,
+  timestamp?: number,
+  blockNumber?: number
+};
 
 export function getCurrentStage(fileName: string): number {
   const baseFile = path.basename(fileName);
@@ -78,6 +91,31 @@ export async function getContractAddress(name: string) {
 export async function getContractCode(name: string, web3: any): Promise<string> {
   const contractAddress = await getContractAddress(name);
   return await web3.eth.getCode(contractAddress);
+}
+
+export async function saveContractDeployment(data: ContractDeploymentData) {
+  const contractAddress = await getContractAddress(data.name);
+
+  if (contractAddress === "") {
+    const outputs: any = await returnOutputs();
+    const lastTransactionNumber = getNextTransactionKey(outputs);
+    const timestamp = new Date().getTime();
+
+    outputs["addresses"][data.name] = data.contractAddress;
+
+    outputs["transactions"][lastTransactionNumber] = {
+      id: data.id,
+      name: data.name,
+      timestamp,
+      verified: false,
+      description: data.description,
+      contractAddress: data.contractAddress,
+      constructorArgs: data.constructorArgs || [],
+      libraries: data.libraries || {},
+    };
+
+    await fs.outputFile(OUTPUTS_PATH, JSON.stringify(outputs, undefined, 2));
+  }
 }
 
 export async function writeContractAndTransactionToOutputs(name: string, value: string, transactionId: string, description: string) {
@@ -168,4 +206,8 @@ export async function isCorrectNetworkId(): Promise<boolean> {
   } catch {
     return true;
   }
+}
+
+export async function waitMs(ms: number) {
+  await new Promise(r => setTimeout(() => r(true), ms));
 }

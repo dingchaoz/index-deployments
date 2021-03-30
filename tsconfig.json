@@ -23,7 +23,8 @@
     "./deploy/**/*.ts",
     "./typechain/**/*.ts",
     "types/**/*",
-    "./deployments/**/*.ts",],
+    "./deployments/**/*.ts",
+    "./tasks/**/*.ts"],
   "files": [
     "hardhat.config.ts",
   ]

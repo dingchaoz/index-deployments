@@ -6,12 +6,15 @@
 /etherscan
 /flatten
 /deployments/outputs/kovan
+/deployments/kovan
 /deployments/localhost_31337
 /deployments/outputs/staging_mainnet_1
 /deployments/outputs/production_1
 /deployments/production_1/*
 /deployments/staging_mainnet_1/*
 /deployments/outputs/50-development.json
+/deployments/outputs/42-development.json
+/deploy/*_fake_deployment.ts
 /node_modules
 /transpiled
 /types/generated/*
