@@ -1,11 +1,16 @@
+import "module-alias/register";
+
 import { Signer } from "ethers";
 import { BigNumber } from "@ethersproject/bignumber";
 import { Address } from "../../../utils/types";
-import { IndexToken, MerkleDistributor, Vesting } from "@deployments/utils/contracts";
-
-import { IndexToken__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/IndexToken__factory";
-import { MerkleDistributor__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/MerkleDistributor__factory";
-import { Vesting__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/Vesting__factory";
+import {
+  IndexToken,
+  MerkleDistributor,
+  Vesting,
+  IndexToken__factory,
+  MerkleDistributor__factory,
+  Vesting__factory
+} from "@set/typechain/index";
 
 export default class DeployToken {
   private _deployerSigner: Signer;

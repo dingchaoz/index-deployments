@@ -2,8 +2,17 @@ import "module-alias/register";
 import { deployments } from "hardhat";
 
 import { Account } from "@utils/types";
-import { ONE_DAY_IN_SECONDS, EMPTY_BYTES } from "@deployments/utils/constants";
-import { FlexibleLeverageStrategyAdapter, FeeSplitAdapter, BaseManager, SupplyCapIssuanceHook } from "@deployments/utils/contracts/index";
+import {
+  BaseManager,
+  FeeSplitAdapter,
+  SupplyCapIssuanceHook,
+  FlexibleLeverageStrategyAdapter,
+  BaseManager__factory,
+  FeeSplitAdapter__factory,
+  SupplyCapIssuanceHook__factory,
+  FlexibleLeverageStrategyAdapter__factory,
+} from "@set/typechain/index";
+
 import { BigNumber } from "@ethersproject/bignumber";
 import {
   addSnapshotBeforeRestoreAfterEach,
@@ -14,12 +23,9 @@ import {
 import {
   findDependency,
   getContractAddress,
-} from "@deployments/utils/deploys/outputHelper";
-
-import { FlexibleLeverageStrategyAdapter__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/FlexibleLeverageStrategyAdapter__factory";
-import { FeeSplitAdapter__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/FeeSplitAdapter__factory";
-import { BaseManager__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/BaseManager__factory";
-import { SupplyCapIssuanceHook__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/SupplyCapIssuanceHook__factory";
+  ONE_DAY_IN_SECONDS,
+  EMPTY_BYTES,
+} from "@deployments/utils";
 
 const expect = getWaffleExpect();
 

@@ -1,14 +1,15 @@
-import {
-  BaseManager
-} from "@setprotocol/index-coop-contracts/utils/contracts/index";
+import "module-alias/register";
 
-import { BaseManager__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/BaseManager__factory";
+import {
+  BaseManager,
+  BaseManager__factory
+} from "@set/typechain/index";
 
 import { Signer } from "ethers";
 
-import { Address } from "../../utils/types";
+import { Address } from "@utils/types";
 
-export default class InstanceGetter {
+export class InstanceGetter {
   private _deployerSigner: Signer;
 
   constructor(deployerSigner: Signer) {

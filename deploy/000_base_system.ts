@@ -14,12 +14,14 @@ import {
   removeNetwork,
   writeContractAndTransactionToOutputs,
   writeTransactionToOutputs,
-} from "@deployments/utils/deploys/outputHelper";
+  stageAlreadyFinished,
+  trackFinishedStage,
+  DEPENDENCY,
+  EMPTY_BYTES
+} from "@deployments/utils";
 
-import { IndexToken__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/IndexToken__factory";
-import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
+import { IndexToken__factory } from "@set/typechain/index";
 import { Address } from "@utils/types";
-import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
 
 import {
   CONTRACT_NAMES,
@@ -39,7 +41,6 @@ import {
   DFP_YEAR_TWO_OWNERSHIP_AMOUNT,
   DFP_YEAR_THREE_OWNERSHIP_AMOUNT,
 } from "@deployments/constants/000_base_system";
-import { EMPTY_BYTES } from "@deployments/utils/constants";
 
 const {
   TREASURY_MULTI_SIG,
@@ -69,7 +70,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   await ensureOutputsFile();
 
-  console.log(JSON.stringify(MERKLE_ROOT_OBJECT.claims));
+  // console.log(JSON.stringify(MERKLE_ROOT_OBJECT.claims));
 
   // Retrieve dependencies
   let uniswapLPReward = await findDependency(DPI_ETH_UNI_POOL);

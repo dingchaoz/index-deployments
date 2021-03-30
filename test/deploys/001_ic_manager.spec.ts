@@ -2,7 +2,10 @@ import "module-alias/register";
 import { deployments } from "hardhat";
 
 import { Account } from "@utils/types";
-import { ICManager } from "@deployments/utils/contracts/index";
+import {
+  ICManager,
+  ICManager__factory
+} from "@set/typechain/index";
 import {
   addSnapshotBeforeRestoreAfterEach,
   getAccounts,
@@ -11,10 +14,9 @@ import {
 import {
   findDependency,
   getContractAddress,
-} from "@deployments/utils/deploys/outputHelper";
+} from "@deployments/utils";
 
 import { IC_MANAGER } from "@deployments/constants/001_ic_manager";
-import { ICManager__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/ICManager__factory";
 
 const expect = getWaffleExpect();
 

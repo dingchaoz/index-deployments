@@ -1,8 +1,12 @@
+import "module-alias/register";
+
 import { Signer } from "ethers";
 import { Address } from "../../../utils/types";
-import { MutualUpgradeMock } from "../contracts/index";
 
-import { MutualUpgradeMock__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/MutualUpgradeMock__factory";
+import {
+  MutualUpgradeMock,
+  MutualUpgradeMock__factory
+} from "@set/typechain/index";
 
 export default class DeployMocks {
   private _deployerSigner: Signer;

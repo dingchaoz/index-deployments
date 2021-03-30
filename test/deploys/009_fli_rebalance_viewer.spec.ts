@@ -2,7 +2,10 @@ import "module-alias/register";
 import { deployments } from "hardhat";
 
 import { Account } from "@utils/types";
-import { FLIRebalanceViewer } from "@deployments/utils/contracts/index";
+import {
+  FLIRebalanceViewer,
+  FLIRebalanceViewer__factory
+} from "@set/typechain/index";
 import {
   addSnapshotBeforeRestoreAfterEach,
   getAccounts,
@@ -11,10 +14,9 @@ import {
 import {
   findDependency,
   getContractAddress,
-} from "@deployments/utils/deploys/outputHelper";
+  DEPENDENCY
+} from "@deployments/utils";
 import { CONTRACT_NAMES } from "@deployments/constants/009_fli_rebalance_viewer";
-import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
-import { FLIRebalanceViewer__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/FLIRebalanceViewer__factory";
 
 const expect = getWaffleExpect();
 

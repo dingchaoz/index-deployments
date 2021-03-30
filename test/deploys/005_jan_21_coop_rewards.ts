@@ -2,7 +2,10 @@ import "module-alias/register";
 import { deployments } from "hardhat";
 
 import { Account } from "@utils/types";
-import { MerkleDistributor } from "@deployments/utils/contracts/index";
+import {
+  MerkleDistributor,
+  MerkleDistributor__factory
+} from "@set/typechain/index";
 import {
   addSnapshotBeforeRestoreAfterEach,
   getAccounts,
@@ -10,10 +13,8 @@ import {
 } from "@utils/index";
 import {
   getContractAddress,
-} from "@deployments/utils/deploys/outputHelper";
-import { JANUARY_MERKLE_DISTRIBUTION } from "@deployments/utils/deploys/rewards/003_jan21Distribution";
-
-import { MerkleDistributor__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/MerkleDistributor__factory";
+  JANUARY_MERKLE_DISTRIBUTION,
+} from "@deployments/utils";
 
 const expect = getWaffleExpect();
 

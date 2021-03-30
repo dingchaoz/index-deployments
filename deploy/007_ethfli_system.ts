@@ -3,9 +3,12 @@ import "module-alias/register";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { BigNumber } from "@ethersproject/bignumber";
-import { ether } from "@utils/index";
+import {
+  ether,
+  getAccounts,
+  getRandomAddress,
+} from "@utils/index";
 
-import { EMPTY_BYTES } from "@deployments/utils/constants";
 import {
   ensureOutputsFile,
   findDependency,
@@ -15,12 +18,19 @@ import {
   getCurrentStage,
   writeTransactionToOutputs,
   writeContractAndTransactionToOutputs,
-} from "@deployments/utils/deploys/outputHelper";
-import { getAccounts, getRandomAddress } from "@utils/index";
-import { Account, ContractSettings, MethodologySettings, ExecutionSettings, IncentiveSettings } from "@utils/types";
-import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
-import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
-import InstanceGetter from "@deployments/utils/instanceGetter";
+  stageAlreadyFinished,
+  trackFinishedStage,
+  InstanceGetter,
+  EMPTY_BYTES,
+  DEPENDENCY
+} from "@deployments/utils";
+import {
+  Account,
+  ContractSettings,
+  MethodologySettings,
+  ExecutionSettings,
+  IncentiveSettings
+} from "@utils/types";
 import {
   CONTRACT_NAMES,
   FEE_SPLIT_ADAPTER,

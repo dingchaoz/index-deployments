@@ -10,8 +10,9 @@ import {
   getNetworkConstant,
   removeNetwork,
   writeContractAndTransactionToOutputs,
-} from "@deployments/utils/deploys/outputHelper";
-import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
+  stageAlreadyFinished,
+  trackFinishedStage,
+} from "@deployments/utils";
 import {
   CONTRACT_NAMES,
   MERKLE_ROOT_OBJECT,

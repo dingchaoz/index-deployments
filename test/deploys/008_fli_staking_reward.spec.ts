@@ -2,7 +2,10 @@ import "module-alias/register";
 import { deployments } from "hardhat";
 
 import { Account } from "@utils/types";
-import { StakingRewardsV2 } from "@deployments/utils/contracts/index";
+import {
+  StakingRewardsV2,
+  StakingRewardsV2__factory
+  } from "@set/typechain/index";
 import {
   addSnapshotBeforeRestoreAfterEach,
   getAccounts,
@@ -11,10 +14,8 @@ import {
 import {
   findDependency,
   getContractAddress,
-} from "@deployments/utils/deploys/outputHelper";
-
-import { StakingRewardsV2__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/StakingRewardsV2__factory";
-import { ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
+  ONE_DAY_IN_SECONDS,
+} from "@deployments/utils";
 
 const expect = getWaffleExpect();
 

@@ -4,7 +4,6 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 
-import { EMPTY_BYTES, ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
 import {
   ensureOutputsFile,
   findDependency,
@@ -13,10 +12,13 @@ import {
   getNetworkConstant,
   removeNetwork,
   writeContractAndTransactionToOutputs,
-} from "@deployments/utils/deploys/outputHelper";
-import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
+  stageAlreadyFinished,
+  trackFinishedStage,
+  DEPENDENCY,
+  EMPTY_BYTES,
+  ONE_DAY_IN_SECONDS,
+} from "@deployments/utils";
 import { Address } from "@utils/types";
-import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
 import {
   CONTRACT_NAMES,
 } from "@deployments/constants/008_fli_staking_reward";

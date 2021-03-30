@@ -3,7 +3,6 @@ import "module-alias/register";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 
-import { EMPTY_BYTES } from "@deployments/utils/constants";
 import {
   ensureOutputsFile,
   findDependency,
@@ -12,10 +11,14 @@ import {
   removeNetwork,
   getCurrentStage,
   writeContractAndTransactionToOutputs,
-} from "@deployments/utils/deploys/outputHelper";
+  stageAlreadyFinished,
+  trackFinishedStage,
+  DEPENDENCY,
+  EMPTY_BYTES,
+} from "@deployments/utils";
+
 import { getRandomAddress } from "@utils/index";
-import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
-import { DEPENDENCY } from "@deployments/utils/deploys/dependencies";
+
 import {
   CONTRACT_NAMES,
   IC_MANAGER,

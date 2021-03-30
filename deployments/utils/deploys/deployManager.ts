@@ -1,9 +1,13 @@
+import "module-alias/register";
+
 import { Signer } from "ethers";
 import { BigNumber } from "@ethersproject/bignumber";
 import { Address } from "../../../utils/types";
-import { ICManager } from "../contracts/index";
 
-import { ICManager__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/ICManager__factory";
+import {
+  ICManager,
+  ICManager__factory
+} from "@set/typechain/index";
 
 export default class DeployToken {
   private _deployerSigner: Signer;

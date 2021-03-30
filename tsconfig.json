@@ -13,7 +13,7 @@
     "moduleResolution": "node",
     "paths": {
         "@utils/*": ["utils/*"],
-        "@typechain/*": ["typechain/*"],
+        "@set/typechain/*": ["typechain/*"],
         "@deployments/*": ["deployments/*"]
     }
   },

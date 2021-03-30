@@ -1,3 +1,5 @@
+import "module-alias/register";
+
 import { Signer } from "ethers";
 import { BigNumberish } from "@ethersproject/bignumber";
 import { Address } from "../../../utils/types";
@@ -8,18 +10,19 @@ import {
   SetToken,
   SetTokenCreator,
   SingleIndexModule,
-  StandardTokenMock
-} from "../contracts/setV2";
-import { WETH9 } from "../contracts/index";
+  StandardTokenMock,
+  WETH9,
+  Controller__factory,
+  BasicIssuanceModule__factory,
+  SingleIndexModule__factory,
+  StreamingFeeModule__factory,
+  SetToken__factory,
+  SetTokenCreator__factory,
+  StandardTokenMock__factory,
+  WETH9__factory
+} from "@set/typechain/index";
+
 import { ether } from "../../../utils/common";
-import { Controller__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/Controller__factory";
-import { BasicIssuanceModule__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/BasicIssuanceModule__factory";
-import { SingleIndexModule__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/SingleIndexModule__factory";
-import { StreamingFeeModule__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/StreamingFeeModule__factory";
-import { SetToken__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/SetToken__factory";
-import { SetTokenCreator__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/SetTokenCreator__factory";
-import { StandardTokenMock__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/StandardTokenMock__factory";
-import { WETH9__factory } from "@setprotocol/index-coop-contracts/dist/typechain/factories/WETH9__factory";
 
 export default class DeploySetV2 {
   private _deployerSigner: Signer;
