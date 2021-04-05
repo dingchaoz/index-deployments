@@ -19,7 +19,10 @@ export default {
     42: "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
   },
   ETHFLI: {
-    1: "0xaa6e8127831c9de45ae56bb1b0d4d4da6e5665bd",
+    1: {
+      production: "0xaa6e8127831c9de45ae56bb1b0d4d4da6e5665bd",
+      staging: "0xDC11c313a28A68c6Fc4df718DD93f057849e8208",
+    },
     42: "0x0437c39a59c42E367C00BC3C95999fEb799bce1a",
   },
   ETHFLI_UNI_POOL: {
@@ -29,19 +32,31 @@ export default {
 
   // Set Protocol Contracts
   DEBT_ISSUANCE_MODULE: {
-    1: "0x39F024d621367C044BacE2bf0Fb15Fb3612eCB92",
+    1: {
+      production: "0x39F024d621367C044BacE2bf0Fb15Fb3612eCB92",
+      staging: "0x338BEf3f37794dd199d6910E6109125D3eCa6048",
+    },
     42: "0xe34031E7F4D8Ba4eFab190ce5f4D8451eD1B6A82",
   },
   COMPOUND_LEVERAGE_MODULE: {
-    1: "0x8d5174eD1dd217e240fDEAa52Eb7f4540b04F419",
+    1: {
+      production: "0x8d5174eD1dd217e240fDEAa52Eb7f4540b04F419",
+      staging: "0xdD668Fa631C0b3F863e3A830ca23Fe75100009e6",
+    },
     42: "0x676C7B527c706801e64AD2108aA1F0Ddc83807D0",
   },
   STREAMING_FEE_MODULE: {
-    1: "0x08f866c74205617B6F3903EF481798EcED10cDEC",
+    1: {
+      production: "0x08f866c74205617B6F3903EF481798EcED10cDEC",
+      staging: "0x3D8d14b7eFb8e342189ee14c3d40dCe005EB901B",
+    },
     42: "0xE038E59DEEC8657d105B6a3Fb5040b3a6189Dd51",
   },
   SINGLE_INDEX_MODULE: {
-    1: "0x25100726b25a6ddb8f8e68988272e1883733966e",
+    1: {
+      production: "0x25100726b25a6ddb8f8e68988272e1883733966e",
+      staging: "0x53ea895f0c152eea8b103092d3a1327fe53b580a",
+    },
     42: "0x8398f4710d35c8f15a7e4eced3e7b6a0e909d019",
   },
 

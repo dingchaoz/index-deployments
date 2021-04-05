@@ -7,7 +7,7 @@
 /flatten
 /deployments/outputs/kovan
 /deployments/kovan
-/deployments/localhost_31337
+/deployments/localhost*
 /deployments/outputs/staging_mainnet_1
 /deployments/outputs/production_1
 /deployments/production_1/*

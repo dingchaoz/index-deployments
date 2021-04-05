@@ -75,8 +75,9 @@ export async function sortAddresses() {
 
 export async function findDependency(name: string) {
   if (dependencies[name] && dependencies[name][getNetworkId()]) {
-    const dependencyValue = dependencies[name][getNetworkId()];
-    return dependencyValue;
+    return (typeof dependencies[name][getNetworkId()] === "string")
+      ? dependencies[name][getNetworkId()]
+      : dependencies[name][getNetworkId()][getNetworkConstant()];
   }
 
   return await getContractAddress(name);
