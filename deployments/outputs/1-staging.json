@@ -3,7 +3,7 @@
     "network_key": "1-staging",
     "human_friendly_name": "main-net-staging",
     "network_id": 1,
-    "last_deployment_stage": 10
+    "last_deployment_stage": 11
   },
   "addresses": {
     "IndexToken": "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
@@ -33,6 +33,7 @@
     "Eth2xFLIRebalanceViewer": "0x8c127E10d30423852229aFE3bC07731DA6AFd5B6",
     "TREASURY_MULTI_SIG": "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
     "StakingRewardsV2 - ETHFLI": "0x84281Fc9FD9A49FE98744Fd924c165bD2299EeDB"
+    "RewardsMar21MerkleDistributor": "0x086A512ae5B809f19D9CA546dbdf93F1E97F390e"
   },
   "transactions": {
     "0": {
@@ -254,6 +255,11 @@
       "id": "0x49f421668dfa41c8004b99d15bbc4dd2d95dcc14d38f8f0ea470268529b8b68f",
       "timestamp": 1616717176767,
       "description": "Deployed StakingRewardsV2 - ETHFLI"
+    },
+    "44": {
+      "id": "0xc4db27ca28821e4837fa2cbff53a5212ebe9ad5bb9e0c2026ac44e7f2f23a8d7",
+      "timestamp": 1617778072379,
+      "description": "Deployed RewardsMar21MerkleDistributor"
     }
   }
 }

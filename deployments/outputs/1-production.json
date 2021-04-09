@@ -32,6 +32,7 @@
     "Eth2xFLIRebalanceViewer": "0xB1ad22Ab3bae47D82B879215B9Fc25eb6b76Fe26",
     "StakingRewardsV2 - ETHFLI": "0x56d68212113AC6cF012B82BD2da0E972091940Eb",
     "StakingRewardsV2 - MVI": "0x5bC4249641B4bf4E37EF513F3Fa5C63ECAB34881",
+    "RewardsMar21MerkleDistributor": "0xA87FBB413f8De11e47037C5d697cC03DE29E4e4b"
   },
   "transactions": {
     "0": {
@@ -238,6 +239,11 @@
       "id": "0x6fc103365575c0d25c381d850df89c436119e47be4a2c611a39b5a212407a164",
       "timestamp": 1617730591164,
       "description": "Deployed StakingRewardsV2 - MVI"
+    },
+    "41": {
+      "id": "0xf89650a877bb63aa1dfd28c3e29e56f6a2f3e609e384a90090ebb75c2b9ec287",
+      "timestamp": 1617778822733,
+      "description": "Deployed RewardsMar21MerkleDistributor"
     }
   }
 }

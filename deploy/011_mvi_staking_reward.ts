@@ -21,7 +21,7 @@ import {
 import { Address } from "@utils/types";
 import {
   CONTRACT_NAMES,
-} from "@deployments/constants/010_mvi_staking_reward";
+} from "@deployments/constants/011_mvi_staking_reward";
 
 const {
   MVI_UNI_POOL,
