@@ -29,6 +29,10 @@ export default {
     1: "0xf91c12dae1313d0be5d7a27aa559b1171cc1eac5",
     42: "0x6af994df1fa038d8e727ffab02a5950da4d706f0",
   },
+  MVI_UNI_POOL: {
+    1: "0x4d3c5db2c68f6859e0cd05d080979f597dd64bff",
+    42: "",
+  },
 
   // Set Protocol Contracts
   DEBT_ISSUANCE_MODULE: {
@@ -107,6 +111,7 @@ export const DEPENDENCY = {
   DPI_ETH_UNI_POOL: "DPI_ETH_UNI_POOL",
   ETHFLI: "ETHFLI",
   ETHFLI_UNI_POOL: "ETHFLI_UNI_POOL",
+  MVI_UNI_POOL: "MVI_UNI_POOL",
   WETH: "WETH",
   USDC: "USDC",
   // Set Protocol Contracts
