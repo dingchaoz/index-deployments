@@ -30,7 +30,9 @@
     "FlexibleLeverageStrategyAdapter - DEPRECATED": "0x21e71a0F8905868a6d840847b650df5fc2079b0b",
     "FeeSplitAdapter": "0x19b8350EE78D7dC92CC41bEe1a8a6b633b3b5166",
     "FlexibleLeverageStrategyAdapter": "0xCD78aac04D234F1E08CcD858eF334d4748b75CdA",
-    "Eth2xFLIRebalanceViewer": "0x8c127E10d30423852229aFE3bC07731DA6AFd5B6"
+    "Eth2xFLIRebalanceViewer": "0x8c127E10d30423852229aFE3bC07731DA6AFd5B6",
+    "TREASURY_MULTI_SIG": "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
+    "StakingRewardsV2 - ETHFLI": "0x84281Fc9FD9A49FE98744Fd924c165bD2299EeDB"
   },
   "transactions": {
     "0": {
@@ -242,6 +244,16 @@
       "id": "0x65f339d0ea49f367a564f075918b1ff057e492b3e32ef25a51eea2fcff9ecc1d",
       "timestamp": 1615494867165,
       "description": "Deployed Eth2xFLIRebalanceViewer"
+    },
+    "42": {
+      "id": "0x",
+      "timestamp": 1616717157459,
+      "description": "Created Mock TREASURY_MULTI_SIG"
+    },
+    "43": {
+      "id": "0x49f421668dfa41c8004b99d15bbc4dd2d95dcc14d38f8f0ea470268529b8b68f",
+      "timestamp": 1616717176767,
+      "description": "Deployed StakingRewardsV2 - ETHFLI"
     }
   }
 }

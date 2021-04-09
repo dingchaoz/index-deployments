@@ -29,7 +29,8 @@
     "BaseManager": "0x445307De5279cD4B1BcBf38853f81b190A806075",
     "FlexibleLeverageStrategyAdapter": "0x1335D01a4B572C37f800f45D9a4b36A53a898a9b",
     "FeeSplitAdapter": "0x26F81381018543eCa9353bd081387F68fAE15CeD",
-    "Eth2xFLIRebalanceViewer": "0xB1ad22Ab3bae47D82B879215B9Fc25eb6b76Fe26"
+    "Eth2xFLIRebalanceViewer": "0xB1ad22Ab3bae47D82B879215B9Fc25eb6b76Fe26",
+    "StakingRewardsV2 - ETHFLI": "0x56d68212113AC6cF012B82BD2da0E972091940Eb"
   },
   "transactions": {
     "0": {
@@ -226,6 +227,11 @@
       "id": "0x3c44648eba05a5d0268231045eb5f0dd3034c6bff788d90f5f648a8da30d4067",
       "timestamp": 1615713164867,
       "description": "Updated Caller Statuses on FlexibleLeverageStrategyAdapter"
+    },
+    "39": {
+      "id": "0x50778c05e3c81ea8f0aa25a6943ea47ec99f7afc18cf64513bad41bfca9b1131",
+      "timestamp": 1616718401725,
+      "description": "Deployed StakingRewardsV2 - ETHFLI"
     }
   }
 }
