@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 10
+    "last_deployment_stage": 11
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -30,7 +30,8 @@
     "FlexibleLeverageStrategyAdapter": "0x1335D01a4B572C37f800f45D9a4b36A53a898a9b",
     "FeeSplitAdapter": "0x26F81381018543eCa9353bd081387F68fAE15CeD",
     "Eth2xFLIRebalanceViewer": "0xB1ad22Ab3bae47D82B879215B9Fc25eb6b76Fe26",
-    "StakingRewardsV2 - ETHFLI": "0x56d68212113AC6cF012B82BD2da0E972091940Eb"
+    "StakingRewardsV2 - ETHFLI": "0x56d68212113AC6cF012B82BD2da0E972091940Eb",
+    "StakingRewardsV2 - MVI": "0x5bC4249641B4bf4E37EF513F3Fa5C63ECAB34881",
   },
   "transactions": {
     "0": {
@@ -232,6 +233,11 @@
       "id": "0x50778c05e3c81ea8f0aa25a6943ea47ec99f7afc18cf64513bad41bfca9b1131",
       "timestamp": 1616718401725,
       "description": "Deployed StakingRewardsV2 - ETHFLI"
+    },
+    "40": {
+      "id": "0x6fc103365575c0d25c381d850df89c436119e47be4a2c611a39b5a212407a164",
+      "timestamp": 1617730591164,
+      "description": "Deployed StakingRewardsV2 - MVI"
     }
   }
 }
