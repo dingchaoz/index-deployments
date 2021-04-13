@@ -12,6 +12,7 @@ import {
   getNetworkConstant,
   removeNetwork,
   writeContractAndTransactionToOutputs,
+  saveContractDeployment,
   stageAlreadyFinished,
   trackFinishedStage,
   DEPENDENCY,
@@ -96,17 +97,19 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       // Deploy Uniswap LP staking rewards contract
       const checkStakingRewardsAddress = await getContractAddress(contractName);
       if (checkStakingRewardsAddress === "") {
+        const constructorArgs = [distributor, rewardToken, stakingToken, duration];
         const stakingRewardsDeploy = await deploy(
           CONTRACT_NAMES.STAKING_REWARDS_V2,
-          { from: deployer, args: [distributor, rewardToken, stakingToken, duration], log: true }
+          { from: deployer, args: constructorArgs, log: true }
         );
         stakingRewardsDeploy.receipt &&
-          await writeContractAndTransactionToOutputs(
-            contractName,
-            stakingRewardsDeploy.address,
-            stakingRewardsDeploy.receipt.transactionHash,
-            `Deployed ${ contractName }`
-          );
+          await saveContractDeployment({
+            name: contractName,
+            contractAddress: stakingRewardsDeploy.address,
+            id: stakingRewardsDeploy.receipt.transactionHash,
+            description: `Deployed ${ contractName }`,
+            constructorArgs,
+          });
       }
       return await getContractAddress(contractName);
   }

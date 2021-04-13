@@ -9,7 +9,7 @@ import {
   getCurrentStage,
   getNetworkConstant,
   removeNetwork,
-  writeContractAndTransactionToOutputs,
+  saveContractDeployment,
   stageAlreadyFinished,
   trackFinishedStage,
 } from "@deployments/utils";
@@ -46,17 +46,19 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   // Deploy Merkle Distributor contract
   const checkMerkleDistributorAddress = await getContractAddress(CONTRACT_NAMES.REWARDS_MAR21_MERKLE_DISTRIBUTOR);
   if (checkMerkleDistributorAddress === "") {
+    const constructorArgs = [indexTokenAddress, MERKLE_ROOT_OBJECT.merkleRoot];
     const merkleDistributorDeploy = await deploy(
       CONTRACT_NAMES.MERKLE_DISTRIBUTOR,
-      { from: deployer, args: [indexTokenAddress, MERKLE_ROOT_OBJECT.merkleRoot], log: true }
+      { from: deployer, args: constructorArgs, log: true }
     );
     merkleDistributorDeploy.receipt &&
-      await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.REWARDS_MAR21_MERKLE_DISTRIBUTOR,
-        merkleDistributorDeploy.address,
-        merkleDistributorDeploy.receipt.transactionHash,
-        "Deployed RewardsMar21MerkleDistributor"
-      );
+      await saveContractDeployment({
+        name: CONTRACT_NAMES.REWARDS_MAR21_MERKLE_DISTRIBUTOR,
+        contractAddress: merkleDistributorDeploy.address,
+        id: merkleDistributorDeploy.receipt.transactionHash,
+        description: "Deployed RewardsMar21MerkleDistributor",
+        constructorArgs,
+      });
   }
 });
 

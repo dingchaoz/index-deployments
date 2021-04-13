@@ -18,6 +18,7 @@ import {
   getCurrentStage,
   writeTransactionToOutputs,
   writeContractAndTransactionToOutputs,
+  saveContractDeployment,
   stageAlreadyFinished,
   trackFinishedStage,
   InstanceGetter,
@@ -169,18 +170,25 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   async function deployBaseManager(): Promise<void> {
     const checkBaseManagerAddress = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER);
     if (checkBaseManagerAddress === "") {
-      const params: string[] = [
+      const constructorArgs = [
         await findDependency(ETHFLI),
         deployer, // Set operator to deployer for now
         dfpMultisigAddress, // Set methodologist to DFP
       ];
-      const icManagerV2Deploy = await deploy(CONTRACT_NAMES.BASE_MANAGER, { from: deployer, args: params, log: true });
-      icManagerV2Deploy.receipt && await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.BASE_MANAGER,
-        icManagerV2Deploy.address,
-        icManagerV2Deploy.receipt.transactionHash,
-        "Deployed BaseManager"
-      );
+
+      const icManagerV2Deploy = await deploy(CONTRACT_NAMES.BASE_MANAGER, {
+        from: deployer,
+        args: constructorArgs,
+        log: true,
+      });
+
+      icManagerV2Deploy.receipt && await saveContractDeployment({
+        name: CONTRACT_NAMES.BASE_MANAGER,
+        contractAddress: icManagerV2Deploy.address,
+        id: icManagerV2Deploy.receipt.transactionHash,
+        description: "Deployed BaseManager",
+        constructorArgs,
+      });
     }
   }
 
@@ -202,20 +210,26 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       const executionSettings: ExecutionSettings = EXECUTION_SETTINGS;
       const incentiveSettings: IncentiveSettings = INCENTIVE_SETTINGS;
 
-      const flexibleLeverageDeploy = await deploy(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER, { from: deployer, args: [
+      const constructorArgs = [
         manager,
         contractSettings,
         methodologySettings,
         executionSettings,
         incentiveSettings,
-      ], log: true });
+      ];
+      const flexibleLeverageDeploy = await deploy(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER, {
+        from: deployer,
+        args: constructorArgs,
+        log: true,
+      });
 
-      flexibleLeverageDeploy.receipt && await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER,
-        flexibleLeverageDeploy.address,
-        flexibleLeverageDeploy.receipt.transactionHash,
-        "Deployed FlexibleLeverageStrategyAdapter"
-      );
+      flexibleLeverageDeploy.receipt && await saveContractDeployment({
+        name: CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER,
+        contractAddress: flexibleLeverageDeploy.address,
+        id: flexibleLeverageDeploy.receipt.transactionHash,
+        description: "Deployed FlexibleLeverageStrategyAdapter",
+        constructorArgs,
+      });
     }
   }
 
@@ -227,19 +241,26 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       const debtIssuanceModule = await findDependency(DEBT_ISSUANCE_MODULE);
       const feeSplit = FEE_SPLIT_ADAPTER.FEE_SPLIT;
 
-      const feeSplitAdapterDeploy = await deploy(CONTRACT_NAMES.FEE_SPLIT_ADAPTER, { from: deployer, args: [
+      const constructorArgs = [
         manager,
         streamingFeeModule,
         debtIssuanceModule,
         feeSplit,
-      ], log: true });
+      ];
 
-      feeSplitAdapterDeploy.receipt && await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.FEE_SPLIT_ADAPTER,
-        feeSplitAdapterDeploy.address,
-        feeSplitAdapterDeploy.receipt.transactionHash,
-        "Deployed Fee Split Adapter"
-      );
+      const feeSplitAdapterDeploy = await deploy(CONTRACT_NAMES.FEE_SPLIT_ADAPTER, {
+        from: deployer,
+        args: constructorArgs,
+        log: true,
+      });
+
+      feeSplitAdapterDeploy.receipt && await saveContractDeployment({
+        name: CONTRACT_NAMES.FEE_SPLIT_ADAPTER,
+        contractAddress: feeSplitAdapterDeploy.address,
+        id: feeSplitAdapterDeploy.receipt.transactionHash,
+        description: "Deployed Fee Split Adapter",
+        constructorArgs,
+      });
     }
   }
 
@@ -253,17 +274,24 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
     const checkSupplyCapIssuanceHookAddress = await getContractAddress(CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK);
     if (checkSupplyCapIssuanceHookAddress === "") {
-      const params = [
+      const constructorArgs = [
         treasuryMultisigAddress,
         SUPPLY_CAP_ISSUANCE_HOOK.SUPPLY_CAP,
       ];
-      const supplyCapDeploy = await deploy(CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK, { from: deployer, args: params, log: true });
-      supplyCapDeploy.receipt && await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK,
-        supplyCapDeploy.address,
-        supplyCapDeploy.receipt.transactionHash,
-        "Deployed SupplyCapIssuanceHook"
-      );
+
+      const supplyCapDeploy = await deploy(CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK, {
+        from: deployer,
+        args: constructorArgs,
+        log: true,
+      });
+
+      supplyCapDeploy.receipt && await saveContractDeployment({
+        name: CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK,
+        contractAddress: supplyCapDeploy.address,
+        id: supplyCapDeploy.receipt.transactionHash,
+        description: "Deployed SupplyCapIssuanceHook",
+        constructorArgs,
+      });
     }
   }
 

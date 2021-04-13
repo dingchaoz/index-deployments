@@ -12,6 +12,7 @@ import {
   getNetworkConstant,
   removeNetwork,
   writeContractAndTransactionToOutputs,
+  saveContractDeployment,
   stageAlreadyFinished,
   trackFinishedStage,
   DEPENDENCY,
@@ -81,17 +82,19 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       const fliStrategyAdapter = await findDependency(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER);
       const cEther = await findDependency(C_ETH);
 
+      const constructorArgs = [uniswapRouter, fliStrategyAdapter, cEther];
       const fliRebalanceViewer = await deploy(
         CONTRACT_NAMES.FLI_REBALANCE_VIEWER,
-        { from: deployer, args: [uniswapRouter, fliStrategyAdapter, cEther], log: true }
+        { from: deployer, args: constructorArgs, log: true }
       );
       fliRebalanceViewer.receipt &&
-        await writeContractAndTransactionToOutputs(
-          CONTRACT_NAMES.ETH_2X_REBALANCE_VIEWER,
-          fliRebalanceViewer.address,
-          fliRebalanceViewer.receipt.transactionHash,
-          `Deployed ${CONTRACT_NAMES.ETH_2X_REBALANCE_VIEWER}`
-        );
+        await saveContractDeployment({
+          name: CONTRACT_NAMES.ETH_2X_REBALANCE_VIEWER,
+          contractAddress: fliRebalanceViewer.address,
+          id: fliRebalanceViewer.receipt.transactionHash,
+          description: `Deployed ${CONTRACT_NAMES.ETH_2X_REBALANCE_VIEWER}`,
+          constructorArgs,
+        });
     }
   }
 });

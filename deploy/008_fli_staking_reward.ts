@@ -12,6 +12,7 @@ import {
   getNetworkConstant,
   removeNetwork,
   writeContractAndTransactionToOutputs,
+  saveContractDeployment,
   stageAlreadyFinished,
   trackFinishedStage,
   DEPENDENCY,
@@ -65,17 +66,19 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   // Deploy INDEX token
   const checkIndexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
   if (checkIndexTokenAddress === "") {
+    const constructorArgs = [deployer];
     const indexTokenDeploy = await deploy(
       CONTRACT_NAMES.INDEX_TOKEN,
-      { from: deployer, args: [deployer], log: true }
+      { from: deployer, args: constructorArgs, log: true }
     );
     indexTokenDeploy.receipt &&
-      await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.INDEX_TOKEN,
-        indexTokenDeploy.address,
-        indexTokenDeploy.receipt.transactionHash,
-        "Deployed IndexToken"
-      );
+      await saveContractDeployment({
+        name: CONTRACT_NAMES.INDEX_TOKEN,
+        contractAddress: indexTokenDeploy.address,
+        id: indexTokenDeploy.receipt.transactionHash,
+        description: "Deployed IndexToken",
+        constructorArgs,
+      });
   }
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
@@ -97,17 +100,19 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       // Deploy Uniswap LP staking rewards contract
       const checkStakingRewardsAddress = await getContractAddress(contractName);
       if (checkStakingRewardsAddress === "") {
+        const constructorArgs = [distributor, rewardToken, stakingToken, duration];
         const stakingRewardsDeploy = await deploy(
           CONTRACT_NAMES.STAKING_REWARDS_V2,
-          { from: deployer, args: [distributor, rewardToken, stakingToken, duration], log: true }
+          { from: deployer, args: constructorArgs, log: true }
         );
         stakingRewardsDeploy.receipt &&
-          await writeContractAndTransactionToOutputs(
-            contractName,
-            stakingRewardsDeploy.address,
-            stakingRewardsDeploy.receipt.transactionHash,
-            `Deployed ${ contractName }`
-          );
+          await saveContractDeployment({
+            name: contractName,
+            contractAddress: stakingRewardsDeploy.address,
+            id: stakingRewardsDeploy.receipt.transactionHash,
+            description: `Deployed ${ contractName }`,
+            constructorArgs,
+          });
       }
       return await getContractAddress(contractName);
   }

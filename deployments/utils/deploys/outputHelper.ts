@@ -27,6 +27,12 @@ export type ContractDeploymentData = {
   blockNumber?: number
 };
 
+export type DeferredTransactionData = {
+  data: string,
+  description: string,
+  contractName: string
+};
+
 export function getCurrentStage(fileName: string): number {
   const baseFile = path.basename(fileName);
   const splitStr = baseFile.split("_");
@@ -92,6 +98,20 @@ export async function getContractAddress(name: string) {
 export async function getContractCode(name: string, web3: any): Promise<string> {
   const contractAddress = await getContractAddress(name);
   return await web3.eth.getCode(contractAddress);
+}
+
+export async function saveDeferredTransactionData(tx: DeferredTransactionData) {
+  const outputs: any = await returnOutputs();
+  const lastTransactionNumber = getNextTransactionKey(outputs);
+
+  outputs["transactions"][lastTransactionNumber] = {
+    id: null,        // tslint:disable-line
+    timestamp: null, // tslint:disable-line
+    data: tx.data,
+    description: tx.description,
+    contractName: tx.contractName,
+  };
+  await fs.outputFile(OUTPUTS_PATH, JSON.stringify(outputs, undefined, 2));
 }
 
 export async function saveContractDeployment(data: ContractDeploymentData) {
