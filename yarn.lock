@@ -633,10 +633,10 @@
     "@sentry/types" "5.29.2"
     tslib "^1.9.3"
 
-"@setprotocol/index-coop-contracts@0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@setprotocol/index-coop-contracts/-/index-coop-contracts-0.0.12.tgz#3850701f64b0ce3ab44ccfbe61fa1f97519afad0"
-  integrity sha512-DV2468ojEFAUIZGOgm6AWDjtVa7FXB8vuwqX07mExC6Exy4R38iptTeh4BIocqY71whh+ZfjgdCPN5uIPo5hFQ==
+"@setprotocol/index-coop-contracts@0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@setprotocol/index-coop-contracts/-/index-coop-contracts-0.0.15.tgz#a1b8aeb733c20a2e962b3ff9d9a5f3c5cda59e48"
+  integrity sha512-+IhoV1kazxCxz0tBLhi6r/UP3CPm/bBO0svMtE/V+OcV76t2mUYqJ3Q20v+ZRaVnhM+7cjYCgFtcL69YX322aQ==
   dependencies:
     "@uniswap/v2-core" "^1.0.1"
     "@uniswap/v2-periphery" "^1.1.0-beta.0"

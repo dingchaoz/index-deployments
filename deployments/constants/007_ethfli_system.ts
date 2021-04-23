@@ -1,6 +1,6 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { ether } from "@utils/index";
-import { ONE_DAY_IN_SECONDS, EMPTY_BYTES } from "@deployments/utils/constants";
+import { ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
 
 export const CONTRACT_NAMES = {
   BASE_MANAGER: "BaseManager",
@@ -32,7 +32,6 @@ export const EXECUTION_SETTINGS = {
   twapCooldownPeriod: BigNumber.from(30),                 // 30 sec cooldown
   slippageTolerance: ether(0.02),                         // 2% max slippage on regular rebalances
   exchangeName: "UniswapV2ExchangeAdapter",                // Use Uniswap as initial exchange
-  exchangeData: EMPTY_BYTES,                              // Empty exchange data as there is a direct route from ETH <-> USDC
 };
 
 export const INCENTIVE_SETTINGS = {

@@ -1,21 +1,23 @@
 import "module-alias/register";
 import { deployments } from "hardhat";
+import { defaultAbiCoder } from "ethers/lib/utils";
 
 import { Account } from "@utils/types";
 import {
   BaseManager,
   FeeSplitAdapter,
-  SupplyCapIssuanceHook,
+  SupplyCapAllowedCallerIssuanceHook,
   FlexibleLeverageStrategyAdapter,
   BaseManager__factory,
   FeeSplitAdapter__factory,
-  SupplyCapIssuanceHook__factory,
+  SupplyCapAllowedCallerIssuanceHook__factory,
   FlexibleLeverageStrategyAdapter__factory,
 } from "@set/typechain/index";
 
 import { BigNumber } from "@ethersproject/bignumber";
 import {
   addSnapshotBeforeRestoreAfterEach,
+  bitcoin,
   ether,
   getAccounts,
   getWaffleExpect,
@@ -24,18 +26,17 @@ import {
   findDependency,
   getContractAddress,
   ONE_DAY_IN_SECONDS,
-  EMPTY_BYTES,
 } from "@deployments/utils";
 
 const expect = getWaffleExpect();
 
-describe("ETHFLI System", () => {
+describe("BTCFLI System", () => {
   let deployer: Account;
 
   let baseManagerInstance: BaseManager;
   let flexibleLeverageStrategyAdapterInstance: FlexibleLeverageStrategyAdapter;
   let feeSplitAdapterInstance: FeeSplitAdapter;
-  let supplyCapInstance: SupplyCapIssuanceHook;
+  let supplyCapInstance: SupplyCapAllowedCallerIssuanceHook;
 
   before(async () => {
     [
@@ -44,18 +45,18 @@ describe("ETHFLI System", () => {
 
     await deployments.fixture();
 
-    const deployedBaseManagerContract = await getContractAddress("BaseManager");
+    const deployedBaseManagerContract = await getContractAddress("BTCFLIBaseManager");
     baseManagerInstance = new BaseManager__factory(deployer.wallet).attach(deployedBaseManagerContract);
 
-    const deployedFlexibleLeverageStrategyAdapterContract = await getContractAddress("FlexibleLeverageStrategyAdapter");
+    const deployedFlexibleLeverageStrategyAdapterContract = await getContractAddress("BTCFlexibleLeverageStrategyAdapter");
     flexibleLeverageStrategyAdapterInstance =
       new FlexibleLeverageStrategyAdapter__factory(deployer.wallet).attach(deployedFlexibleLeverageStrategyAdapterContract);
 
-    const deployedFeeSplitAdapterContract = await getContractAddress("FeeSplitAdapter");
+    const deployedFeeSplitAdapterContract = await getContractAddress("BTCFLIFeeSplitAdapter");
     feeSplitAdapterInstance = new FeeSplitAdapter__factory(deployer.wallet).attach(deployedFeeSplitAdapterContract);
 
-    const deployedSupplyCapIssuanceHookContract = await getContractAddress("SupplyCapIssuanceHook");
-    supplyCapInstance = new SupplyCapIssuanceHook__factory(deployer.wallet).attach(deployedSupplyCapIssuanceHookContract);
+    const deployedSupplyCapAllowedCallerIssuanceHookContract = await getContractAddress("BTCFLISupplyCapAllowedCallerIssuanceHook");
+    supplyCapInstance = new SupplyCapAllowedCallerIssuanceHook__factory(deployer.wallet).attach(deployedSupplyCapAllowedCallerIssuanceHookContract);
   });
 
   addSnapshotBeforeRestoreAfterEach();
@@ -63,7 +64,7 @@ describe("ETHFLI System", () => {
   describe("BaseManager", async () => {
     it("should have the correct SetToken address", async () => {
       const setToken = await baseManagerInstance.setToken();
-      expect(setToken).to.eq(await findDependency("ETHFLI"));
+      expect(setToken).to.eq(await findDependency("BTCFLI"));
     });
 
     it("should have the correct operator address", async () => {
@@ -93,13 +94,13 @@ describe("ETHFLI System", () => {
     it("should set the contract addresses", async () => {
       const strategy = await flexibleLeverageStrategyAdapterInstance.getStrategy();
 
-      expect(strategy.setToken).to.eq(await findDependency("ETHFLI"));
+      expect(strategy.setToken).to.eq(await findDependency("BTCFLI"));
       expect(strategy.leverageModule).to.eq(await findDependency("COMPOUND_LEVERAGE_MODULE"));
       expect(strategy.comptroller).to.eq(await findDependency("COMPOUND_COMPTROLLER"));
       expect(strategy.priceOracle).to.eq(await findDependency("COMPOUND_PRICE_ORACLE"));
-      expect(strategy.targetCollateralCToken).to.eq(await findDependency("C_ETH"));
+      expect(strategy.targetCollateralCToken).to.eq(await findDependency("C_WBTC"));
       expect(strategy.targetBorrowCToken).to.eq(await findDependency("C_USDC"));
-      expect(strategy.collateralAsset).to.eq(await findDependency("WETH"));
+      expect(strategy.collateralAsset).to.eq(await findDependency("WBTC"));
       expect(strategy.borrowAsset).to.eq(await findDependency("USDC"));
     });
 
@@ -107,20 +108,22 @@ describe("ETHFLI System", () => {
       const methodology = await flexibleLeverageStrategyAdapterInstance.getMethodology();
 
       expect(methodology.targetLeverageRatio).to.eq(ether(2));
-      expect(methodology.minLeverageRatio).to.eq(ether(1.7));
-      expect(methodology.maxLeverageRatio).to.eq(ether(2.3));
-      expect(methodology.recenteringSpeed).to.eq(ether(0.05));
+      expect(methodology.minLeverageRatio).to.eq(ether(1.8));
+      expect(methodology.maxLeverageRatio).to.eq(ether(2.2));
+      expect(methodology.recenteringSpeed).to.eq(ether(0.1));
       expect(methodology.rebalanceInterval).to.eq(ONE_DAY_IN_SECONDS);
     });
 
     it("should set the correct execution parameters", async () => {
       const execution = await flexibleLeverageStrategyAdapterInstance.getExecution();
+      const leverData = defaultAbiCoder.encode(["address[]"], [[await findDependency("USDC"), await findDependency("WETH"), await findDependency("WBTC")]]);
+      const deleverData = defaultAbiCoder.encode(["address[]"], [[await findDependency("WBTC"), await findDependency("WETH"), await findDependency("USDC")]]);
 
-      expect(execution.exchangeName).to.eq("UniswapV2ExchangeAdapter");
-      expect(execution.leverExchangeData).to.eq(EMPTY_BYTES);
-      expect(execution.deleverExchangeData).to.eq(EMPTY_BYTES);
+      expect(execution.exchangeName).to.eq("SushiswapExchangeAdapter");
+      expect(execution.leverExchangeData).to.eq(leverData);
+      expect(execution.deleverExchangeData).to.eq(deleverData);
       expect(execution.unutilizedLeveragePercentage).to.eq(ether(0.01));
-      expect(execution.twapMaxTradeSize).to.eq(ether(600));
+      expect(execution.twapMaxTradeSize).to.eq(bitcoin(12));
       expect(execution.twapCooldownPeriod).to.eq(BigNumber.from(30));
       expect(execution.slippageTolerance).to.eq(ether(0.02));
     });
@@ -128,11 +131,11 @@ describe("ETHFLI System", () => {
     it("should set the correct incentive parameters", async () => {
       const incentive = await flexibleLeverageStrategyAdapterInstance.getIncentive();
 
-      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(ether(1200));
+      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(bitcoin(24));
       expect(incentive.incentivizedTwapCooldownPeriod).to.eq(BigNumber.from(1));
       expect(incentive.incentivizedSlippageTolerance).to.eq(ether(0.05));
       expect(incentive.etherReward).to.eq(ether(1));
-      expect(incentive.incentivizedLeverageRatio).to.eq(ether(2.7));
+      expect(incentive.incentivizedLeverageRatio).to.eq(ether(2.4));
     });
   });
 
@@ -150,7 +153,7 @@ describe("ETHFLI System", () => {
     });
   });
 
-  describe("SupplyCapIssuanceHook", async () => {
+  describe("SupplyCapAllowedCallerIssuanceHook", async () => {
     it("should set the correct owner", async () => {
       const owner = await supplyCapInstance.owner();
 
@@ -160,7 +163,7 @@ describe("ETHFLI System", () => {
     it("should set the correct supply cap", async () => {
       const supplyCap = await supplyCapInstance.supplyCap();
 
-      expect(supplyCap).to.eq(ether(50000));
+      expect(supplyCap).to.eq(ether(200000));
     });
   });
 });
