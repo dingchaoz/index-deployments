@@ -15,6 +15,7 @@ export {
 export {
   divDown,
   min,
+  bitcoin,
   ether,
   getStreamingFee,
   getStreamingFeeInflationAmount,

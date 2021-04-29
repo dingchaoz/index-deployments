@@ -10,6 +10,10 @@ export default {
     1: "0x4d5ef58aac27d99935e5b6b4a6778ff292059991",
     42: "0x64cf6e538ce757645a953376c0f1be6fab8a2e09",
   },
+  WBTC: {
+    1: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    42: "0x595f8DaB94b9c718cbf5c693cD539Fd00b286D3d",
+  },
   WETH: {
     1: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
     42: "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
@@ -24,6 +28,13 @@ export default {
       staging: "0xDC11c313a28A68c6Fc4df718DD93f057849e8208",
     },
     42: "0x0437c39a59c42E367C00BC3C95999fEb799bce1a",
+  },
+  BTCFLI: {
+    1: {
+      production: "",
+      staging: "0x2fa6ffC08F30866B4f6eC56f31f4E31b4bB91ADa",
+    },
+    42: "0x7edC8917dfb6F2C696a41579356dfc6ecD360aA1",
   },
   ETHFLI_UNI_POOL: {
     1: "0xf91c12dae1313d0be5d7a27aa559b1171cc1eac5",
@@ -73,6 +84,10 @@ export default {
     1: "0x39aa39c021dfbae8fac545936693ac917d5e7563",
     42: "0x48f4944f65c1d67009b6d5c9f70bd79c2f41ead8",
   },
+  C_WBTC: {
+    1: "0xccf4429db6322d5c611ee964527d42e5d685dd6a",
+    42: "0xca1458e55d6be75ad771115d7b2fc1cb753bc5c9",
+  },
   COMPOUND_COMPTROLLER: {
     1: "0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b",
     42: "0x047ba8fe92c01bffec22a93b3acdfc9a938887f9", // This is a mock Comptroller deployment
@@ -98,6 +113,10 @@ export default {
     1: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
     42: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
   },
+  SUSHISWAP_ROUTER: {
+    1: "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F",
+    42: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D", // Assume Uniswap on Kovan
+  },
   HUMAN_FRIENDLY_NAMES: {
     1: "main-net",
     42: "kovan",
@@ -109,10 +128,12 @@ export const DEPENDENCY = {
   // Tokens
   DPI: "DPI",
   DPI_ETH_UNI_POOL: "DPI_ETH_UNI_POOL",
+  BTCFLI: "BTCFLI",
   ETHFLI: "ETHFLI",
   ETHFLI_UNI_POOL: "ETHFLI_UNI_POOL",
   MVI_UNI_POOL: "MVI_UNI_POOL",
   WETH: "WETH",
+  WBTC: "WBTC",
   USDC: "USDC",
   // Set Protocol Contracts
   DEBT_ISSUANCE_MODULE: "DEBT_ISSUANCE_MODULE",
@@ -122,6 +143,7 @@ export const DEPENDENCY = {
   // Compound Contracts
   C_ETH: "C_ETH",
   C_USDC: "C_USDC",
+  C_WBTC: "C_WBTC",
   COMPOUND_COMPTROLLER: "COMPOUND_COMPTROLLER",
   COMPOUND_PRICE_ORACLE: "COMPOUND_PRICE_ORACLE",
   // Admin
@@ -129,4 +151,5 @@ export const DEPENDENCY = {
   DFP_MULTI_SIG: "DFP_MULTI_SIG",
   SET_LABS: "SET_LABS",
   UNISWAP_V2_ROUTER: "UNISWAP_V2_ROUTER",
+  SUSHISWAP_ROUTER: "SUSHISWAP_ROUTER",
 };

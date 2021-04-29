@@ -19,7 +19,7 @@ import {
   ExecutionSettings,
   IncentiveSettings } from "@utils/types";
 
-import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
+import { stageAlreadyFinished, trackFinishedStage, EMPTY_BYTES } from "@deployments/utils";
 
 import {
   CONTRACT_NAMES,
@@ -74,7 +74,11 @@ const func: DeployFunction = trackFinishedStage(
       borrowAsset: await getRandomAddress(),
     };
     const methodologySettings: MethodologySettings = METHODOLOGY_SETTINGS;
-    const executionSettings: ExecutionSettings = EXECUTION_SETTINGS;
+    const executionSettings: ExecutionSettings = {
+      ...EXECUTION_SETTINGS,
+      leverExchangeData: EMPTY_BYTES,
+      deleverExchangeData: EMPTY_BYTES,
+    };
     const incentiveSettings: IncentiveSettings = INCENTIVE_SETTINGS;
 
     const constructorArgs = [

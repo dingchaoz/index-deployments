@@ -3,6 +3,7 @@ import "module-alias/register";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { BigNumber } from "@ethersproject/bignumber";
+import { defaultAbiCoder } from "ethers/lib/utils";
 import {
   ether,
   getAccounts,
@@ -39,19 +40,19 @@ import {
   METHODOLOGY_SETTINGS,
   EXECUTION_SETTINGS,
   INCENTIVE_SETTINGS,
-} from "@deployments/constants/007_ethfli_system";
+} from "@deployments/constants/012_btcfli_system";
 
 const {
-  C_ETH,
+  C_WBTC,
   C_USDC,
   DFP_MULTI_SIG,
-  ETHFLI,
+  BTCFLI,
   DEBT_ISSUANCE_MODULE,
   COMPOUND_LEVERAGE_MODULE,
   COMPOUND_COMPTROLLER,
   COMPOUND_PRICE_ORACLE,
   STREAMING_FEE_MODULE,
-  TREASURY_MULTI_SIG,
+  WBTC,
   WETH,
   USDC,
 } = DEPENDENCY;
@@ -100,41 +101,25 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   await deployFeeAdapter();
 
-  await addAdapter(CONTRACT_NAMES.BASE_MANAGER, CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER);
-  await addAdapter(CONTRACT_NAMES.BASE_MANAGER, CONTRACT_NAMES.FEE_SPLIT_ADAPTER);
+  await addAdapter(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER_NAME);
+  await addAdapter(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
 
   //
   // Helper Functions
   //
 
   async function polyFillForDevelopment(): Promise<void> {
-    if (await findDependency(ETHFLI) === "") {
-      await writeContractAndTransactionToOutputs(ETHFLI, await getRandomAddress(), EMPTY_BYTES, "Created Mock ETHFLI");
+    if (await findDependency(BTCFLI) === "") {
+      await writeContractAndTransactionToOutputs(BTCFLI, await getRandomAddress(), EMPTY_BYTES, "Created Mock BTCFLI");
     }
 
-    if (await findDependency(COMPOUND_LEVERAGE_MODULE) === "") {
-      await writeContractAndTransactionToOutputs(COMPOUND_LEVERAGE_MODULE, await getRandomAddress(), EMPTY_BYTES, "Created Mock COMPOUND_LEVERAGE_MODULE");
-    }
-
-    if (await findDependency(DEBT_ISSUANCE_MODULE) === "") {
-      await writeContractAndTransactionToOutputs(DEBT_ISSUANCE_MODULE, await getRandomAddress(), EMPTY_BYTES, "Created Mock DEBT_ISSUANCE_MODULE");
-    }
-
-    if (await findDependency(COMPOUND_COMPTROLLER) === "") {
-      await writeContractAndTransactionToOutputs(COMPOUND_COMPTROLLER, await getRandomAddress(), EMPTY_BYTES, "Created Mock COMPOUND_COMPTROLLER");
-    }
-
-    if (await findDependency(COMPOUND_PRICE_ORACLE) === "") {
-      await writeContractAndTransactionToOutputs(COMPOUND_PRICE_ORACLE, await getRandomAddress(), EMPTY_BYTES, "Created Mock COMPOUND_PRICE_ORACLE");
-    }
-
-    if (await findDependency(WETH) === "") {
+    if (await findDependency(WBTC) === "") {
       const token = await deploy(
         CONTRACT_NAMES.STANDARD_TOKEN_MOCK,
-        { from: deployer, args: [deployer, ether(1000000000), WETH, WETH, BigNumber.from(18)], log: true }
+        { from: deployer, args: [deployer, ether(1000000000), WBTC, WBTC, BigNumber.from(18)], log: true }
       );
       token.receipt &&
-        await writeContractAndTransactionToOutputs(WETH, token.address, token.receipt.transactionHash, "Created Mock WETH");
+        await writeContractAndTransactionToOutputs(WBTC, token.address, token.receipt.transactionHash, "Created Mock WBTC");
     }
 
     if (await findDependency(USDC) === "") {
@@ -146,13 +131,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
         await writeContractAndTransactionToOutputs(USDC, token.address, token.receipt.transactionHash, "Created Mock USDC");
     }
 
-    if (await findDependency(C_ETH) === "") {
+    if (await findDependency(C_WBTC) === "") {
       const token = await deploy(
         CONTRACT_NAMES.STANDARD_TOKEN_MOCK,
-        { from: deployer, args: [deployer, ether(1000000000), C_ETH, C_ETH, BigNumber.from(8)], log: true }
+        { from: deployer, args: [deployer, ether(1000000000), C_WBTC, C_WBTC, BigNumber.from(8)], log: true }
       );
       token.receipt &&
-        await writeContractAndTransactionToOutputs(C_ETH, token.address, token.receipt.transactionHash, "Created Mock C_ETH");
+        await writeContractAndTransactionToOutputs(C_WBTC, token.address, token.receipt.transactionHash, "Created Mock C_WBTC");
     }
 
     if (await findDependency(C_USDC) === "") {
@@ -168,10 +153,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   }
 
   async function deployBaseManager(): Promise<void> {
-    const checkBaseManagerAddress = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER);
+    const checkBaseManagerAddress = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER_NAME);
     if (checkBaseManagerAddress === "") {
       const constructorArgs = [
-        await findDependency(ETHFLI),
+        await findDependency(BTCFLI),
         deployer, // Set operator to deployer for now
         dfpMultisigAddress, // Set methodologist to DFP
       ];
@@ -183,7 +168,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       });
 
       icManagerV2Deploy.receipt && await saveContractDeployment({
-        name: CONTRACT_NAMES.BASE_MANAGER,
+        name: CONTRACT_NAMES.BASE_MANAGER_NAME,
         contractAddress: icManagerV2Deploy.address,
         id: icManagerV2Deploy.receipt.transactionHash,
         description: "Deployed BaseManager",
@@ -193,24 +178,30 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   }
 
   async function deployFlexibleLeverageStrategyAdapter(): Promise<void> {
-    const checkFlexibleLeverageAdapterAddress = await getContractAddress(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER);
+    const checkFlexibleLeverageAdapterAddress = await getContractAddress(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER_NAME);
     if (checkFlexibleLeverageAdapterAddress === "") {
-      const manager = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER);
+      const manager = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER_NAME);
       const contractSettings: ContractSettings = {
-        setToken: await findDependency(ETHFLI),
+        setToken: await findDependency(BTCFLI),
         leverageModule: await findDependency(COMPOUND_LEVERAGE_MODULE),
         comptroller: await findDependency(COMPOUND_COMPTROLLER),
         priceOracle: await findDependency(COMPOUND_PRICE_ORACLE),
-        targetCollateralCToken: await findDependency(C_ETH),
+        targetCollateralCToken: await findDependency(C_WBTC),
         targetBorrowCToken: await findDependency(C_USDC),
-        collateralAsset: await findDependency(WETH),
+        collateralAsset: await findDependency(WBTC),
         borrowAsset: await findDependency(USDC),
       };
       const methodologySettings: MethodologySettings = METHODOLOGY_SETTINGS;
       const executionSettings: ExecutionSettings = {
         ...EXECUTION_SETTINGS,
-        leverExchangeData: EMPTY_BYTES,
-        deleverExchangeData: EMPTY_BYTES,
+        leverExchangeData: defaultAbiCoder.encode(
+          ["address[]"],
+          [[contractSettings.borrowAsset, await findDependency(WETH), contractSettings.collateralAsset]]
+        ),
+        deleverExchangeData: defaultAbiCoder.encode(
+          ["address[]"],
+          [[contractSettings.collateralAsset, await findDependency(WETH), contractSettings.borrowAsset]]
+        ),
       };
       const incentiveSettings: IncentiveSettings = INCENTIVE_SETTINGS;
 
@@ -228,19 +219,19 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       });
 
       flexibleLeverageDeploy.receipt && await saveContractDeployment({
-        name: CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER,
+        name: CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER_NAME,
         contractAddress: flexibleLeverageDeploy.address,
         id: flexibleLeverageDeploy.receipt.transactionHash,
-        description: "Deployed FlexibleLeverageStrategyAdapter",
+        description: "Deployed BTC FlexibleLeverageStrategyAdapter",
         constructorArgs,
       });
     }
   }
 
   async function deployFeeAdapter(): Promise<void> {
-    const checkFeeAdapterAddress = await getContractAddress(CONTRACT_NAMES.FEE_SPLIT_ADAPTER);
+    const checkFeeAdapterAddress = await getContractAddress(CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
     if (checkFeeAdapterAddress === "") {
-      const manager = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER);
+      const manager = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER_NAME);
       const streamingFeeModule = await findDependency(STREAMING_FEE_MODULE);
       const debtIssuanceModule = await findDependency(DEBT_ISSUANCE_MODULE);
       const feeSplit = FEE_SPLIT_ADAPTER.FEE_SPLIT;
@@ -259,7 +250,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       });
 
       feeSplitAdapterDeploy.receipt && await saveContractDeployment({
-        name: CONTRACT_NAMES.FEE_SPLIT_ADAPTER,
+        name: CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME,
         contractAddress: feeSplitAdapterDeploy.address,
         id: feeSplitAdapterDeploy.receipt.transactionHash,
         description: "Deployed Fee Split Adapter",
@@ -269,17 +260,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   }
 
   async function deploySupplyCapIssuanceHook(): Promise<void> {
-    let treasuryMultisigAddress;
-    if (networkConstant === "production") {
-      treasuryMultisigAddress = await findDependency(TREASURY_MULTI_SIG);
-    } else {
-      treasuryMultisigAddress = deployer;
-    }
-
-    const checkSupplyCapIssuanceHookAddress = await getContractAddress(CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK);
+    const checkSupplyCapIssuanceHookAddress = await getContractAddress(CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK_NAME);
     if (checkSupplyCapIssuanceHookAddress === "") {
       const constructorArgs = [
-        treasuryMultisigAddress,
+        deployer, // Set to deployer address for now until configured
         SUPPLY_CAP_ISSUANCE_HOOK.SUPPLY_CAP,
       ];
 
@@ -290,10 +274,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
       });
 
       supplyCapDeploy.receipt && await saveContractDeployment({
-        name: CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK,
+        name: CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK_NAME,
         contractAddress: supplyCapDeploy.address,
         id: supplyCapDeploy.receipt.transactionHash,
-        description: "Deployed SupplyCapIssuanceHook",
+        description: "Deployed BTCFLISupplyCapAllowedCallerIssuanceHook",
         constructorArgs,
       });
     }
