@@ -31,7 +31,7 @@ export default {
   },
   BTCFLI: {
     1: {
-      production: "",
+      production: "0x0b498ff89709d3838a063f1dfa463091f9801c2b",
       staging: "0x2fa6ffC08F30866B4f6eC56f31f4E31b4bB91ADa",
     },
     42: "0x7edC8917dfb6F2C696a41579356dfc6ecD360aA1",
