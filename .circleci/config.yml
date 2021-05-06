@@ -61,28 +61,6 @@ jobs:
           name: Hardhat Test
           command: yarn test
 
-  coverage:
-    docker:
-      - image: circleci/node:10.11.0
-    working_directory: ~/index-deployments
-    steps:
-      - setup_remote_docker:
-          docker_layer_caching: false
-      - run:
-          name: Fetch solc version
-          command: docker pull ethereum/solc:0.6.10
-      - restore_cache:
-          key: compiled-env-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          name: Set Up Environment Variables
-          command: cp .env.default .env
-      - run:
-          name: Get Contracts From index-coop
-          command: yarn copy-contracts
-      - run:
-          name: Coverage
-          command: yarn coverage && cat coverage/lcov.info | ./node_modules/.bin/coveralls
-
   deployment:
     docker:
       - image: circleci/node:10.11.0
@@ -122,8 +100,5 @@ workflows:
           requires:
             - checkout_and_compile
       - deployment:
-          requires:
-            - checkout_and_compile
-      - coverage:
           requires:
             - checkout_and_compile
