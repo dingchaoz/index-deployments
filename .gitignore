@@ -10,7 +10,9 @@
 /deployments/localhost*
 /deployments/outputs/staging_mainnet_1
 /deployments/outputs/production_1
+/deployments/production
 /deployments/production_1/*
+/deployments/staging_mainnet
 /deployments/staging_mainnet_1/*
 /deployments/outputs/50-development.json
 /deployments/outputs/42-development.json
