@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 11
+    "last_deployment_stage": 15
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -32,7 +32,8 @@
     "Eth2xFLIRebalanceViewer": "0xB1ad22Ab3bae47D82B879215B9Fc25eb6b76Fe26",
     "StakingRewardsV2 - ETHFLI": "0x56d68212113AC6cF012B82BD2da0E972091940Eb",
     "StakingRewardsV2 - MVI": "0x5bC4249641B4bf4E37EF513F3Fa5C63ECAB34881",
-    "RewardsMar21MerkleDistributor": "0xA87FBB413f8De11e47037C5d697cC03DE29E4e4b"
+    "RewardsMar21MerkleDistributor": "0xA87FBB413f8De11e47037C5d697cC03DE29E4e4b",
+    "RewardsApr21MerkleDistributor": "0x973A526a633313b2d32B9a96ED16E212303D6905"
   },
   "transactions": {
     "0": {
@@ -244,6 +245,19 @@
       "id": "0xf89650a877bb63aa1dfd28c3e29e56f6a2f3e609e384a90090ebb75c2b9ec287",
       "timestamp": 1617778822733,
       "description": "Deployed RewardsMar21MerkleDistributor"
+    },
+    "42": {
+      "id": "0x7da91ec2fd469d68920a1f72f29ce2a4a6db26958b88b17626a526beb67d4c02",
+      "name": "RewardsApr21MerkleDistributor",
+      "timestamp": 1620319292281,
+      "verified": false,
+      "description": "Deployed RewardsApr21MerkleDistributor",
+      "contractAddress": "0x973A526a633313b2d32B9a96ED16E212303D6905",
+      "constructorArgs": [
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0xb1cec2f92423a2dc20a97598847495c67bf5147b31957642f5694c57880610eb"
+      ],
+      "libraries": {}
     }
   }
 }
