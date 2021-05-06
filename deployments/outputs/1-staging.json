@@ -34,7 +34,13 @@
     "TREASURY_MULTI_SIG": "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
     "StakingRewardsV2 - ETHFLI": "0x84281Fc9FD9A49FE98744Fd924c165bD2299EeDB",
     "RewardsMar21MerkleDistributor": "0x086A512ae5B809f19D9CA546dbdf93F1E97F390e",
-    "RewardsApr21MerkleDistributor": "0x714847e5AE4884739b3eD5d6E49638D21352C37B"
+    "RewardsApr21MerkleDistributor": "0x714847e5AE4884739b3eD5d6E49638D21352C37B",
+    "StakingRewardsV2 - MVI": "0x8713C184721F271a63cD7EC71511C7aa7f1FA07F",
+    "BTCFLISupplyCapAllowedCallerIssuanceHook": "0x83CbE830872c2935fb33b9602717349b835471a1",
+    "BTCFLIBaseManager": "0x4Dc35D4b650117bCE50c9C88eD9852Ce9E387c1d",
+    "BTCFlexibleLeverageStrategyAdapter": "0x2334Cb8f2C226Cce7Bcb2e41ee489Aa8bd6f2718",
+    "BTCFLIFeeSplitAdapter": "0xa57fba339E0fd36C0197A1e3125155fad2D1d1Ab",
+    "Btc2xFLIRebalanceViewer": "0xb5dC448667f2bA45b0c871859F99499F2bC5B9FA"
   },
   "transactions": {
     "0": {
@@ -272,6 +278,183 @@
       "constructorArgs": [
         "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
         "0xb1cec2f92423a2dc20a97598847495c67bf5147b31957642f5694c57880610eb"
+      ],
+      "libraries": {}
+    },
+    "46": {
+      "id": "0x8eb4908f82dbb2f870e79c6042436fc4bd3e0552375f10b0930787187106cced",
+      "name": "StakingRewardsV2 - MVI",
+      "timestamp": 1619565750133,
+      "verified": false,
+      "description": "Deployed StakingRewardsV2 - MVI",
+      "contractAddress": "0x8713C184721F271a63cD7EC71511C7aa7f1FA07F",
+      "constructorArgs": [
+        "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
+        "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
+        "0x4d3c5db2c68f6859e0cd05d080979f597dd64bff",
+        {
+          "type": "BigNumber",
+          "hex": "0x278d00"
+        }
+      ],
+      "libraries": {}
+    },
+    "47": {
+      "id": "0x2299e707dfe891dfbeb6aa1ee70301292cc859b3049d1c76ea3848c55cc7fa37",
+      "name": "BTCFLISupplyCapAllowedCallerIssuanceHook",
+      "timestamp": 1619565758541,
+      "verified": true,
+      "description": "Deployed BTCFLISupplyCapAllowedCallerIssuanceHook",
+      "contractAddress": "0x83CbE830872c2935fb33b9602717349b835471a1",
+      "constructorArgs": [
+        "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
+        {
+          "type": "BigNumber",
+          "hex": "0x2a5a058fc295ed000000"
+        }
+      ],
+      "libraries": {}
+    },
+    "48": {
+      "id": "0x9bbdf0fc30ba5f3f0a82b4181c9a7f099089ff3a3a72973d4fbd269b3404b107",
+      "name": "BTCFLIBaseManager",
+      "timestamp": 1619565770621,
+      "verified": true,
+      "description": "Deployed BaseManager",
+      "contractAddress": "0x4Dc35D4b650117bCE50c9C88eD9852Ce9E387c1d",
+      "constructorArgs": [
+        "0x2fa6ffC08F30866B4f6eC56f31f4E31b4bB91ADa",
+        "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
+        "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af"
+      ],
+      "libraries": {}
+    },
+    "49": {
+      "id": "0xbfa299e48bf18be090575dde24cf59882bff8fabb685393cfdd52dff03e9d8ba",
+      "name": "BTCFlexibleLeverageStrategyAdapter",
+      "timestamp": 1619565925918,
+      "verified": true,
+      "description": "Deployed BTC FlexibleLeverageStrategyAdapter",
+      "contractAddress": "0x2334Cb8f2C226Cce7Bcb2e41ee489Aa8bd6f2718",
+      "constructorArgs": [
+        "0x4Dc35D4b650117bCE50c9C88eD9852Ce9E387c1d",
+        {
+          "setToken": "0x2fa6ffC08F30866B4f6eC56f31f4E31b4bB91ADa",
+          "leverageModule": "0xdD668Fa631C0b3F863e3A830ca23Fe75100009e6",
+          "comptroller": "0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b",
+          "priceOracle": "0x922018674c12a7f0d394ebeef9b58f186cde13c1",
+          "targetCollateralCToken": "0xccf4429db6322d5c611ee964527d42e5d685dd6a",
+          "targetBorrowCToken": "0x39aa39c021dfbae8fac545936693ac917d5e7563",
+          "collateralAsset": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+          "borrowAsset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        },
+        {
+          "targetLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1bc16d674ec80000"
+          },
+          "minLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x18fae27693b40000"
+          },
+          "maxLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1e87f85809dc0000"
+          },
+          "recenteringSpeed": {
+            "type": "BigNumber",
+            "hex": "0x016345785d8a0000"
+          },
+          "rebalanceInterval": {
+            "type": "BigNumber",
+            "hex": "0x015180"
+          }
+        },
+        {
+          "unutilizedLeveragePercentage": {
+            "type": "BigNumber",
+            "hex": "0x2386f26fc10000"
+          },
+          "twapMaxTradeSize": {
+            "type": "BigNumber",
+            "hex": "0x47868c00"
+          },
+          "twapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x1e"
+          },
+          "slippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0x470de4df820000"
+          },
+          "exchangeName": "SushiswapExchangeAdapter",
+          "leverExchangeData": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599",
+          "deleverExchangeData": "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000030000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        },
+        {
+          "incentivizedTwapMaxTradeSize": {
+            "type": "BigNumber",
+            "hex": "0x8f0d1800"
+          },
+          "incentivizedTwapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x01"
+          },
+          "incentivizedSlippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "etherReward": {
+            "type": "BigNumber",
+            "hex": "0x0de0b6b3a7640000"
+          },
+          "incentivizedLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x24150e3980040000"
+          }
+        }
+      ],
+      "libraries": {}
+    },
+    "50": {
+      "id": "0x5cc2fc7f7eaaed35f4d42160453c53b5527c4f4a98b7574e0d2cb89de1920905",
+      "name": "BTCFLIFeeSplitAdapter",
+      "timestamp": 1619566113941,
+      "verified": true,
+      "description": "Deployed Fee Split Adapter",
+      "contractAddress": "0xa57fba339E0fd36C0197A1e3125155fad2D1d1Ab",
+      "constructorArgs": [
+        "0x4Dc35D4b650117bCE50c9C88eD9852Ce9E387c1d",
+        "0x3D8d14b7eFb8e342189ee14c3d40dCe005EB901B",
+        "0x338BEf3f37794dd199d6910E6109125D3eCa6048",
+        {
+          "type": "BigNumber",
+          "hex": "0x0853a0d2313c0000"
+        }
+      ],
+      "libraries": {}
+    },
+    "51": {
+      "id": "0xc2b05fffe3f4e8c4d0c7189c4a0bfe8ce07f3e8f74fd4e80b4a671a9ce6acd32",
+      "timestamp": 1619566143932,
+      "description": "Add adapter on BaseManager"
+    },
+    "52": {
+      "id": "0xfc7f14554f4bc1d35279294814391c6ebd99aa2108942614de2ed01ce0469642",
+      "timestamp": 1619566218370,
+      "description": "Add adapter on BaseManager"
+    },
+    "52": {
+      "id": "0x595781b7802fcf65007bed931af08f2bf9b04c01629b1029e24728b92b9cf7bd",
+      "name": "Btc2xFLIRebalanceViewer",
+      "timestamp": 1619716339109,
+      "verified": true,
+      "description": "Deployed Btc2xFLIRebalanceViewer",
+      "contractAddress": "0xb5dC448667f2bA45b0c871859F99499F2bC5B9FA",
+      "constructorArgs": [
+        "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F",
+        "0x2334Cb8f2C226Cce7Bcb2e41ee489Aa8bd6f2718",
+        "0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5"
       ],
       "libraries": {}
     }
