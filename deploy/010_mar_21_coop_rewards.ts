@@ -38,8 +38,6 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   await ensureOutputsFile();
 
-  console.log(JSON.stringify(MERKLE_ROOT_OBJECT.claims));
-
   // Fetch INDEX token
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 

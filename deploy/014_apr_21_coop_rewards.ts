@@ -9,14 +9,14 @@ import {
   getCurrentStage,
   getNetworkConstant,
   removeNetwork,
-  writeContractAndTransactionToOutputs,
+  saveContractDeployment,
   stageAlreadyFinished,
   trackFinishedStage,
 } from "@deployments/utils";
 import {
   CONTRACT_NAMES,
   MERKLE_ROOT_OBJECT,
-} from "@deployments/constants/006_feb_21_coop_rewards";
+} from "@deployments/constants/014_apr_21_coop_rewards";
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
@@ -38,37 +38,27 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
 
   await ensureOutputsFile();
 
-  // Deploy INDEX token
-  const checkIndexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
-  if (checkIndexTokenAddress === "") {
-    const indexTokenDeploy = await deploy(
-      CONTRACT_NAMES.INDEX_TOKEN,
-      { from: deployer, args: [deployer], log: true }
-    );
-    indexTokenDeploy.receipt &&
-      await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.INDEX_TOKEN,
-        indexTokenDeploy.address,
-        indexTokenDeploy.receipt.transactionHash,
-        "Deployed IndexToken"
-      );
-  }
+  console.log(JSON.stringify(MERKLE_ROOT_OBJECT.claims));
+
+  // Fetch INDEX token
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
   // Deploy Merkle Distributor contract
-  const checkMerkleDistributorAddress = await getContractAddress(CONTRACT_NAMES.REWARDS_FEB21_MERKLE_DISTRIBUTOR);
+  const checkMerkleDistributorAddress = await getContractAddress(CONTRACT_NAMES.REWARDS_APR21_MERKLE_DISTRIBUTOR);
   if (checkMerkleDistributorAddress === "") {
+    const constructorArgs = [indexTokenAddress, MERKLE_ROOT_OBJECT.merkleRoot];
     const merkleDistributorDeploy = await deploy(
       CONTRACT_NAMES.MERKLE_DISTRIBUTOR,
-      { from: deployer, args: [indexTokenAddress, MERKLE_ROOT_OBJECT.merkleRoot], log: true }
+      { from: deployer, args: constructorArgs, log: true }
     );
     merkleDistributorDeploy.receipt &&
-      await writeContractAndTransactionToOutputs(
-        CONTRACT_NAMES.REWARDS_FEB21_MERKLE_DISTRIBUTOR,
-        merkleDistributorDeploy.address,
-        merkleDistributorDeploy.receipt.transactionHash,
-        "Deployed RewardsFeb21MerkleDistributor"
-      );
+      await saveContractDeployment({
+        name: CONTRACT_NAMES.REWARDS_APR21_MERKLE_DISTRIBUTOR,
+        contractAddress: merkleDistributorDeploy.address,
+        id: merkleDistributorDeploy.receipt.transactionHash,
+        description: "Deployed RewardsApr21MerkleDistributor",
+        constructorArgs,
+      });
   }
 });
 
