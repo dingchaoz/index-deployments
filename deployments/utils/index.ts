@@ -6,6 +6,8 @@ export {
 export {
   stageAlreadyFinished,
   trackFinishedStage,
+  deployMerkleDistributor,
+  prepareDevelopmentDeployment,
 } from "./deployUtils";
 
 export * from "./constants";
