@@ -73,7 +73,7 @@ export async function deployMerkleDistributor(
           name: distributorRewardsContractName,
           contractAddress: merkleDistributorDeploy.address,
           id: merkleDistributorDeploy.receipt.transactionHash,
-          description: "Deployed RewardsMar21MerkleDistributor",
+          description: `Deployed ${distributorRewardsContractName}`,
           constructorArgs,
         });
     }
