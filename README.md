@@ -17,18 +17,34 @@ yarn etherscan:staging_mainnet
 yarn etherscan:production
 ```
 
-**Notes**
-+ Etherscan recommends you wait 5 confirmations (~2 minutes) before attempting to verify.
-+ It's possible for verification to fail because of [solidity issue 9573][1] which causes Etherscan
-  to generate different bytecode from a minimized contract set than what was generated locally with
-  all contracts in the project. If that happens, you can deploy flattened contracts from remix
-  and manually verify on Etherscan *OR*
-    + remove all (or most) contracts not in the inheritance tree of your contract from `contracts/`
-    + deploy again
-    + run the etherscan command at the cli.
+**When Etherscan fails...**
 
+Verification may fail because of [solidity issue 9573][1] which causes Etherscan
+to generate different bytecode from a minimized contract set than what was generated locally with
+all contracts in the project. The error message says:
 
-[1]: https://github.com/ethereum/solidity/issues/9573#issuecomment-721632715
+```
+Compiling your contract excluding unrelated contracts did not produce identical bytecode.
+Trying again with the full solc input used to compile and deploy it.
+This means that unrelated contracts may be displayed on Etherscan...
+NomicLabsHardhatPluginError: Source code exceeds max accepted (500k chars) length
+```
+
+To get around this, use the `compile:one` task to compile your target contract in isolation.
+
+In a deployment script, right before the problematic contract is deployed:
+```js
+// Compile in isolation for Etherscan verification bug
+await bre.run("set:compile:one", { contractName: "MerkleDistributor"});
+```
+
+Or at the command line:
+```sh
+# Example
+yarn compile:one MerkleDistributor
+yarn deploy:kovan
+yarn etherscan:kovan
+```
 
 ## Multisig Transaction Utilities
 

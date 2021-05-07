@@ -21,6 +21,7 @@
     "clean-artifacts": "rm -rf contracts artifacts external",
     "clean-dev-deployment": "rm -rf deployments/outputs/50* deployments/localhost*",
     "compile": "npx hardhat compile",
+    "compile:one": "hardhat set:compile:one",
     "copy-contracts": "./scripts/copy_contracts.sh",
     "console": "npx hardhat console --no-compile",
     "coverage": "yarn clean && yarn build && . ./env/local.sh; npx hardhat coverage",
