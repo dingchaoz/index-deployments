@@ -1,16 +1,14 @@
 import "module-alias/register";
 import { BigNumber } from "@ethersproject/bignumber";
 
-import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { HardhatRuntimeEnvironment as HRE } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 
 import {
-  ensureOutputsFile,
+  prepareDeployment,
   findDependency,
   getContractAddress,
   getCurrentStage,
-  getNetworkConstant,
-  removeNetwork,
   writeContractAndTransactionToOutputs,
   stageAlreadyFinished,
   trackFinishedStage,
@@ -30,23 +28,12 @@ const {
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
-const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: HardhatRuntimeEnvironment) {
-  const { deployments, getNamedAccounts } = bre;
-  const { deploy } = deployments;
-
-  const { deployer } = await getNamedAccounts();
-  // Configure development deployment
-  const networkConstant = await getNetworkConstant();
-  try {
-    if (networkConstant === "development") {
-      console.log(`\n*** Clearing all addresses for ${networkConstant} ***\n`);
-      await removeNetwork(networkConstant);
-    }
-  } catch (error) {
-    console.log("*** No addresses to wipe *** ");
-  }
-
-  await ensureOutputsFile();
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (hre: HRE) {
+  const {
+    deploy,
+    deployer,
+    networkConstant,
+   } = await prepareDeployment(hre);
 
   let treasuryMultisigAddress: Address;
   if (networkConstant === "production") {

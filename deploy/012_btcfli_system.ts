@@ -1,6 +1,6 @@
 import "module-alias/register";
 
-import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { HardhatRuntimeEnvironment as HRE } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { BigNumber } from "@ethersproject/bignumber";
 import { defaultAbiCoder } from "ethers/lib/utils";
@@ -11,11 +11,9 @@ import {
 } from "@utils/index";
 
 import {
-  ensureOutputsFile,
+  prepareDeployment,
   findDependency,
   getContractAddress,
-  getNetworkConstant,
-  removeNetwork,
   getCurrentStage,
   writeTransactionToOutputs,
   writeContractAndTransactionToOutputs,
@@ -62,25 +60,16 @@ let instanceGetter: InstanceGetter;
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
-const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: HardhatRuntimeEnvironment) {
-  const { deployments, getNamedAccounts } = bre;
-  const { deploy, rawTx } = deployments;
-
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (hre: HRE) {
   [owner] = await getAccounts();
   instanceGetter = new InstanceGetter(owner.wallet);
 
-  const { deployer } = await getNamedAccounts();
-
-  // Configure development deployment
-  const networkConstant = await getNetworkConstant();
-  try {
-    if (networkConstant === "development") {
-      console.log(`\n*** Clearing all addresses for ${networkConstant} ***\n`);
-      await removeNetwork(networkConstant);
-    }
-  } catch (error) {
-    console.log("*** No addresses to wipe *** ");
-  }
+  const {
+    deploy,
+    rawTx,
+    deployer,
+    networkConstant,
+  } = await prepareDeployment(hre);
 
   let dfpMultisigAddress: string;
   if (networkConstant === "production") {
@@ -88,8 +77,6 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (b
   } else {
     dfpMultisigAddress = deployer;
   }
-
-  await ensureOutputsFile();
 
   await polyFillForDevelopment();
 

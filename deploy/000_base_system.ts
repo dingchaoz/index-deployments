@@ -2,16 +2,14 @@ import "module-alias/register";
 import { ethers } from "hardhat";
 import { BigNumber } from "@ethersproject/bignumber";
 
-import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { HardhatRuntimeEnvironment as HRE } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 
 import {
-  ensureOutputsFile,
+  prepareDeployment,
   findDependency,
   getContractAddress,
-  getNetworkConstant,
   getCurrentStage,
-  removeNetwork,
   writeContractAndTransactionToOutputs,
   writeTransactionToOutputs,
   stageAlreadyFinished,
@@ -51,24 +49,15 @@ const {
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
-const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (bre: HardhatRuntimeEnvironment) {
-  const { deployments, getNamedAccounts } = bre;
-  const { deploy, rawTx } = deployments;
+const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (hre: HRE) {
+  const {
+    deploy,
+    deployer,
+    networkConstant,
+    rawTx,
+  } = await prepareDeployment(hre);
 
   const [ownerWallet] = await ethers.getSigners();
-  const { deployer } = await getNamedAccounts();
-  // Configure development deployment
-  const networkConstant = await getNetworkConstant();
-  try {
-    if (networkConstant === "development") {
-      console.log(`\n*** Clearing all addresses for ${networkConstant} ***\n`);
-      await removeNetwork(networkConstant);
-    }
-  } catch (error) {
-    console.log("*** No addresses to wipe *** ");
-  }
-
-  await ensureOutputsFile();
 
   // console.log(JSON.stringify(MERKLE_ROOT_OBJECT.claims));
 
