@@ -46,6 +46,23 @@ yarn deploy:kovan
 yarn etherscan:kovan
 ```
 
+## Deployment creation utility
+
+#### `yarn create:deployment`
+
+The create:deployment command creates standard files necessary for each new deployment. It
+takes a deployment name as an argument and automatically prefixes it with the next increment of the
+deployment sequence.
+
+```sh
+$ yarn create:deployment btcfli_rebalance_viewer
+
+New deployment files at:
+> .../deploy/013_btcfli_rebalance_viewer.ts
+> .../deployments/constants/013_btcfli_rebalance_viewer.ts
+> .../test/deploys/013_btcfli_rebalance_viewer.spec.ts
+```
+
 ## Multisig Transaction Utilities
 
 #### `yarn tx`

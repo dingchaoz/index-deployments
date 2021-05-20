@@ -25,6 +25,7 @@
     "copy-contracts": "./scripts/copy_contracts.sh",
     "console": "npx hardhat console --no-compile",
     "coverage": "yarn clean && yarn build && . ./env/local.sh; npx hardhat coverage",
+    "create:deployment": "npx hardhat set:utils:create:deployment",
     "deploy:kovan": ". ./env/staging_kovan.sh; hardhat --network kovan deploy",
     "deploy:staging_mainnet": ". ./env/staging_main.sh; hardhat --network staging_mainnet deploy",
     "deploy:production": ". ./env/production.sh; hardhat --network production deploy",
