@@ -10,7 +10,8 @@ import {
   trackFinishedStage,
   getContractAddress,
   saveContractDeployment,
-  findDependency
+  findDependency,
+  getNetworkConstant
 } from "@deployments/utils";
 
 import {
@@ -29,15 +30,18 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
+  const indexGov = getNetworkConstant() === "developement" ?
+    deployer : await findDependency("TREASURY_MULTI_SIG");
+
+  const usdc = await findDependency("USDC");
+
   for (let i = 0; i < INVESTOR_DETAILS.length; i++) {
 
     const investor = INVESTOR_DETAILS[i];
-    const checkOtcAddress = await getContractAddress(`${CONTRACT_NAMES.OTC_ESCROW} - ${investor.address}`);
+    const otcContractName = `${CONTRACT_NAMES.OTC_ESCROW} - ${investor.address}`;
+    const checkOtcAddress = await getContractAddress(otcContractName);
 
     if (checkOtcAddress === "") {
-
-      const indexGov = await findDependency("TREASURY_MULTI_SIG");
-      const usdc = await findDependency("USDC");
 
       const constructorArgs: any[] = [
         investor.address,
@@ -58,7 +62,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
       escrow.receipt &&
         await saveContractDeployment({
-          name: `${CONTRACT_NAMES.OTC_ESCROW} - ${investor.address}`,
+          name: otcContractName,
           contractAddress: escrow.address,
           id: escrow.receipt.transactionHash,
           description: `Deployed ${CONTRACT_NAMES.OTC_ESCROW}`,
