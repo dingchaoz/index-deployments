@@ -30,7 +30,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
 
-  const indexGov = getNetworkConstant() === "developement" ?
+  const indexGov = getNetworkConstant() === "development" ?
     deployer : await findDependency("TREASURY_MULTI_SIG");
 
   const usdc = await findDependency("USDC");
