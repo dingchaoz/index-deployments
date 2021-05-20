@@ -6,8 +6,6 @@ export const CONTRACT_NAMES = {
     OTC_ESCROW: "OtcEscrow",
 };
 
-export const INDEX_GOV = "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D";
-export const USDC = "0x0e7981b889a85349cbc9d30b9a4c8ebbc2c848df";
 export const VESTING_START = 1621537200;
 export const VESTING_CLIFF = 1621537500;
 export const VESTING_END = 1621537800;
