@@ -99,7 +99,8 @@
     "ethereumjs-util": "^7.0.10",
     "fs-extra": "^5.0.0",
     "module-alias": "^2.2.2",
-    "replace-in-file": "^6.1.0"
+    "replace-in-file": "^6.1.0",
+    "typechain": "^4.0.1"
   },
   "_moduleAliases": {
     "@utils": "utils",
