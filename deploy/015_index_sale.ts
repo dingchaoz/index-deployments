@@ -9,45 +9,45 @@ import {
   stageAlreadyFinished,
   trackFinishedStage,
   getContractAddress,
-  saveContractDeployment
+  saveContractDeployment,
+  findDependency
 } from "@deployments/utils";
 
 import {
-    CONTRACT_NAMES,
-    USDC,
-    INDEX_GOV,
-    VESTING_START,
-    VESTING_CLIFF,
-    VESTING_END,
-    INVESTOR_DETAILS
+  CONTRACT_NAMES,
+  VESTING_START,
+  VESTING_CLIFF,
+  VESTING_END,
+  INVESTOR_DETAILS
 } from "@deployments/constants/015_index_sale";
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
 const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (hre: HRE) {
 
-  await prepareDeployment(hre);
-
-  const { deployments, getNamedAccounts } = hre;
-  const { deploy } = deployments;
-  const { deployer } = await getNamedAccounts();
+  const { deploy, deployer } = await prepareDeployment(hre);
 
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
-  const checkOtcAddress = await getContractAddress(CONTRACT_NAMES.OTC_ESCROW);
 
-  if (checkOtcAddress === "") {
-    for (let i = 0; i < INVESTOR_DETAILS.length; i++) {
+  for (let i = 0; i < INVESTOR_DETAILS.length; i++) {
 
-      const investor = INVESTOR_DETAILS[i];
+    const investor = INVESTOR_DETAILS[i];
+    const checkOtcAddress = await getContractAddress(`${CONTRACT_NAMES.OTC_ESCROW} - ${investor.address}`);
+
+    if (checkOtcAddress === "") {
+
+      const indexGov = await findDependency("TREASURY_MULTI_SIG");
+      const usdc = await findDependency("USDC");
+
       const constructorArgs: any[] = [
         investor.address,
-        INDEX_GOV,
+        indexGov,
         VESTING_START,
         VESTING_CLIFF,
         VESTING_END,
         investor.usdcAmount,
         investor.indexAmount,
-        USDC,
+        usdc,
         indexTokenAddress,
       ];
 
@@ -58,11 +58,11 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
       escrow.receipt &&
         await saveContractDeployment({
-            name: `${CONTRACT_NAMES.OTC_ESCROW} - ${i + 1}`,
-            contractAddress: escrow.address,
-            id: escrow.receipt.transactionHash,
-            description: `Deployed ${CONTRACT_NAMES.OTC_ESCROW}`,
-            constructorArgs,
+          name: `${CONTRACT_NAMES.OTC_ESCROW} - ${investor.address}`,
+          contractAddress: escrow.address,
+          id: escrow.receipt.transactionHash,
+          description: `Deployed ${CONTRACT_NAMES.OTC_ESCROW}`,
+          constructorArgs,
         });
     }
   }
