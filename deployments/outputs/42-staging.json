@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 15
+    "last_deployment_stage": 16
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -47,7 +47,9 @@
     "BTCFlexibleLeverageStrategyAdapter": "0xb45d2b88d06C634A6bd5191C5E92Ce0902785dEB",
     "BTCFLIFeeSplitAdapter": "0x7C6a5F572e6e8176f57983c7033bF0F88aF6a7ea",
     "Btc2xFLIRebalanceViewer": "0x7CD0FB4aAaa4ce1e163be29414a0fFbeDe0eE906",
-    "RewardsApr21MerkleDistributor": "0xD43490952826ED7f0603d61659Db71a3Cb0Ef97a"
+    "RewardsApr21MerkleDistributor": "0xD43490952826ED7f0603d61659Db71a3Cb0Ef97a",
+    "OtcEscrow - 0x25D9D2D38Fa590ccfeb3c59d12Daa30297380666": "0xc1f8D36d893aB2B4313324D1437d6af06EA65Fd7",
+    "OtcEscrow - 0x3652588636C9D85125Fa264f794a63E3af188E03": "0xd63E968870B1A5FabA1Ad2452e736FcfB6d70017"
   },
   "transactions": {
     "0": {
@@ -840,6 +842,58 @@
       "constructorArgs": [
         "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
         "0xb1cec2f92423a2dc20a97598847495c67bf5147b31957642f5694c57880610eb"
+      ],
+      "libraries": {}
+    },
+    "128": {
+      "id": "0x8477519b298899ee18d73dd10fc00a21139e73f7eca3779c450e4955596ef1da",
+      "name": "OtcEscrow - 0x25D9D2D38Fa590ccfeb3c59d12Daa30297380666",
+      "timestamp": 1621559804024,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xc1f8D36d893aB2B4313324D1437d6af06EA65Fd7",
+      "constructorArgs": [
+        "0x25D9D2D38Fa590ccfeb3c59d12Daa30297380666",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1621560600,
+        1621561200,
+        1621561800,
+        {
+          "type": "BigNumber",
+          "hex": "0x05f5e100"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x056bc75e2d63100000"
+        },
+        "0x0e7981b889a85349cbc9d30b9a4c8ebbc2c848df",
+        "0x1720668a1826c6f30a11780783b0357269b7e1ca"
+      ],
+      "libraries": {}
+    },
+    "129": {
+      "id": "0x71f1488925432ddc45c71dadcf35735c2c5f72f885ea6fcb76113ed0334c6136",
+      "name": "OtcEscrow - 0x3652588636C9D85125Fa264f794a63E3af188E03",
+      "timestamp": 1621559811771,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xd63E968870B1A5FabA1Ad2452e736FcfB6d70017",
+      "constructorArgs": [
+        "0x3652588636C9D85125Fa264f794a63E3af188E03",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1621560600,
+        1621561200,
+        1621561800,
+        {
+          "type": "BigNumber",
+          "hex": "0x0bebc200"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x1043561a8829300000"
+        },
+        "0x0e7981b889a85349cbc9d30b9a4c8ebbc2c848df",
+        "0x1720668a1826c6f30a11780783b0357269b7e1ca"
       ],
       "libraries": {}
     }

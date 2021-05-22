@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 15
+    "last_deployment_stage": 16
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -38,7 +38,17 @@
     "BTCFLIBaseManager": "0xC7Aede3B12daad3ffa48fc96CCB65659fF8D261a",
     "BTCFlexibleLeverageStrategyAdapter": "0x4a99733458349505A6FCbcF6CD0a0eD18666586A",
     "BTCFLIFeeSplitAdapter": "0xA0D95095577ecDd23C8b4c9eD0421dAc3c1DaF87",
-    "Btc2xFLIRebalanceViewer": "0xCD27f083A56A8bC5c41EDE77383828617f4BD807"
+    "Btc2xFLIRebalanceViewer": "0xCD27f083A56A8bC5c41EDE77383828617f4BD807",
+    "OtcEscrow - 0x9fB64b232dEa3ba6e020F517b2BC8aFd0145880c": "0x450aB88B0419109Ed03700B35a2e482aDC6b695d",
+    "OtcEscrow - 0x4f3a120E72C76c22ae802D129F599BFDbc31cb81": "0x7Af3AfDCFd263020787C1564726f771F7E581C8D",
+    "OtcEscrow - 0x9B5ea8C719e29A5bd0959FaF79C9E5c8206d0499": "0x454EafBd022221873DCe419c5a6D5972C729e0b2",
+    "OtcEscrow - 0xdD709cAE362972cb3B92DCeaD77127f7b8D58202": "0x2780f360e6E1e09D31Ab499C46902873CA7dBC64",
+    "OtcEscrow - 0x0A842c38fb93993bD6353a4afc784ccB99522359": "0xf675586d3e145e4365571D999D0728c4d2Ff1C64",
+    "OtcEscrow - 0xbFC94A95d4448C802E848C68fdD2FC0fEE4a876E": "0xDe02A12869d15852029F80e1F70B8eC808677D4D",
+    "OtcEscrow - 0x70044278D556B0C962224e095397A52287C99cB5": "0xeB5945DA68FFd77E8c8fF7c12a4ba2068aEf55EE",
+    "OtcEscrow - 0xb2c9d26f10c36Ce43Ce46156e7833DFBA00A7276": "0xD70e15fa4D9dcA36E971353909E7A6244402cc53",
+    "OtcEscrow - 0x578152463e01DE0FC1331250351dd6D11dAFD9b3": "0xFFb668ADDd4494482988e7be39286E0D07ae0249",
+    "OtcEscrow - 0x719a363735dFa5023033640197359665072b8C0E": "0x049aB9A389deCaE63a2a8a3c5AA674045Cb89F0c"
   },
   "transactions": {
     "0": {
@@ -261,22 +271,6 @@
       "constructorArgs": [
         "0x0954906da0Bf32d5479e25f46056d22f08464cab",
         "0xb1cec2f92423a2dc20a97598847495c67bf5147b31957642f5694c57880610eb"
-        ],
-      "libraries": {}
-    },
-    "43": {
-      "id": "0x27c73aadbb455043e27cd827756b06f3f840044a407f5f2a1acbd5e1e25123ac",
-      "name": "BTCFLISupplyCapAllowedCallerIssuanceHook",
-      "timestamp": 1619561041516,
-      "verified": true,
-      "description": "Deployed BTCFLISupplyCapAllowedCallerIssuanceHook",
-      "contractAddress": "0x6c8137f2f552f569cc43bc4642afbe052a12441c",
-      "constructorArgs": [
-        "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
-        {
-          "type": "BigNumber",
-          "hex": "0x2a5a058fc295ed000000"
-        }
       ],
       "libraries": {}
     },
@@ -284,7 +278,7 @@
       "id": "0x48612c32fbbfa5ad0a0571cb0143c51e1f3a66cf9a29ebba77ab84ae34e9cd6f",
       "name": "BTCFLIBaseManager",
       "timestamp": 1620239630121,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BaseManager",
       "contractAddress": "0xC7Aede3B12daad3ffa48fc96CCB65659fF8D261a",
       "constructorArgs": [
@@ -298,7 +292,7 @@
       "id": "0x1bb07f4900b568041a8ae60012b9b1e613363fab7778794a0d76c7ddb373ebe1",
       "name": "BTCFlexibleLeverageStrategyAdapter",
       "timestamp": 1620239651282,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BTC FlexibleLeverageStrategyAdapter",
       "contractAddress": "0x4a99733458349505A6FCbcF6CD0a0eD18666586A",
       "constructorArgs": [
@@ -385,7 +379,7 @@
       "id": "0x2a3f34729a8a39d613d2e977f32cec2cbca02e98039005e85cd49846bca14cab",
       "name": "BTCFLIFeeSplitAdapter",
       "timestamp": 1620239821857,
-      "verified": false,
+      "verified": true,
       "description": "Deployed Fee Split Adapter",
       "contractAddress": "0xA0D95095577ecDd23C8b4c9eD0421dAc3c1DaF87",
       "constructorArgs": [
@@ -413,13 +407,273 @@
       "id": "0xc3abe4c9b7402872fa08a8ef247222f7447cd1fb7e9e3f0c35c7ebb676604606",
       "name": "Btc2xFLIRebalanceViewer",
       "timestamp": 1620239880121,
-      "verified": false,
+      "verified": true,
       "description": "Deployed Btc2xFLIRebalanceViewer",
       "contractAddress": "0xCD27f083A56A8bC5c41EDE77383828617f4BD807",
       "constructorArgs": [
         "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F",
         "0x4a99733458349505A6FCbcF6CD0a0eD18666586A",
         "0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5"
+      ],
+      "libraries": {}
+    },
+    "49": {
+      "id": "0xa881c6da7ade6158ee2b5181c234565cbabaeb4c5206527b8017fa6c9614dd96",
+      "name": "OtcEscrow - 0x9fB64b232dEa3ba6e020F517b2BC8aFd0145880c",
+      "timestamp": 1621563608984,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0x450aB88B0419109Ed03700B35a2e482aDC6b695d",
+      "constructorArgs": [
+        "0x9fB64b232dEa3ba6e020F517b2BC8aFd0145880c",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0xe8d4a51000"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x07efafbb410bb9d80000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "50": {
+      "id": "0x6efe57978aee9bc48d57d22864897e3d80371cee1b473d3b2aff6d2630127fe0",
+      "name": "OtcEscrow - 0x4f3a120E72C76c22ae802D129F599BFDbc31cb81",
+      "timestamp": 1621564108677,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0x7Af3AfDCFd263020787C1564726f771F7E581C8D",
+      "constructorArgs": [
+        "0x4f3a120E72C76c22ae802D129F599BFDbc31cb81",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0x746a528800"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x03f7d7dda085dcec0000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "51": {
+      "id": "0xbbbe7a59d0e740822a5bafd9051ea81dfd1a91d528be7f9df7c56673e944c780",
+      "name": "OtcEscrow - 0x9B5ea8C719e29A5bd0959FaF79C9E5c8206d0499",
+      "timestamp": 1621564131276,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0x454EafBd022221873DCe419c5a6D5972C729e0b2",
+      "constructorArgs": [
+        "0x9B5ea8C719e29A5bd0959FaF79C9E5c8206d0499",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0xae9f7bcc00"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x05f3bcdc156ef7b00000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "52": {
+      "id": "0xb5389a1353aa415b923d939df67629c0bea01afdcfb9389c51ff579326831def",
+      "name": "OtcEscrow - 0xdD709cAE362972cb3B92DCeaD77127f7b8D58202",
+      "timestamp": 1621564157142,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0x2780f360e6E1e09D31Ab499C46902873CA7dBC64",
+      "constructorArgs": [
+        "0xdD709cAE362972cb3B92DCeaD77127f7b8D58202",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0xae9f7bcc00"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x05f3bcdc156ef7b00000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "53": {
+      "id": "0xf0c2f53bdc6bd49ffe9ca9c800381310d81505a3b786a132f5077273d452642b",
+      "name": "OtcEscrow - 0x0A842c38fb93993bD6353a4afc784ccB99522359",
+      "timestamp": 1621564179918,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xf675586d3e145e4365571D999D0728c4d2Ff1C64",
+      "constructorArgs": [
+        "0x0A842c38fb93993bD6353a4afc784ccB99522359",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0x746a528800"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x03f7d7dda085dcec0000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "54": {
+      "id": "0xdd6495b6e6571f53c809f7c32d5c5fc4a6ef8671bfa1ed39c6a979eb4ab8ffed",
+      "name": "OtcEscrow - 0xbFC94A95d4448C802E848C68fdD2FC0fEE4a876E",
+      "timestamp": 1621564222468,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xDe02A12869d15852029F80e1F70B8eC808677D4D",
+      "constructorArgs": [
+        "0xbFC94A95d4448C802E848C68fdD2FC0fEE4a876E",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0x45d964b800"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x02617bf7e40874cc0000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "55": {
+      "id": "0xc9ff9d5fdced0015a9672f4d1a7ebc7e4e820a9c7ba4525f59e3cc34057676f5",
+      "name": "OtcEscrow - 0x70044278D556B0C962224e095397A52287C99cB5",
+      "timestamp": 1621564236748,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xeB5945DA68FFd77E8c8fF7c12a4ba2068aEf55EE",
+      "constructorArgs": [
+        "0x70044278D556B0C962224e095397A52287C99cB5",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0x025d5c139000"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x14a27327b78fac100000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "56": {
+      "id": "0xadd016c20d9f5c094552314306affa7d2622b44e9003e23f660c92feb4af3fe0",
+      "name": "OtcEscrow - 0xb2c9d26f10c36Ce43Ce46156e7833DFBA00A7276",
+      "timestamp": 1621564367355,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xD70e15fa4D9dcA36E971353909E7A6244402cc53",
+      "constructorArgs": [
+        "0xb2c9d26f10c36Ce43Ce46156e7833DFBA00A7276",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0x2e90edd000"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x01964e0505c9c0bc0000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "57": {
+      "id": "0xb8f98ddfa74c061bee49d3432860917dc9cfa5e1408339be8fefe3c51a84dbba",
+      "name": "OtcEscrow - 0x578152463e01DE0FC1331250351dd6D11dAFD9b3",
+      "timestamp": 1621564537752,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xFFb668ADDd4494482988e7be39286E0D07ae0249",
+      "constructorArgs": [
+        "0x578152463e01DE0FC1331250351dd6D11dAFD9b3",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0x174876e800"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0xcb2012278b0cac0000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "58": {
+      "id": "0xea59e36b23fe7a94b7da4e755578eb47741dda665938d1709f407fb68c2b91e1",
+      "name": "OtcEscrow - 0x719a363735dFa5023033640197359665072b8C0E",
+      "timestamp": 1621564604269,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0x049aB9A389deCaE63a2a8a3c5AA674045Cb89F0c",
+      "constructorArgs": [
+        "0x719a363735dFa5023033640197359665072b8C0E",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        1622185200,
+        1653721200,
+        1669276800,
+        {
+          "type": "BigNumber",
+          "hex": "0x746a528800"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x03f7d7dda085dcec0000"
+        },
+        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab"
       ],
       "libraries": {}
     }
