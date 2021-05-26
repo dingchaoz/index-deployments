@@ -26,7 +26,7 @@ const {
   C_ETH,
 } = DEPENDENCY;
 
-const CURRENT_STAGE = getCurrentStage(__filename);
+const CURRENT_STAGE = getCurrentStage(__filename) - 1;
 
 const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (hre: HRE) {
   const { deploy, deployer } = await prepareDeployment(hre);

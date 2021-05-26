@@ -26,6 +26,7 @@ import {
   ONE_DAY_IN_SECONDS,
   EMPTY_BYTES,
 } from "@deployments/utils";
+import { CONTRACT_SETTINGS } from "@deployments/constants/007_ethfli_system";
 
 const expect = getWaffleExpect();
 
@@ -96,11 +97,14 @@ describe("ETHFLI System", () => {
       expect(strategy.setToken).to.eq(await findDependency("ETHFLI"));
       expect(strategy.leverageModule).to.eq(await findDependency("COMPOUND_LEVERAGE_MODULE"));
       expect(strategy.comptroller).to.eq(await findDependency("COMPOUND_COMPTROLLER"));
-      expect(strategy.priceOracle).to.eq(await findDependency("COMPOUND_PRICE_ORACLE"));
       expect(strategy.targetCollateralCToken).to.eq(await findDependency("C_ETH"));
       expect(strategy.targetBorrowCToken).to.eq(await findDependency("C_USDC"));
       expect(strategy.collateralAsset).to.eq(await findDependency("WETH"));
       expect(strategy.borrowAsset).to.eq(await findDependency("USDC"));
+      expect(strategy.collateralPriceOracle).to.eq(await findDependency("CHAINLINK_ETH"));
+      expect(strategy.borrowPriceOracle).to.eq(await findDependency("CHAINLINK_USDC"));
+      expect(strategy.collateralDecimalAdjustment).to.eq(CONTRACT_SETTINGS.COLLATERAL_DECIMAL_ADJUSTMENT);
+      expect(strategy.borrowDecimalAdjustment).to.eq(CONTRACT_SETTINGS.BORROW_DECIMAL_ADJUSTMENT);
     });
 
     it("should set the correct methodology parameters", async () => {
