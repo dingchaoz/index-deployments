@@ -48,7 +48,6 @@ const {
   DEBT_ISSUANCE_MODULE,
   COMPOUND_LEVERAGE_MODULE,
   COMPOUND_COMPTROLLER,
-  COMPOUND_PRICE_ORACLE,
   STREAMING_FEE_MODULE,
   TREASURY_MULTI_SIG,
   WETH,
@@ -112,10 +111,6 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
     if (await findDependency(COMPOUND_COMPTROLLER) === "") {
       await writeContractAndTransactionToOutputs(COMPOUND_COMPTROLLER, await getRandomAddress(), EMPTY_BYTES, "Created Mock COMPOUND_COMPTROLLER");
-    }
-
-    if (await findDependency(COMPOUND_PRICE_ORACLE) === "") {
-      await writeContractAndTransactionToOutputs(COMPOUND_PRICE_ORACLE, await getRandomAddress(), EMPTY_BYTES, "Created Mock COMPOUND_PRICE_ORACLE");
     }
 
     if (await findDependency(CHAINLINK_ETH) === "") {

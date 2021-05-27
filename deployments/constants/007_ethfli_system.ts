@@ -11,8 +11,8 @@ export const CONTRACT_NAMES = {
 };
 
 export const CONTRACT_SETTINGS = {
-  COLLATERAL_DECIMAL_ADJUSTMENT: BigNumber.from(10),      // 28 - 18 = 10
-  BORROW_DECIMAL_ADJUSTMENT: BigNumber.from(22),          // 28 - 6 = 22
+  COLLATERAL_DECIMAL_ADJUSTMENT: BigNumber.from(10),      // Decimal adjustment for chainlink. Equal to 28-decimals (10^18 * 10^18 / 10^dec / 10^8)
+  BORROW_DECIMAL_ADJUSTMENT: BigNumber.from(22),          // Decimal adjustment for chainlink. Equal to 28-decimals (10^18 * 10^18 / 10^dec / 10^8)
 };
 
 export const FEE_SPLIT_ADAPTER = {
