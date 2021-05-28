@@ -33,6 +33,7 @@ import {
 } from "@utils/types";
 import {
   CONTRACT_NAMES,
+  CONTRACT_SETTINGS,
   FEE_SPLIT_ADAPTER,
   SUPPLY_CAP_ISSUANCE_HOOK,
   METHODOLOGY_SETTINGS,
@@ -48,11 +49,12 @@ const {
   DEBT_ISSUANCE_MODULE,
   COMPOUND_LEVERAGE_MODULE,
   COMPOUND_COMPTROLLER,
-  COMPOUND_PRICE_ORACLE,
   STREAMING_FEE_MODULE,
   WBTC,
   WETH,
   USDC,
+  CHAINLINK_BTC,
+  CHAINLINK_USDC,
 } = DEPENDENCY;
 
 let owner: Account;
@@ -100,6 +102,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
       await writeContractAndTransactionToOutputs(BTCFLI, await getRandomAddress(), EMPTY_BYTES, "Created Mock BTCFLI");
     }
 
+    if (await findDependency(CHAINLINK_BTC) === "") {
+      await writeContractAndTransactionToOutputs(CHAINLINK_BTC, await getRandomAddress(), EMPTY_BYTES, "Created Mock CHAINLINK_BTC");
+    }
+
     if (await findDependency(WBTC) === "") {
       const token = await deploy(
         CONTRACT_NAMES.STANDARD_TOKEN_MOCK,
@@ -116,6 +122,15 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
       );
       token.receipt &&
         await writeContractAndTransactionToOutputs(USDC, token.address, token.receipt.transactionHash, "Created Mock USDC");
+    }
+
+    if (await findDependency(WETH) === "") {
+      const token = await deploy(
+        CONTRACT_NAMES.STANDARD_TOKEN_MOCK,
+        { from: deployer, args: [deployer, ether(1000000000), WETH, WETH, BigNumber.from(18)], log: true }
+      );
+      token.receipt &&
+        await writeContractAndTransactionToOutputs(WETH, token.address, token.receipt.transactionHash, "Created Mock WETH");
     }
 
     if (await findDependency(C_WBTC) === "") {
@@ -168,15 +183,19 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
     const checkFlexibleLeverageAdapterAddress = await getContractAddress(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER_NAME);
     if (checkFlexibleLeverageAdapterAddress === "") {
       const manager = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER_NAME);
+
       const contractSettings: ContractSettings = {
         setToken: await findDependency(BTCFLI),
         leverageModule: await findDependency(COMPOUND_LEVERAGE_MODULE),
         comptroller: await findDependency(COMPOUND_COMPTROLLER),
-        priceOracle: await findDependency(COMPOUND_PRICE_ORACLE),
         targetCollateralCToken: await findDependency(C_WBTC),
         targetBorrowCToken: await findDependency(C_USDC),
         collateralAsset: await findDependency(WBTC),
         borrowAsset: await findDependency(USDC),
+        collateralPriceOracle: await findDependency(CHAINLINK_BTC),
+        borrowPriceOracle: await findDependency(CHAINLINK_USDC),
+        collateralDecimalAdjustment: CONTRACT_SETTINGS.COLLATERAL_DECIMAL_ADJUSTMENT,
+        borrowDecimalAdjustment: CONTRACT_SETTINGS.BORROW_DECIMAL_ADJUSTMENT,
       };
       const methodologySettings: MethodologySettings = METHODOLOGY_SETTINGS;
       const executionSettings: ExecutionSettings = {

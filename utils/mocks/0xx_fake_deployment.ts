@@ -27,6 +27,7 @@ import {
   EXECUTION_SETTINGS,
   INCENTIVE_SETTINGS,
 } from "@deployments/constants/007_ethfli_system";
+import { BigNumber } from "ethers";
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
@@ -67,11 +68,14 @@ const func: DeployFunction = trackFinishedStage(
       setToken: await getRandomAddress(),
       leverageModule: await getRandomAddress(),
       comptroller: await getRandomAddress(),
-      priceOracle: await getRandomAddress(),
       targetCollateralCToken: await getRandomAddress(),
       targetBorrowCToken: await getRandomAddress(),
       collateralAsset: await getRandomAddress(),
       borrowAsset: await getRandomAddress(),
+      collateralPriceOracle: await getRandomAddress(),
+      borrowPriceOracle: await getRandomAddress(),
+      collateralDecimalAdjustment: BigNumber.from(10),
+      borrowDecimalAdjustment: BigNumber.from(22),
     };
     const methodologySettings: MethodologySettings = METHODOLOGY_SETTINGS;
     const executionSettings: ExecutionSettings = {

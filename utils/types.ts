@@ -37,11 +37,14 @@ export interface ContractSettings {
   setToken: Address;
   leverageModule: Address;
   comptroller: Address;
-  priceOracle: Address;
   targetCollateralCToken: Address;
   targetBorrowCToken: Address;
   collateralAsset: Address;
   borrowAsset: Address;
+  collateralPriceOracle: Address;
+  borrowPriceOracle: Address;
+  collateralDecimalAdjustment: BigNumber;
+  borrowDecimalAdjustment: BigNumber;
 }
 
 export interface MethodologySettings {

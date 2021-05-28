@@ -32,6 +32,7 @@ import {
 } from "@utils/types";
 import {
   CONTRACT_NAMES,
+  CONTRACT_SETTINGS,
   FEE_SPLIT_ADAPTER,
   SUPPLY_CAP_ISSUANCE_HOOK,
   METHODOLOGY_SETTINGS,
@@ -47,11 +48,12 @@ const {
   DEBT_ISSUANCE_MODULE,
   COMPOUND_LEVERAGE_MODULE,
   COMPOUND_COMPTROLLER,
-  COMPOUND_PRICE_ORACLE,
   STREAMING_FEE_MODULE,
   TREASURY_MULTI_SIG,
   WETH,
   USDC,
+  CHAINLINK_ETH,
+  CHAINLINK_USDC,
 } = DEPENDENCY;
 
 let owner: Account;
@@ -111,8 +113,12 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
       await writeContractAndTransactionToOutputs(COMPOUND_COMPTROLLER, await getRandomAddress(), EMPTY_BYTES, "Created Mock COMPOUND_COMPTROLLER");
     }
 
-    if (await findDependency(COMPOUND_PRICE_ORACLE) === "") {
-      await writeContractAndTransactionToOutputs(COMPOUND_PRICE_ORACLE, await getRandomAddress(), EMPTY_BYTES, "Created Mock COMPOUND_PRICE_ORACLE");
+    if (await findDependency(CHAINLINK_ETH) === "") {
+      await writeContractAndTransactionToOutputs(CHAINLINK_ETH, await getRandomAddress(), EMPTY_BYTES, "Created Mock CHAINLINK_ETH");
+    }
+
+    if (await findDependency(CHAINLINK_USDC) === "") {
+      await writeContractAndTransactionToOutputs(CHAINLINK_USDC, await getRandomAddress(), EMPTY_BYTES, "Created Mock CHAINLINK_USDC");
     }
 
     if (await findDependency(WETH) === "") {
@@ -187,11 +193,14 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
         setToken: await findDependency(ETHFLI),
         leverageModule: await findDependency(COMPOUND_LEVERAGE_MODULE),
         comptroller: await findDependency(COMPOUND_COMPTROLLER),
-        priceOracle: await findDependency(COMPOUND_PRICE_ORACLE),
         targetCollateralCToken: await findDependency(C_ETH),
         targetBorrowCToken: await findDependency(C_USDC),
         collateralAsset: await findDependency(WETH),
         borrowAsset: await findDependency(USDC),
+        collateralPriceOracle: await findDependency(CHAINLINK_ETH),
+        borrowPriceOracle: await findDependency(CHAINLINK_USDC),
+        collateralDecimalAdjustment: CONTRACT_SETTINGS.COLLATERAL_DECIMAL_ADJUSTMENT,
+        borrowDecimalAdjustment: CONTRACT_SETTINGS.BORROW_DECIMAL_ADJUSTMENT,
       };
       const methodologySettings: MethodologySettings = METHODOLOGY_SETTINGS;
       const executionSettings: ExecutionSettings = {
