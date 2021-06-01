@@ -19,6 +19,7 @@ import {
 
 import {
   CONTRACT_NAMES,
+  MASTERCHEF_POOL_ID,
   VESTING_CONTRACTS
 } from "@deployments/constants/016_index_powah";
 import { getRandomAddress } from "@utils/accountUtils";
@@ -55,6 +56,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
       uniPair,
       sushiPair,
       masterChef,
+      MASTERCHEF_POOL_ID,
       [ dpiFarm, mviFarm ],
       VESTING_CONTRACTS,
     ];
