@@ -38,14 +38,14 @@ export const METHODOLOGY_SETTINGS = {
 
 export const EXECUTION_SETTINGS = {
   unutilizedLeveragePercentage: ether(0.01),               // 1% of leverage as buffer from max borrow
-  twapMaxTradeSize: bitcoin(12),                           // 12 WBTC max trade size ~0.5% price impact
+  twapMaxTradeSize: bitcoin(20),                           // 20 WBTC max trade size ~0.7% price impact
   twapCooldownPeriod: BigNumber.from(30),                  // 30 sec cooldown
   slippageTolerance: ether(0.02),                          // 2% max slippage on regular rebalances
   exchangeName: "SushiswapExchangeAdapter",                // Use Sushi as initial exchange
 };
 
 export const INCENTIVE_SETTINGS = {
-  incentivizedTwapMaxTradeSize: bitcoin(24),              // 24 WBTC max trade size ~1% price impact on ripcord
+  incentivizedTwapMaxTradeSize: bitcoin(40),              // 24 WBTC max trade size ~1.4% price impact on ripcord
   incentivizedTwapCooldownPeriod: BigNumber.from(1),      // 1 sec cooldown on ripcord
   incentivizedSlippageTolerance: ether(0.05),             // 5% max slippage on ripcord
   etherReward: ether(1),                                  // 1000 gwei * 700k gas used = 0.7 ETH
