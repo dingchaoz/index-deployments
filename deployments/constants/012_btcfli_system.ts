@@ -45,9 +45,9 @@ export const EXECUTION_SETTINGS = {
 };
 
 export const INCENTIVE_SETTINGS = {
-  incentivizedTwapMaxTradeSize: bitcoin(40),              // 24 WBTC max trade size ~1.4% price impact on ripcord
+  incentivizedTwapMaxTradeSize: bitcoin(40),              // 40 WBTC max trade size ~1.4% price impact on ripcord
   incentivizedTwapCooldownPeriod: BigNumber.from(1),      // 1 sec cooldown on ripcord
   incentivizedSlippageTolerance: ether(0.05),             // 5% max slippage on ripcord
-  etherReward: ether(1),                                  // 1000 gwei * 700k gas used = 0.7 ETH
+  etherReward: ether(1.5),                                // 2000 gwei * 700k gas used = 1.4 ETH
   incentivizedLeverageRatio: ether(2.4),                  // A 11% drop from 2.4x results in liquidation for WBTC with 65% CF
 };

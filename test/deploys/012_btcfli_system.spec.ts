@@ -127,7 +127,7 @@ describe("BTCFLI System", () => {
       expect(execution.leverExchangeData).to.eq(leverData);
       expect(execution.deleverExchangeData).to.eq(deleverData);
       expect(execution.unutilizedLeveragePercentage).to.eq(ether(0.01));
-      expect(execution.twapMaxTradeSize).to.eq(bitcoin(12));
+      expect(execution.twapMaxTradeSize).to.eq(bitcoin(20));
       expect(execution.twapCooldownPeriod).to.eq(BigNumber.from(30));
       expect(execution.slippageTolerance).to.eq(ether(0.02));
     });
@@ -135,10 +135,10 @@ describe("BTCFLI System", () => {
     it("should set the correct incentive parameters", async () => {
       const incentive = await flexibleLeverageStrategyAdapterInstance.getIncentive();
 
-      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(bitcoin(24));
+      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(bitcoin(40));
       expect(incentive.incentivizedTwapCooldownPeriod).to.eq(BigNumber.from(1));
       expect(incentive.incentivizedSlippageTolerance).to.eq(ether(0.05));
-      expect(incentive.etherReward).to.eq(ether(1));
+      expect(incentive.etherReward).to.eq(ether(1.5));
       expect(incentive.incentivizedLeverageRatio).to.eq(ether(2.4));
     });
   });

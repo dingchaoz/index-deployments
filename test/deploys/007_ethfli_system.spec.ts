@@ -120,7 +120,7 @@ describe("ETHFLI System", () => {
     it("should set the correct execution parameters", async () => {
       const execution = await flexibleLeverageStrategyAdapterInstance.getExecution();
 
-      expect(execution.exchangeName).to.eq("UniswapV2ExchangeAdapter");
+      expect(execution.exchangeName).to.eq("SushiswapExchangeAdapter");
       expect(execution.leverExchangeData).to.eq(EMPTY_BYTES);
       expect(execution.deleverExchangeData).to.eq(EMPTY_BYTES);
       expect(execution.unutilizedLeveragePercentage).to.eq(ether(0.01));
@@ -135,7 +135,7 @@ describe("ETHFLI System", () => {
       expect(incentive.incentivizedTwapMaxTradeSize).to.eq(ether(1200));
       expect(incentive.incentivizedTwapCooldownPeriod).to.eq(BigNumber.from(1));
       expect(incentive.incentivizedSlippageTolerance).to.eq(ether(0.05));
-      expect(incentive.etherReward).to.eq(ether(1));
+      expect(incentive.etherReward).to.eq(ether(1.5));
       expect(incentive.incentivizedLeverageRatio).to.eq(ether(2.7));
     });
   });
