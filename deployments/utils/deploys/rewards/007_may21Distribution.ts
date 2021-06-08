@@ -115,10 +115,6 @@ export const MAY_MERKLE_DISTRIBUTION = [
     earnings: ether(115.64),
   },
   {
-    address: "0x8C3B442E493827648371a73Dae3967aE4A2A7777",
-    earnings: ether(86.73),
-  },
-  {
     address: "0xe8787b5a359c30318D9b805651D18275f33Fa1Bd",
     earnings: ether(86.73),
   },
@@ -140,7 +136,7 @@ export const MAY_MERKLE_DISTRIBUTION = [
   },
   {
     address: "0x8C3B442E493827648371a73Dae3967aE4A2A7777",
-    earnings: ether(57.82),
+    earnings: ether(144.55),
   },
   {
     address: "0x0d896d05447Bd344Ef773552F4D0408718F3e054",
