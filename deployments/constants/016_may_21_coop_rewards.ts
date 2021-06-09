@@ -7,6 +7,8 @@ const distributionArray: DistributionFormat[] = MAY_MERKLE_DISTRIBUTION;
 
 export const MERKLE_ROOT_OBJECT = parseBalanceMap(distributionArray); // Merkle root object
 
+console.log(JSON.stringify(MERKLE_ROOT_OBJECT.claims));
+
 export const CONTRACT_NAMES = {
   INDEX_TOKEN: "IndexToken",
   REWARDS_MAY21_MERKLE_DISTRIBUTOR: "RewardsMay21MerkleDistributor",
