@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 16
+    "last_deployment_stage": 17
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -49,7 +49,8 @@
     "Btc2xFLIRebalanceViewer": "0x7CD0FB4aAaa4ce1e163be29414a0fFbeDe0eE906",
     "RewardsApr21MerkleDistributor": "0xD43490952826ED7f0603d61659Db71a3Cb0Ef97a",
     "OtcEscrow - 0x25D9D2D38Fa590ccfeb3c59d12Daa30297380666": "0xc1f8D36d893aB2B4313324D1437d6af06EA65Fd7",
-    "OtcEscrow - 0x3652588636C9D85125Fa264f794a63E3af188E03": "0xd63E968870B1A5FabA1Ad2452e736FcfB6d70017"
+    "OtcEscrow - 0x3652588636C9D85125Fa264f794a63E3af188E03": "0xd63E968870B1A5FabA1Ad2452e736FcfB6d70017",
+    "RewardsMay21MerkleDistributor": "0xb2226DdC01da96fedA304291Bc175E9e13f75a77"
   },
   "transactions": {
     "0": {
@@ -894,6 +895,19 @@
         },
         "0x0e7981b889a85349cbc9d30b9a4c8ebbc2c848df",
         "0x1720668a1826c6f30a11780783b0357269b7e1ca"
+      ],
+      "libraries": {}
+    },
+    "130": {
+      "id": "0x6462c997321b0fb35f884a8f055595748911aa0c4f09667dccad7e736f240dbd",
+      "name": "RewardsMay21MerkleDistributor",
+      "timestamp": 1623243166103,
+      "verified": false,
+      "description": "Deployed RewardsMay21MerkleDistributor",
+      "contractAddress": "0xb2226DdC01da96fedA304291Bc175E9e13f75a77",
+      "constructorArgs": [
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
+        "0x92b11e89f00e1c7fe75a4236766401d86e826593bd77da32181b80242dbeb36c"
       ],
       "libraries": {}
     }

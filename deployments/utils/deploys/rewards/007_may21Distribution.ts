@@ -3,6 +3,10 @@ import { DistributionFormat } from "@utils/types";
 
 export const MAY_MERKLE_DISTRIBUTION = [
   {
+    address: "0x875a89c827b2c62688d6d4009c7c537799fd7fa2",
+    earnings: ether(1),
+  },
+  {
     address: "0x69238aF5756617E5218810057A03da509ec51fd4",
     earnings: ether(144.55),
   },
