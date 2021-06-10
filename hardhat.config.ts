@@ -11,8 +11,6 @@ import "solidity-coverage";
 import "hardhat-deploy";
 import "./tasks";
 
-internalTask(TASK_COMPILE_SOLIDITY_COMPILE).setAction(setupNativeSolc);
-
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.6.10",
@@ -73,30 +71,6 @@ function getHardhatPrivateKeys() {
       balance: ONE_MILLION_ETH,
     };
   });
-}
-
-// @ts-ignore
-async function setupNativeSolc({ input }, { config }, runSuper) {
-  let solcVersionOutput = "";
-  try {
-    solcVersionOutput = execSync(`solc --version`).toString();
-  } catch (error) {
-    // Probably failed because solc wasn"t installed. We do nothing here.
-  }
-
-  console.log("Output", solcVersionOutput);
-
-  if (!solcVersionOutput.includes(config.solidity.version)) {
-    console.log(`Using solcjs`);
-    return runSuper();
-  }
-
-  console.log(`Using native solc`);
-  const output = execSync(`solc --standard-json`, {
-    input: JSON.stringify(input, undefined, 2),
-  });
-
-  return JSON.parse(output.toString(`utf8`));
 }
 
 export default config;
