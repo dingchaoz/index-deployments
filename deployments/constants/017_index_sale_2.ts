@@ -13,7 +13,7 @@ export const VESTING_END = 1671411600;   // December 19th 2022 0:00 UTC
 export const INVESTOR_DETAILS = [
   // LD Capital
   {
-    address: "0x7e2e80e8250844dd4e558f13850380d5af8f0c61",
+    address: "0x7E2E80E8250844Dd4E558f13850380D5af8F0C61",
     usdcAmount: BigNumber.from(300000).mul(10 ** 6), // 300k USDC
     indexAmount: ether(12367),                       // 12,367.00 INDEX
   },
