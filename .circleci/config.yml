@@ -1,25 +1,32 @@
 version: 2
 
+# Steps shared by chain jobs
+
+default_docker_image: &default_docker_image
+  docker:
+    - image: circleci/node:10.16.0
+
+commands:
+  setup_job:
+    steps:
+      - restore_cache:
+          key: compiled-env-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Test RPC
+          command: yarn chain
+          background: true
+
 jobs:
   checkout_and_compile:
-    docker:
-      - image: circleci/node:10.16.0
+    <<: *default_docker_image
     working_directory: ~/index-deployments
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: false
       - run:
           name: Set Up Environment Variables
           command: cp .env.default .env
       - restore_cache:
           key: module-cache-{{ checksum "yarn.lock" }}
-      - run:
-          name: Test npm token
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN"
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/index-deployments/.npmrc
       - run:
           name: Fetch Dependencies
           command: yarn install
@@ -35,58 +42,19 @@ jobs:
           paths:
             - ~/index-deployments
   test:
-    docker:
-      - image: circleci/node:10.16.0
+    <<: *default_docker_image
     working_directory: ~/index-deployments
-    parallelism: 3
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: false
-      - run:
-          name: Fetch solc version
-          command: docker pull ethereum/solc:0.6.10
-      - restore_cache:
-          key: compiled-env-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          name: Set Up Environment Variables
-          command: cp .env.default .env
-      - run:
-          name: Get Contracts From index-coop
-          command: yarn copy-contracts
-      - run:
-          name: Test RPC
-          command: yarn chain
-          background: true
+      - setup_job
       - run:
           name: Hardhat Test
           command: yarn test
 
   deployment:
-    docker:
-      - image: circleci/node:10.11.0
+    <<: *default_docker_image
     working_directory: ~/index-deployments
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: false
-      - run:
-          name: Fetch solc version
-          command: docker pull ethereum/solc:0.6.10
-      - restore_cache:
-          key: compiled-env-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          name: Set Up Environment Variables
-          command: cp .env.default .env
-      - run:
-          name: Set-up deployment JSON
-          command: yarn clean-dev-deployment
-          background: true
-      - run:
-          name: Get Contracts From index-coop
-          command: yarn copy-contracts
-      - run:
-            name: Test RPC
-            command: yarn chain
-            background: true
+      - setup_job
       - run:
           name: Test Deployment
           command: yarn deploy:local
