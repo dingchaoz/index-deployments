@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 # Steps shared by chain jobs
 
@@ -11,9 +11,6 @@ commands:
     steps:
       - restore_cache:
           key: compiled-env-{{ .Environment.CIRCLE_SHA1 }}
-
-  start_chain:
-    steps:
       - run:
           name: Test RPC
           command: yarn chain
@@ -49,7 +46,6 @@ jobs:
     working_directory: ~/index-deployments
     steps:
       - setup_job
-      - start_chain
       - run:
           name: Hardhat Test
           command: yarn test
@@ -59,7 +55,6 @@ jobs:
     working_directory: ~/index-deployments
     steps:
       - setup_job
-      - start_chain
       - run:
           name: Test Deployment
           command: yarn deploy:local
