@@ -25,7 +25,7 @@ import {
 import { getRandomAddress } from "@utils/accountUtils";
 
 const {
-  TREASURY_MULTI_SIG,
+  OPS_MULTI_SIG,
   MASTERCHEF,
   INDEX_ETH_UNISWAP,
   INDEX_ETH_SUSHISWAP,
@@ -40,7 +40,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
   const { deploy, deployer } = await prepareDeployment(hre);
 
   const indexTokenAddress = await getContractAddress(CONTRACT_NAMES.INDEX_TOKEN);
-  const indexGov = getNetworkConstant() === "production" ? await findDependency(TREASURY_MULTI_SIG) : deployer;
+  const indexGov = getNetworkConstant() === "production" ? await findDependency(OPS_MULTI_SIG) : deployer;
   const dpiFarm = await findDependency("StakingRewardsV2 - December");
   const mviFarm = await findDependency("StakingRewardsV2 - MVI");
   const uniPair = await findDependency(INDEX_ETH_UNISWAP);
