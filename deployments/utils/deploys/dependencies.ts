@@ -47,7 +47,7 @@ export default {
     42: "",
   },
   INDEX_ETH_UNISWAP: {
-    1: "0x8c13148228765Ba9E84EAf940b0416a5e349A5e7",
+    1: "0x3452a7f30a712e415a0674c0341d44ee9d9786f9",
     42: "",
   },
   INDEX_ETH_SUSHISWAP: {
