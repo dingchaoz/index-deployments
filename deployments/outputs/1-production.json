@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 16
+    "last_deployment_stage": 17
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -48,7 +48,8 @@
     "OtcEscrow - 0x70044278D556B0C962224e095397A52287C99cB5": "0xeB5945DA68FFd77E8c8fF7c12a4ba2068aEf55EE",
     "OtcEscrow - 0xb2c9d26f10c36Ce43Ce46156e7833DFBA00A7276": "0xD70e15fa4D9dcA36E971353909E7A6244402cc53",
     "OtcEscrow - 0x578152463e01DE0FC1331250351dd6D11dAFD9b3": "0xFFb668ADDd4494482988e7be39286E0D07ae0249",
-    "OtcEscrow - 0x719a363735dFa5023033640197359665072b8C0E": "0x049aB9A389deCaE63a2a8a3c5AA674045Cb89F0c"
+    "OtcEscrow - 0x719a363735dFa5023033640197359665072b8C0E": "0x049aB9A389deCaE63a2a8a3c5AA674045Cb89F0c",
+    "RewardsMay21MerkleDistributor": "0xcb91f9B5762b5278961fC1AD3755e53cfA2D567F"
   },
   "transactions": {
     "0": {
@@ -674,6 +675,19 @@
         },
         "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
         "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      ],
+      "libraries": {}
+    },
+    "59": {
+      "id": "0x41a6f1d688a65c58737d2067286988dbb596313eea440c950d215e54236d406c",
+      "name": "RewardsMay21MerkleDistributor",
+      "timestamp": 1623245779950,
+      "verified": true,
+      "description": "Deployed RewardsMay21MerkleDistributor",
+      "contractAddress": "0xcb91f9B5762b5278961fC1AD3755e53cfA2D567F",
+      "constructorArgs": [
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0x1fc927145803f69851bf66923a8f003b92a8511103d866a98e29454d69a11fbc"
       ],
       "libraries": {}
     }

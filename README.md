@@ -1,14 +1,131 @@
 # index-coop Deployments
 
+This repository manages IndexCoop contract deployments using the [hardhat-deploy plugin][22].
+
+Each deployment is tracked and recorded by network in a [deployments/outputs][23] file.
+
+**All proposed deployments should:**
++ deploy to HardhatEVM
++ have unit tests which check the correctness of state variables set in the constructor
++ be deployed to Kovan and verified from the command line on `kovan.etherscan`
+
 ## Install
 ```
 cp .env.default .env
 yarn
 ```
 
+## Launch test client
+```
+yarn chain
+```
+
+## Test (deployment)
+```
+yarn clean-dev-deployment
+yarn deploy:local
+```
+
+## Test (unit)
+```
+yarn test
+```
+
+## Testnet Deployment (Kovan)
+
+Fill in the following fields in your `.env` file:
+
++ `KOVAN_DEPLOY_PRIVATE_KEY`: An automated kovan faucet [is here][24], or [myCrypto, here][27]
++ `INFURA_TOKEN`: An Infura projectID. Available with an account at [infura.io][25]
++ `ETHERSCAN_API_KEY`: Available with an account from [etherscan.io/api][26]
+
+**Run:**
+```
+yarn deploy:kovan
+yarn etherscan:kovan
+```
+
+(If etherscan fails, see the [Etherscan](#etherscan-verification) section below).
+
+## Deployments Guide
+
+New deployments have at least two (and sometimes 3) phases:
+
+| Phase | Pull Request / Op | Pre-requisites |
+| ---- | ---- | ----|
+| 1 | Deployment script PR with tests | Code merged at [index-coop][33] & published to npm |
+| 2 | Executed deployment PR | Phase 1 complete |
+| 3 | Activate new components via Gnosis multisig | Phase 2 complete & deployment is production |
+
+### Creating Deployment scripts
+
+Create the new files you'll need by running the `create:deployment` command.
+
+This will generate files numbered for the latest stage in the deploy, deployments, and test folders.
+
+```sh
+$ yarn create:deployment btcfli_rebalance_viewer
+
+New deployment files at:
+> .../deploy/013_btcfli_rebalance_viewer.ts
+> .../deployments/constants/013_btcfli_rebalance_viewer.ts
+> .../test/deploys/013_btcfli_rebalance_viewer.spec.ts
+```
+
+Then, find the **most recent** scripts and tests which are suitable templates for your deployment
+and copy/paste them into the new files, adapting as necessary.
+
+**:bulb: Pro Tips :bulb:**:
+
++ Verify new contracts on Kovan to catch any contract verification issues early in the process.
++ Useful helpers can be found in [outputHelper.ts][30] and [deployUtils.ts][31]
++ Addresses for on-chain dependencies can be found in [dependencies.ts][32]
+
+
+### Executing Deployments
+
+| Step | Action | Command |
+| ---- | ---- | ---- |
+| 1 | Checkout master, `git pull`, and run `yarn` ||
+| 2 | Checkout a new branch | `git checkout -b dylan/deploy_....` |
+| 3 | Deploy to `staging_mainnet` | `yarn deploy:staging_mainnet` |
+| 4 | Verify deployment on Etherscan | `yarn etherscan:staging_mainnet`
+| 5 | Check contracts' read/write endpoints in Etherscan's UI |  |
+| 6 | Deploy to `production` | `yarn deploy:production` |
+| 7 | Verify deployment on Etherscan | `yarn etherscan:production` |
+| 8 | Commit automated changes made to outputs logs | |
+| 9 | Open PR documenting the addresses of new components | |
+
+
+### Multisig Operations (deferred transactions)
+
+Some production deployments in index-coop may need to be enabled by additional multisig transactions.
+There are executed by stakeholders using Gnosis Safe wallets online.
+
+Deployment scripts should save the tx data generated for these deferred transactions with a flow
+similar to that used in set-v2-deployments [deployUtils#addIntegrationToRegistry][28].
+
+**Resources:**
++ [Master list of pending and completed multisig operations][29] (only accessible to SetProtocol engineers)
++ [Multisig transaction utilities](#multisig-transaction-utilities) in this repo.
+
+
+[22]: https://github.com/wighawag/hardhat-deploy
+[23]: https://github.com/SetProtocol/index-deployments/tree/master/deployments/outputs
+[24]: https://faucet.kovan.network/
+[25]: https://infura.io/
+[26]: https://etherscan.io/apis
+[27]: https://app.mycrypto.com/faucet
+[28]: https://github.com/SetProtocol/set-v2-deployments/blob/325cb49034642767519f969046a3dc8e54b1dd7c/deployments/utils/deployUtils.ts#L83-L100
+[29]: https://docs.google.com/spreadsheets/d/1B00zmmBm0SLuYePNgeKTGvXzuRewQ6ymJfm0hQ2SUs4/edit#gid=1026270302
+[30]: https://github.com/SetProtocol/index-deployments/blob/master/deploys/outputHelper.ts
+[31]: https://github.com/SetProtocol/index-deployments/blob/master/deployments/utils/deployUtils.ts
+[32]: https://github.com/SetProtocol/index-deployments/blob/master/deploys/dependencies.ts
+[33]: https://github.com/SetProtocol/index-coop-smart-contracts
+
 ## Etherscan verification
 
-Set `ETHERSCAN_API_KEY=8UC6MJ3E5R2AXIHFZQ6JNU2U5QCV1EZGX5Y` in `.env`
+Set the `ETHERSCAN_API_KEY` in `.env`. (Free API keys are available at [etherscan.io][26])
 
 After deploying, run the command for your network:
 ```
@@ -20,8 +137,7 @@ yarn etherscan:production
 **When Etherscan fails...**
 
 Verification may fail because of [solidity issue 9573][1] which causes Etherscan
-to generate different bytecode from a minimized contract set than what was generated locally with
-all contracts in the project. The error message says:
+to generate different bytecode from a minimized contract set than what was generated locally with all contracts in the project. The error message says:
 
 ```
 Compiling your contract excluding unrelated contracts did not produce identical bytecode.
@@ -62,6 +178,7 @@ New deployment files at:
 > .../deployments/constants/013_btcfli_rebalance_viewer.ts
 > .../test/deploys/013_btcfli_rebalance_viewer.spec.ts
 ```
+[1]: https://github.com/ethereum/solidity/issues/9573
 
 ## Multisig Transaction Utilities
 
