@@ -3,7 +3,7 @@
     "network_key": "1-staging",
     "human_friendly_name": "main-net-staging",
     "network_id": 1,
-    "last_deployment_stage": 17
+    "last_deployment_stage": 18
   },
   "addresses": {
     "IndexToken": "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
@@ -51,7 +51,8 @@
     "OtcEscrow - 0xb2c9d26f10c36Ce43Ce46156e7833DFBA00A7276": "0x3EEA9fa6Df59496054ece39dC81006df7D7D5e7B",
     "OtcEscrow - 0x578152463e01DE0FC1331250351dd6D11dAFD9b3": "0xEF961b4c87DC59cA22E87786EEE8324040936209",
     "OtcEscrow - 0x719a363735dFa5023033640197359665072b8C0E": "0x4EF9BF50F73D43a6e9119A84dF9C2f168e91dFFB",
-    "RewardsMay21MerkleDistributor": "0x40e4F82Dc9Dd1A12eD3b469639Df787932578C25"
+    "RewardsMay21MerkleDistributor": "0x40e4F82Dc9Dd1A12eD3b469639Df787932578C25",
+    "IndexPowah": "0x69FB2243C137Af777D76E1556314D2585A5652A9"
   },
   "transactions": {
     "0": {
@@ -734,6 +735,37 @@
       "constructorArgs": [
         "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
         "0x92b11e89f00e1c7fe75a4236766401d86e826593bd77da32181b80242dbeb36c"
+      ],
+      "libraries": {}
+    },
+    "64": {
+      "id": "0x4bc645e615d6ddc309acea2e45024eff586aca0ea2920af6216a1f23709c47fd",
+      "name": "IndexPowah",
+      "timestamp": 1623449381468,
+      "verified": true,
+      "description": "Deployed IndexPowah",
+      "contractAddress": "0x69FB2243C137Af777D76E1556314D2585A5652A9",
+      "constructorArgs": [
+        "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
+        "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
+        "0x3452a7f30a712e415a0674c0341d44ee9d9786f9",
+        "0xA73DF646512C82550C2b3C0324c4EEdEE53b400C",
+        "0xc2EdaD668740f1aA35E4D8f227fB8E17dcA888Cd",
+        75,
+        [
+          "0x1D72f38A40DC105a4eCE1c0880eF558055552D68",
+          "0x8713C184721F271a63cD7EC71511C7aa7f1FA07F"
+        ],
+        [
+          "0x1df4564A96aAc2B6633F1ce2f3092a11e57F6c19",
+          "0x0e800B09cBC50e2CCbb01C6A833c56Ef692F3e3E",
+          "0x2f3a28DF7f031695c52C680A4f9888D947d666B4",
+          "0x55c316DEA64D0B6CE20eAb843c821a10E3bdb91B",
+          "0xec5bc904ABb557781b16435E344a59D2218a6E17",
+          "0x7B15bB785167c610020B52bf4B790396D73bf8a0",
+          "0x7833Ba760D9FE0085E39c490f5A8c66565770cA5",
+          "0x3955ebF597154bD93d1Bf9b66BC571FeA3050c38"
+        ]
       ],
       "libraries": {}
     }

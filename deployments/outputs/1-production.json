@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 17
+    "last_deployment_stage": 18
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -49,7 +49,8 @@
     "OtcEscrow - 0xb2c9d26f10c36Ce43Ce46156e7833DFBA00A7276": "0xD70e15fa4D9dcA36E971353909E7A6244402cc53",
     "OtcEscrow - 0x578152463e01DE0FC1331250351dd6D11dAFD9b3": "0xFFb668ADDd4494482988e7be39286E0D07ae0249",
     "OtcEscrow - 0x719a363735dFa5023033640197359665072b8C0E": "0x049aB9A389deCaE63a2a8a3c5AA674045Cb89F0c",
-    "RewardsMay21MerkleDistributor": "0xcb91f9B5762b5278961fC1AD3755e53cfA2D567F"
+    "RewardsMay21MerkleDistributor": "0xcb91f9B5762b5278961fC1AD3755e53cfA2D567F",
+    "IndexPowah": "0x44f2F64287753E0D4EE4043BB1d30077Bf22414e"
   },
   "transactions": {
     "0": {
@@ -688,6 +689,37 @@
       "constructorArgs": [
         "0x0954906da0Bf32d5479e25f46056d22f08464cab",
         "0x1fc927145803f69851bf66923a8f003b92a8511103d866a98e29454d69a11fbc"
+      ],
+      "libraries": {}
+    },
+    "60": {
+      "id": "0x2e718b28ff1c849a19bfd619e9201fb3d3c8b23b9003df3713e09334168e0b26",
+      "name": "IndexPowah",
+      "timestamp": 1623449895523,
+      "verified": false,
+      "description": "Deployed IndexPowah",
+      "contractAddress": "0x44f2F64287753E0D4EE4043BB1d30077Bf22414e",
+      "constructorArgs": [
+        "0x10F87409E405c5e44e581A4C3F2eECF36AAf1f92",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0x3452a7f30a712e415a0674c0341d44ee9d9786f9",
+        "0xA73DF646512C82550C2b3C0324c4EEdEE53b400C",
+        "0xc2EdaD668740f1aA35E4D8f227fB8E17dcA888Cd",
+        75,
+        [
+          "0xB93b505Ed567982E2b6756177ddD23ab5745f309",
+          "0x5bC4249641B4bf4E37EF513F3Fa5C63ECAB34881"
+        ],
+        [
+          "0x1df4564A96aAc2B6633F1ce2f3092a11e57F6c19",
+          "0x0e800B09cBC50e2CCbb01C6A833c56Ef692F3e3E",
+          "0x2f3a28DF7f031695c52C680A4f9888D947d666B4",
+          "0x55c316DEA64D0B6CE20eAb843c821a10E3bdb91B",
+          "0xec5bc904ABb557781b16435E344a59D2218a6E17",
+          "0x7B15bB785167c610020B52bf4B790396D73bf8a0",
+          "0x7833Ba760D9FE0085E39c490f5A8c66565770cA5",
+          "0x3955ebF597154bD93d1Bf9b66BC571FeA3050c38"
+        ]
       ],
       "libraries": {}
     }
