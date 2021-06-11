@@ -132,7 +132,7 @@ describe("ETHFLI System", () => {
     it("should set the correct incentive parameters", async () => {
       const incentive = await flexibleLeverageStrategyAdapterInstance.getIncentive();
 
-      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(ether(1200));
+      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(ether(1500));
       expect(incentive.incentivizedTwapCooldownPeriod).to.eq(BigNumber.from(1));
       expect(incentive.incentivizedSlippageTolerance).to.eq(ether(0.05));
       expect(incentive.etherReward).to.eq(ether(1.5));

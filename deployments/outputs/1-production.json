@@ -57,7 +57,9 @@
     "OtcEscrow - 0xd16295DEA1115C9df62FC35017bB359fb1E6d639": "0x196334E54b9c63C367BaE298126a5E228e09CCdf",
     "OtcEscrow - 0xAA023910e301E23400bc4871c3cCCD58997E2327": "0x5FAD85d2a5080f165AE5F7B17d40437e1ECa15af",
     "OtcEscrow - 0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5": "0x16D90763Fd0B3472B7465D709065b95e4Bc737AA",
-    "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f": "0x9dC35cA49Cbc3e4998a420B0A4067DEa0bDDc81D"
+    "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f": "0x9dC35cA49Cbc3e4998a420B0A4067DEa0bDDc81D",
+    "FlexibleLeverageStrategyAdapter": "0x818515b303A9F0958ddCC645e2f4f8894c255a2f",
+    "BTCFlexibleLeverageStrategyAdapter": "0x6B351cdd65704D86134c183aa4BBfFb0833e4A8c"
   },
   "transactions": {
     "0": {
@@ -697,9 +699,104 @@
         "0x0954906da0Bf32d5479e25f46056d22f08464cab",
         "0x1fc927145803f69851bf66923a8f003b92a8511103d866a98e29454d69a11fbc"
       ],
-      "libraries": {}
     },
     "60": {
+      "id": "0x22ec584fc724d61754c2b85eb4ec9596b0afa281240a087a18fdb5ca9d58af08",
+      "name": "FlexibleLeverageStrategyAdapter",
+      "timestamp": 1623391545319,
+      "verified": true,
+      "description": "Deployed FlexibleLeverageStrategyAdapter",
+      "contractAddress": "0x818515b303A9F0958ddCC645e2f4f8894c255a2f",
+      "constructorArgs": [
+        "0x445307De5279cD4B1BcBf38853f81b190A806075",
+        {
+          "setToken": "0xaa6e8127831c9de45ae56bb1b0d4d4da6e5665bd",
+          "leverageModule": "0x8d5174eD1dd217e240fDEAa52Eb7f4540b04F419",
+          "comptroller": "0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b",
+          "targetCollateralCToken": "0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5",
+          "targetBorrowCToken": "0x39aa39c021dfbae8fac545936693ac917d5e7563",
+          "collateralAsset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "borrowAsset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "collateralPriceOracle": "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          "borrowPriceOracle": "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          "collateralDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x0a"
+          },
+          "borrowDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x16"
+          }
+        },
+        {
+          "targetLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1bc16d674ec80000"
+          },
+          "minLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x17979cfe362a0000"
+          },
+          "maxLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1feb3dd067660000"
+          },
+          "recenteringSpeed": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "rebalanceInterval": {
+            "type": "BigNumber",
+            "hex": "0x015180"
+          }
+        },
+        {
+          "unutilizedLeveragePercentage": {
+            "type": "BigNumber",
+            "hex": "0x2386f26fc10000"
+          },
+          "twapMaxTradeSize": {
+            "type": "BigNumber",
+            "hex": "0x2086ac351052600000"
+          },
+          "twapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x1e"
+          },
+          "slippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0x470de4df820000"
+          },
+          "exchangeName": "SushiswapExchangeAdapter",
+          "leverExchangeData": "0x",
+          "deleverExchangeData": "0x"
+        },
+        {
+          "incentivizedTwapMaxTradeSize": {
+            "type": "BigNumber",
+            "hex": "0x5150ae84a8cdf00000"
+          },
+          "incentivizedTwapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x01"
+          },
+          "incentivizedSlippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "etherReward": {
+            "type": "BigNumber",
+            "hex": "0x14d1120d7b160000"
+          },
+          "incentivizedLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x257853b1dd8e0000"
+          }
+        }
+      ],
+      "libraries": {}
+    },
+    "61": {
       "id": "0x2e718b28ff1c849a19bfd619e9201fb3d3c8b23b9003df3713e09334168e0b26",
       "name": "IndexPowah",
       "timestamp": 1623449895523,
@@ -726,7 +823,102 @@
           "0x7B15bB785167c610020B52bf4B790396D73bf8a0",
           "0x7833Ba760D9FE0085E39c490f5A8c66565770cA5",
           "0x3955ebF597154bD93d1Bf9b66BC571FeA3050c38"
-        ]
+        ],
+      ],
+    },
+    "62": {
+      "id": "0xaef6bfd06e4e43ebb3422e969b486617a36895daf1d49ded734111a66cdf9ea2",
+      "name": "BTCFlexibleLeverageStrategyAdapter",
+      "timestamp": 1623392580260,
+      "verified": true,
+      "description": "Deployed BTC FlexibleLeverageStrategyAdapter",
+      "contractAddress": "0x6B351cdd65704D86134c183aa4BBfFb0833e4A8c",
+      "constructorArgs": [
+        "0xC7Aede3B12daad3ffa48fc96CCB65659fF8D261a",
+        {
+          "setToken": "0x0b498ff89709d3838a063f1dfa463091f9801c2b",
+          "leverageModule": "0x8d5174eD1dd217e240fDEAa52Eb7f4540b04F419",
+          "comptroller": "0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b",
+          "targetCollateralCToken": "0xccf4429db6322d5c611ee964527d42e5d685dd6a",
+          "targetBorrowCToken": "0x39aa39c021dfbae8fac545936693ac917d5e7563",
+          "collateralAsset": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+          "borrowAsset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "collateralPriceOracle": "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+          "borrowPriceOracle": "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          "collateralDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x14"
+          },
+          "borrowDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x16"
+          }
+        },
+        {
+          "targetLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1bc16d674ec80000"
+          },
+          "minLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x18fae27693b40000"
+          },
+          "maxLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1e87f85809dc0000"
+          },
+          "recenteringSpeed": {
+            "type": "BigNumber",
+            "hex": "0x016345785d8a0000"
+          },
+          "rebalanceInterval": {
+            "type": "BigNumber",
+            "hex": "0x015180"
+          }
+        },
+        {
+          "unutilizedLeveragePercentage": {
+            "type": "BigNumber",
+            "hex": "0x2386f26fc10000"
+          },
+          "twapMaxTradeSize": {
+            "type": "BigNumber",
+            "hex": "0x77359400"
+          },
+          "twapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x1e"
+          },
+          "slippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0x470de4df820000"
+          },
+          "exchangeName": "SushiswapExchangeAdapter",
+          "leverExchangeData": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599",
+          "deleverExchangeData": "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000030000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        },
+        {
+          "incentivizedTwapMaxTradeSize": {
+            "type": "BigNumber",
+            "hex": "0x012a05f200"
+          },
+          "incentivizedTwapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x01"
+          },
+          "incentivizedSlippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "etherReward": {
+            "type": "BigNumber",
+            "hex": "0x14d1120d7b160000"
+          },
+          "incentivizedLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x214e8348c4f00000"
+          }
+        }
       ],
       "libraries": {}
     },

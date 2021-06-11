@@ -40,7 +40,7 @@ export const EXECUTION_SETTINGS = {
 };
 
 export const INCENTIVE_SETTINGS = {
-  incentivizedTwapMaxTradeSize: ether(1200),              // 1200 ETH max trade size ~1.2% price impact on ripcord
+  incentivizedTwapMaxTradeSize: ether(1500),              // 1500 ETH max trade size ~1.2% price impact on ripcord
   incentivizedTwapCooldownPeriod: BigNumber.from(1),      // 1 sec cooldown on ripcord
   incentivizedSlippageTolerance: ether(0.05),             // 5% max slippage on ripcord
   etherReward: ether(1.5),                                // 2000 gwei * 700k gas used = 1.4 ETH

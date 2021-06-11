@@ -135,7 +135,7 @@ describe("BTCFLI System", () => {
     it("should set the correct incentive parameters", async () => {
       const incentive = await flexibleLeverageStrategyAdapterInstance.getIncentive();
 
-      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(bitcoin(40));
+      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(bitcoin(50));
       expect(incentive.incentivizedTwapCooldownPeriod).to.eq(BigNumber.from(1));
       expect(incentive.incentivizedSlippageTolerance).to.eq(ether(0.05));
       expect(incentive.etherReward).to.eq(ether(1.5));
