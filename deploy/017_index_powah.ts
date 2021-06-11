@@ -21,7 +21,7 @@ import {
   CONTRACT_NAMES,
   MASTERCHEF_POOL_ID,
   VESTING_CONTRACTS
-} from "@deployments/constants/016_index_powah";
+} from "@deployments/constants/017_index_powah";
 import { getRandomAddress } from "@utils/accountUtils";
 
 const {

@@ -11,7 +11,7 @@ import { Account } from "@utils/types";
 import { DEPENDENCY, findDependency, getContractAddress } from "@deployments/utils";
 import { IndexPowah } from "@set/typechain/IndexPowah";
 import { IndexPowah__factory } from "@set/typechain/factories/IndexPowah__factory";
-import { CONTRACT_NAMES, MASTERCHEF_POOL_ID } from "../../deployments/constants/016_index_powah";
+import { CONTRACT_NAMES, MASTERCHEF_POOL_ID } from "../../deployments/constants/017_index_powah";
 
 const expect = getWaffleExpect();
 
