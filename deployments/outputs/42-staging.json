@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 17
+    "last_deployment_stage": 18
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -50,7 +50,11 @@
     "RewardsApr21MerkleDistributor": "0xD43490952826ED7f0603d61659Db71a3Cb0Ef97a",
     "OtcEscrow - 0x25D9D2D38Fa590ccfeb3c59d12Daa30297380666": "0xc1f8D36d893aB2B4313324D1437d6af06EA65Fd7",
     "OtcEscrow - 0x3652588636C9D85125Fa264f794a63E3af188E03": "0xd63E968870B1A5FabA1Ad2452e736FcfB6d70017",
-    "RewardsMay21MerkleDistributor": "0xb2226DdC01da96fedA304291Bc175E9e13f75a77"
+    "RewardsMay21MerkleDistributor": "0xb2226DdC01da96fedA304291Bc175E9e13f75a77",
+    "MASTERCHEF": "0x54721422868A0d54D044d59be2e559A193Adff9e",
+    "INDEX_ETH_UNISWAP": "0x6B4B8d059Aae3192ea3e68FCD3C494aFDAF8280b",
+    "INDEX_ETH_SUSHISWAP": "0x6EC40Dd7f20Bcf94F196Db79096dc139F6c645bd",
+    "IndexPowah": "0xB2c66F9AB9f2Bc37cA365beAD5084FBAAC621Cb5"
   },
   "transactions": {
     "0": {
@@ -908,6 +912,52 @@
       "constructorArgs": [
         "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
         "0x92b11e89f00e1c7fe75a4236766401d86e826593bd77da32181b80242dbeb36c"
+      ],
+      "libraries": {}
+    },
+    "131": {
+      "id": "0x",
+      "timestamp": 1623449249260,
+      "description": "Created Mock MASTERCHEF"
+    },
+    "132": {
+      "id": "0x",
+      "timestamp": 1623449249303,
+      "description": "Created Mock INDEX_ETH_UNISWAP"
+    },
+    "133": {
+      "id": "0x",
+      "timestamp": 1623449249334,
+      "description": "Created Mock INDEX_ETH_SUSHISWAP"
+    },
+    "134": {
+      "id": "0xceddf212d2965c4b3b569920b1313f82aece927364629cb4a45aeba04aa6e315",
+      "name": "IndexPowah",
+      "timestamp": 1623449258496,
+      "verified": false,
+      "description": "Deployed IndexPowah",
+      "contractAddress": "0xB2c66F9AB9f2Bc37cA365beAD5084FBAAC621Cb5",
+      "constructorArgs": [
+        "0xe3a1340Be2B4c8dE9E20ab185CfF37480521D9Af",
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
+        "0x6B4B8d059Aae3192ea3e68FCD3C494aFDAF8280b",
+        "0x6EC40Dd7f20Bcf94F196Db79096dc139F6c645bd",
+        "0x54721422868A0d54D044d59be2e559A193Adff9e",
+        75,
+        [
+          "0xE1f85effeC304043b4F7C04E1F74C8e58d0B37D8",
+          "0x48152d3199da64CA6d2657eDdbf36b91d6D81920"
+        ],
+        [
+          "0x1df4564A96aAc2B6633F1ce2f3092a11e57F6c19",
+          "0x0e800B09cBC50e2CCbb01C6A833c56Ef692F3e3E",
+          "0x2f3a28DF7f031695c52C680A4f9888D947d666B4",
+          "0x55c316DEA64D0B6CE20eAb843c821a10E3bdb91B",
+          "0xec5bc904ABb557781b16435E344a59D2218a6E17",
+          "0x7B15bB785167c610020B52bf4B790396D73bf8a0",
+          "0x7833Ba760D9FE0085E39c490f5A8c66565770cA5",
+          "0x3955ebF597154bD93d1Bf9b66BC571FeA3050c38"
+        ]
       ],
       "libraries": {}
     }
