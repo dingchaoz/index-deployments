@@ -8,7 +8,7 @@ export const CONTRACT_NAMES = {
 
 export const VESTING_START = 1624060800; // June 19th 2021 0:00 UTC
 export const VESTING_CLIFF = 1655596800; // June 19th 2022 0:00 UTC
-export const VESTING_END = 1671411600;   // December 19th 2022 0:00 UTC
+export const VESTING_END = 1671408000;   // December 19th 2022 0:00 UTC
 
 export const INVESTOR_DETAILS = [
   // LD Capital
