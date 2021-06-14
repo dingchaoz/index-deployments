@@ -20,7 +20,7 @@ import {
   VESTING_CLIFF,
   VESTING_END,
   INVESTOR_DETAILS,
-} from "@deployments/constants/017_index_sale_2";
+} from "@deployments/constants/018_index_sale_2";
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 

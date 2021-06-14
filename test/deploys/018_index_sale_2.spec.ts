@@ -12,7 +12,7 @@ import {
   VESTING_CLIFF,
   VESTING_END,
   VESTING_START,
-} from "@deployments/constants/017_index_sale_2";
+} from "@deployments/constants/018_index_sale_2";
 
 const expect = getWaffleExpect();
 
