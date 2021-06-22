@@ -27,18 +27,18 @@
     "RewardsFeb21MerkleDistributor": "0xCa3C3570beb35E5d3D85BCd8ad8F88BefaccFF10",
     "SupplyCapIssuanceHook": "0x0F1171C24B06ADed18d2d23178019A3B256401D3",
     "BaseManager": "0x445307De5279cD4B1BcBf38853f81b190A806075",
-    "FlexibleLeverageStrategyAdapter": "0x1335D01a4B572C37f800f45D9a4b36A53a898a9b",
+    "FlexibleLeverageStrategyAdapter - DEPRECATED": "0x1335D01a4B572C37f800f45D9a4b36A53a898a9b",
     "FeeSplitAdapter": "0x26F81381018543eCa9353bd081387F68fAE15CeD",
-    "Eth2xFLIRebalanceViewer": "0xB1ad22Ab3bae47D82B879215B9Fc25eb6b76Fe26",
+    "Eth2xFLIRebalanceViewer - DEPRECATED": "0xB1ad22Ab3bae47D82B879215B9Fc25eb6b76Fe26",
     "StakingRewardsV2 - ETHFLI": "0x56d68212113AC6cF012B82BD2da0E972091940Eb",
     "StakingRewardsV2 - MVI": "0x5bC4249641B4bf4E37EF513F3Fa5C63ECAB34881",
     "RewardsMar21MerkleDistributor": "0xA87FBB413f8De11e47037C5d697cC03DE29E4e4b",
     "RewardsApr21MerkleDistributor": "0x973A526a633313b2d32B9a96ED16E212303D6905",
     "BTCFLISupplyCapAllowedCallerIssuanceHook": "0x6c8137f2f552f569cc43bc4642afbe052a12441c",
     "BTCFLIBaseManager": "0xC7Aede3B12daad3ffa48fc96CCB65659fF8D261a",
-    "BTCFlexibleLeverageStrategyAdapter": "0x4a99733458349505A6FCbcF6CD0a0eD18666586A",
+    "BTCFlexibleLeverageStrategyAdapter - DEPRECATED": "0x4a99733458349505A6FCbcF6CD0a0eD18666586A",
     "BTCFLIFeeSplitAdapter": "0xA0D95095577ecDd23C8b4c9eD0421dAc3c1DaF87",
-    "Btc2xFLIRebalanceViewer": "0xCD27f083A56A8bC5c41EDE77383828617f4BD807",
+    "Btc2xFLIRebalanceViewer - DEPRECATED": "0xCD27f083A56A8bC5c41EDE77383828617f4BD807",
     "OtcEscrow - 0x9fB64b232dEa3ba6e020F517b2BC8aFd0145880c": "0x450aB88B0419109Ed03700B35a2e482aDC6b695d",
     "OtcEscrow - 0x4f3a120E72C76c22ae802D129F599BFDbc31cb81": "0x7Af3AfDCFd263020787C1564726f771F7E581C8D",
     "OtcEscrow - 0x9B5ea8C719e29A5bd0959FaF79C9E5c8206d0499": "0x454EafBd022221873DCe419c5a6D5972C729e0b2",
@@ -57,7 +57,9 @@
     "OtcEscrow - 0xd16295DEA1115C9df62FC35017bB359fb1E6d639": "0x196334E54b9c63C367BaE298126a5E228e09CCdf",
     "OtcEscrow - 0xAA023910e301E23400bc4871c3cCCD58997E2327": "0x5FAD85d2a5080f165AE5F7B17d40437e1ECa15af",
     "OtcEscrow - 0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5": "0x16D90763Fd0B3472B7465D709065b95e4Bc737AA",
-    "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f": "0x9dC35cA49Cbc3e4998a420B0A4067DEa0bDDc81D"
+    "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f": "0x9dC35cA49Cbc3e4998a420B0A4067DEa0bDDc81D",
+    "BTCFlexibleLeverageStrategyAdapter": "0x6B351cdd65704D86134c183aa4BBfFb0833e4A8c",
+    "FlexibleLeverageStrategyAdapter": "0x90A17826C80Ea4917BBD64b281d92aAF2bBb0024"
   },
   "transactions": {
     "0": {
@@ -696,8 +698,7 @@
       "constructorArgs": [
         "0x0954906da0Bf32d5479e25f46056d22f08464cab",
         "0x1fc927145803f69851bf66923a8f003b92a8511103d866a98e29454d69a11fbc"
-      ],
-      "libraries": {}
+      ]
     },
     "60": {
       "id": "0x2e718b28ff1c849a19bfd619e9201fb3d3c8b23b9003df3713e09334168e0b26",
@@ -727,10 +728,105 @@
           "0x7833Ba760D9FE0085E39c490f5A8c66565770cA5",
           "0x3955ebF597154bD93d1Bf9b66BC571FeA3050c38"
         ]
+      ]
+    },
+    "61": {
+      "id": "0xaef6bfd06e4e43ebb3422e969b486617a36895daf1d49ded734111a66cdf9ea2",
+      "name": "BTCFlexibleLeverageStrategyAdapter",
+      "timestamp": 1623392580260,
+      "verified": true,
+      "description": "Deployed BTC FlexibleLeverageStrategyAdapter",
+      "contractAddress": "0x6B351cdd65704D86134c183aa4BBfFb0833e4A8c",
+      "constructorArgs": [
+        "0x445307De5279cD4B1BcBf38853f81b190A806075",
+        {
+          "setToken": "0xaa6e8127831c9de45ae56bb1b0d4d4da6e5665bd",
+          "leverageModule": "0x8d5174eD1dd217e240fDEAa52Eb7f4540b04F419",
+          "comptroller": "0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b",
+          "targetCollateralCToken": "0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5",
+          "targetBorrowCToken": "0x39aa39c021dfbae8fac545936693ac917d5e7563",
+          "collateralAsset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "borrowAsset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "collateralPriceOracle": "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          "borrowPriceOracle": "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
+          "collateralDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x0a"
+          },
+          "borrowDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x16"
+          }
+        },
+        {
+          "targetLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1bc16d674ec80000"
+          },
+          "minLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x17979cfe362a0000"
+          },
+          "maxLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1feb3dd067660000"
+          },
+          "recenteringSpeed": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "rebalanceInterval": {
+            "type": "BigNumber",
+            "hex": "0x015180"
+          }
+        },
+        {
+          "unutilizedLeveragePercentage": {
+            "type": "BigNumber",
+            "hex": "0x2386f26fc10000"
+          },
+          "twapMaxTradeSize": {
+            "type": "BigNumber",
+            "hex": "0x2086ac351052600000"
+          },
+          "twapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x1e"
+          },
+          "slippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0x470de4df820000"
+          },
+          "exchangeName": "SushiswapExchangeAdapter",
+          "leverExchangeData": "0x",
+          "deleverExchangeData": "0x"
+        },
+        {
+          "incentivizedTwapMaxTradeSize": {
+            "type": "BigNumber",
+            "hex": "0x56bc75e2d631000000"
+          },
+          "incentivizedTwapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x01"
+          },
+          "incentivizedSlippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "etherReward": {
+            "type": "BigNumber",
+            "hex": "0x14d1120d7b160000"
+          },
+          "incentivizedLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x257853b1dd8e0000"
+          }
+        }
       ],
       "libraries": {}
     },
-    "61": {
+    "62": {
       "id": "0x1ff3bb0ce3816c7ee956c593526b7ff040f699678eb6af85f5238bed0577c9ee",
       "name": "OtcEscrow - 0x5BCF61c5E5C72457003feD3d292AAEA1c06f3691",
       "timestamp": 1623702387558,
@@ -756,7 +852,7 @@
       ],
       "libraries": {}
     },
-    "62": {
+    "63": {
       "id": "0xc02781b053f456cadc6f22618bf20e3d40e7668ac0f79de4b58340c804a97dde",
       "name": "OtcEscrow - 0x7E2E80E8250844Dd4E558f13850380D5af8F0C61",
       "timestamp": 1623702408444,
@@ -782,7 +878,7 @@
       ],
       "libraries": {}
     },
-    "63": {
+    "64": {
       "id": "0x9dd6aec55b15f8e7b6db795a9c2dd706697af22397ec757c627d12242eae593d",
       "name": "OtcEscrow - 0xe1B6e4C28127C4704838A0a2d6c6F7c344944B22",
       "timestamp": 1623702417388,
@@ -808,7 +904,7 @@
       ],
       "libraries": {}
     },
-    "64": {
+    "65": {
       "id": "0x72134d795af84a637d02330b5b650590523e003d6df2b70a400fe556cc288929",
       "name": "OtcEscrow - 0xd16295DEA1115C9df62FC35017bB359fb1E6d639",
       "timestamp": 1623702434135,
@@ -834,7 +930,7 @@
       ],
       "libraries": {}
     },
-    "65": {
+    "66": {
       "id": "0x99e2bca1257b247929a5efa4cde51ec18098e028530d4474ad7ac2d730772062",
       "name": "OtcEscrow - 0xAA023910e301E23400bc4871c3cCCD58997E2327",
       "timestamp": 1623702451522,
@@ -860,7 +956,7 @@
       ],
       "libraries": {}
     },
-    "66": {
+    "67": {
       "id": "0x255f80bd584191ef46c1d9746c4c1ed816654de4c6e86283da90140d3335ad80",
       "name": "OtcEscrow - 0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5",
       "timestamp": 1623702583263,
@@ -886,7 +982,7 @@
       ],
       "libraries": {}
     },
-    "67": {
+    "68": {
       "id": "0x979be40dbd5d59d355fb86ba22b6d1a57e0d5e73699c01b100903c44684283d0",
       "name": "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f",
       "timestamp": 1623702613291,

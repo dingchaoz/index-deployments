@@ -36,13 +36,13 @@ export const EXECUTION_SETTINGS = {
   twapMaxTradeSize: ether(600),                           // 600 ETH max trade size ~0.6% price impact
   twapCooldownPeriod: BigNumber.from(30),                 // 30 sec cooldown
   slippageTolerance: ether(0.02),                         // 2% max slippage on regular rebalances
-  exchangeName: "UniswapV2ExchangeAdapter",                // Use Uniswap as initial exchange
+  exchangeName: "SushiswapExchangeAdapter",                // Use Uniswap as initial exchange
 };
 
 export const INCENTIVE_SETTINGS = {
-  incentivizedTwapMaxTradeSize: ether(1200),               // 1200 ETH max trade size ~1.2% price impact on ripcord
+  incentivizedTwapMaxTradeSize: ether(1600),              // 1600 ETH max trade size ~1.2% price impact on ripcord
   incentivizedTwapCooldownPeriod: BigNumber.from(1),      // 1 sec cooldown on ripcord
   incentivizedSlippageTolerance: ether(0.05),             // 5% max slippage on ripcord
-  etherReward: ether(1),                                  // 1000 gwei * 700k gas used = 0.7 ETH
+  etherReward: ether(1.5),                                // 2000 gwei * 700k gas used = 1.4 ETH
   incentivizedLeverageRatio: ether(2.7),                  // 1 ripcord will return back to 2.3x
 };
