@@ -4,10 +4,13 @@ export {
   parseBalanceMap,
 } from "./merkleUtils";
 export {
-  stageAlreadyFinished,
-  trackFinishedStage,
+  addAdapter,
+  deployBaseManager,
+  deployGovernanceAdapter,
   deployMerkleDistributor,
   prepareDeployment,
+  stageAlreadyFinished,
+  trackFinishedStage,
 } from "./deployUtils";
 
 export * from "./constants";

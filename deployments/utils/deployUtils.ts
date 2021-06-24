@@ -1,17 +1,25 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import {
+  findDependency,
   getLastDeploymentStage,
   writeStateToOutputs,
-  ensureOutputsFile
+  writeTransactionToOutputs,
+  ensureOutputsFile,
 } from "@deployments/utils/deploys/outputHelper";
 import { MerkleDistributorInfo } from "../../utils/types";
 
 import {
+  getAccounts,
+} from "@utils/index";
+
+import {
   getContractAddress,
-  saveContractDeployment,
   getNetworkConstant,
+  InstanceGetter,
   removeNetwork,
+  saveContractDeployment,
 } from "@deployments/utils";
+import { Address } from "hardhat-deploy/dist/types";
 
 export function trackFinishedStage(
   currentStage: number,
@@ -60,38 +68,139 @@ export async function prepareDeployment(hre: HardhatRuntimeEnvironment) {
 
 // Deploys MerkleDistributor contract
 export async function deployMerkleDistributor(
-    indexTokenName: string,
-    merkleDistributorContractName: string,
-    merkleRootObject: MerkleDistributorInfo,
-    distributorRewardsContractName: string,
-    hre: HardhatRuntimeEnvironment
-  ) {
-    const { deployments, getNamedAccounts, run } = hre;
-    const { deploy } = deployments;
-    const { deployer } = await getNamedAccounts();
+  indexTokenName: string,
+  merkleDistributorContractName: string,
+  merkleRootObject: MerkleDistributorInfo,
+  distributorRewardsContractName: string,
+  hre: HardhatRuntimeEnvironment
+) {
+  const { deployments, getNamedAccounts, run } = hre;
+  const { deploy } = deployments;
+  const { deployer } = await getNamedAccounts();
 
-    // MerkleDistributor has to be compile by itself to Etherscan verify
-    await run("set:compile:one", { contractName: merkleDistributorContractName });
+  // MerkleDistributor has to be compile by itself to Etherscan verify
+  await run("set:compile:one", { contractName: merkleDistributorContractName });
 
-    // Fetch INDEX token
-    const indexTokenAddress = await getContractAddress(indexTokenName);
+  // Fetch INDEX token
+  const indexTokenAddress = await getContractAddress(indexTokenName);
 
-    // Deploy Merkle Distributor contract
-    const checkMerkleDistributorAddress = await getContractAddress(distributorRewardsContractName);
+  // Deploy Merkle Distributor contract
+  const checkMerkleDistributorAddress = await getContractAddress(distributorRewardsContractName);
 
-    if (checkMerkleDistributorAddress === "") {
-      const constructorArgs = [indexTokenAddress, merkleRootObject.merkleRoot];
-      const merkleDistributorDeploy = await deploy(
-        merkleDistributorContractName,
-        { from: deployer, args: constructorArgs, log: true }
-      );
-      merkleDistributorDeploy.receipt &&
-        await saveContractDeployment({
-          name: distributorRewardsContractName,
-          contractAddress: merkleDistributorDeploy.address,
-          id: merkleDistributorDeploy.receipt.transactionHash,
-          description: `Deployed ${distributorRewardsContractName}`,
-          constructorArgs,
-        });
-    }
+  if (checkMerkleDistributorAddress === "") {
+    const constructorArgs = [indexTokenAddress, merkleRootObject.merkleRoot];
+    const merkleDistributorDeploy = await deploy(
+      merkleDistributorContractName,
+      { from: deployer, args: constructorArgs, log: true }
+    );
+    merkleDistributorDeploy.receipt &&
+      await saveContractDeployment({
+        name: distributorRewardsContractName,
+        contractAddress: merkleDistributorDeploy.address,
+        id: merkleDistributorDeploy.receipt.transactionHash,
+        description: `Deployed ${distributorRewardsContractName}`,
+        constructorArgs,
+      });
   }
+}
+
+export async function deployBaseManager(
+  hre: HardhatRuntimeEnvironment,
+  managerName: string,
+  tokenName: string,
+  operator: Address,
+  methodologist: Address,
+) {
+  const {
+    deploy,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const checkBaseManagerAddress = await getContractAddress(managerName);
+  if (checkBaseManagerAddress === "") {
+    const constructorArgs = [
+      await findDependency(tokenName),
+      operator,
+      methodologist,
+    ];
+
+    const baseManagerDeploy = await deploy("BaseManager", {
+      from: deployer,
+      args: constructorArgs,
+      log: true,
+    });
+
+    baseManagerDeploy.receipt && await saveContractDeployment({
+      name: managerName,
+      contractAddress: baseManagerDeploy.address,
+      id: baseManagerDeploy.receipt.transactionHash,
+      description: `Deployed ${managerName}`,
+      constructorArgs,
+    });
+  }
+}
+
+export async function deployGovernanceAdapter(
+  hre: HardhatRuntimeEnvironment,
+  govAdapterName: string,
+  managerName: string,
+): Promise<void> {
+  const {
+    deploy,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const checkGovAdapterAddress = await getContractAddress(govAdapterName);
+  if (checkGovAdapterAddress === "") {
+    const manager = await getContractAddress(managerName);
+    const governanceModule = await findDependency("GOVERNANCE_MODULE");
+
+    const constructorArgs = [
+      manager,
+      governanceModule,
+    ];
+
+    const governanceAdapterDeploy = await deploy("GovernanceAdapter", {
+      from: deployer,
+      args: constructorArgs,
+      log: true,
+    });
+
+    governanceAdapterDeploy.receipt && await saveContractDeployment({
+      name: govAdapterName,
+      contractAddress: governanceAdapterDeploy.address,
+      id: governanceAdapterDeploy.receipt.transactionHash,
+      description: `Deployed ${govAdapterName}`,
+      constructorArgs,
+    });
+  }
+}
+
+export async function addAdapter(
+  hre: HardhatRuntimeEnvironment,
+  managerName: string,
+  adapterName: string
+): Promise<void> {
+  const {
+    rawTx,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const [owner] = await getAccounts();
+  const instanceGetter: InstanceGetter = new InstanceGetter(owner.wallet);
+
+  const baseManagerAddress = await getContractAddress(managerName);
+  const baseManagerInstance = await instanceGetter.getBaseManager(baseManagerAddress);
+
+  const adapterAddress = await getContractAddress(adapterName);
+  if (!await baseManagerInstance.isAdapter(adapterAddress)) {
+    const addAdapterData = baseManagerInstance.interface.encodeFunctionData("addAdapter", [adapterAddress]);
+    const addAdapterTransaction: any = await rawTx({
+      from: deployer,
+      to: baseManagerInstance.address,
+      data: addAdapterData,
+      log: true,
+    });
+    await writeTransactionToOutputs(addAdapterTransaction.transactionHash, `Add ${adapterName} on ${managerName}`);
+  }
+}
