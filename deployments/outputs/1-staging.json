@@ -3,7 +3,7 @@
     "network_key": "1-staging",
     "human_friendly_name": "main-net-staging",
     "network_id": 1,
-    "last_deployment_stage": 18
+    "last_deployment_stage": 20
   },
   "addresses": {
     "IndexToken": "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
@@ -53,7 +53,9 @@
     "IndexPowah": "0x69FB2243C137Af777D76E1556314D2585A5652A9",
     "Btc2xFLIRebalanceViewer - DEPRECATED": "0xb5dC448667f2bA45b0c871859F99499F2bC5B9FA",
     "FlexibleLeverageStrategyAdapter": "0x357680b12E815902B75C86cEC1eAc5d562b158E1",
-    "BTCFlexibleLeverageStrategyAdapter": "0x5724d4E452d473f7cB562A7401F2f77fD434Ea84"
+    "BTCFlexibleLeverageStrategyAdapter": "0x5724d4E452d473f7cB562A7401F2f77fD434Ea84",
+    "BaseManager - DPI": "0x2B0Ff8429A19708D609106981CC80900F8f6FC2f",
+    "GovernanceAdapter - DPI": "0x32393897E88aBeEF899F319a78D067099f2BFb1c"
   },
   "transactions": {
     "0": {
@@ -489,7 +491,7 @@
         },
         "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
         "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3"
-      ],
+      ]
     },
     "54": {
       "id": "0x1e442feed5792a68d10aa012f56b2d8647f6d8c9f8a67d6f6cfc351f31033815",
@@ -636,7 +638,7 @@
         },
         "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
         "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3"
-      ],
+      ]
     },
     "57": {
       "id": "0xdb8191c9691e68c5db3c6217765a8e304e67adb75828fac168bdec5861e367f2",
@@ -647,7 +649,7 @@
       "id": "0x6be50117df9b8a050a3883f0b7f36c6798ec02deeb6ced7b549a3dae10150893",
       "name": "BTCFlexibleLeverageStrategyAdapter",
       "timestamp": 1622670197076,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BTC FlexibleLeverageStrategyAdapter",
       "contractAddress": "0x5724d4E452d473f7cB562A7401F2f77fD434Ea84",
       "constructorArgs": [
@@ -765,7 +767,7 @@
       ],
       "libraries": {}
     },
-    "57": {
+    "60": {
       "id": "0x12a489b4dc58724573b2b8651ffa5feb08d138c474e4fdfb3290124214d78113",
       "name": "OtcEscrow - 0x0A842c38fb93993bD6353a4afc784ccB99522359",
       "timestamp": 1623243560711,
@@ -791,7 +793,7 @@
       ],
       "libraries": {}
     },
-    "58": {
+    "61": {
       "id": "0xa508d6a8d3fe35f0bf0846e0f3f8340d92712ae191669f35cc1deb38592f533f",
       "name": "OtcEscrow - 0xbFC94A95d4448C802E848C68fdD2FC0fEE4a876E",
       "timestamp": 1623243570248,
@@ -817,7 +819,7 @@
       ],
       "libraries": {}
     },
-    "59": {
+    "62": {
       "id": "0x95b26b4e79ddfde90c0f27e713be475f793abbf69c5ebba4bd1643ec575f6c5b",
       "name": "OtcEscrow - 0x70044278D556B0C962224e095397A52287C99cB5",
       "timestamp": 1623243583532,
@@ -843,7 +845,7 @@
       ],
       "libraries": {}
     },
-    "60": {
+    "63": {
       "id": "0xaccda6795a15c72644ff5df0ed9feef8f1161b7c8706db21c9bd2a44763d8d62",
       "name": "OtcEscrow - 0xb2c9d26f10c36Ce43Ce46156e7833DFBA00A7276",
       "timestamp": 1623243670390,
@@ -869,7 +871,7 @@
       ],
       "libraries": {}
     },
-    "61": {
+    "64": {
       "id": "0x4ee97dbf296b87ce6b0d301abca4e91a38cc59c8e178951f5a2a6d71db6db075",
       "name": "OtcEscrow - 0x578152463e01DE0FC1331250351dd6D11dAFD9b3",
       "timestamp": 1623243679603,
@@ -895,7 +897,7 @@
       ],
       "libraries": {}
     },
-    "62": {
+    "65": {
       "id": "0x88ab1539afd15ef99c445d0ac9c16e4770d84214fe4eff799aea68221e356d96",
       "name": "OtcEscrow - 0x719a363735dFa5023033640197359665072b8C0E",
       "timestamp": 1623243700906,
@@ -921,7 +923,7 @@
       ],
       "libraries": {}
     },
-    "63": {
+    "66": {
       "id": "0xef24f738ae0840eed52f343c1bb9d2b509daf0f058722a918d2d67ed5fffd626",
       "name": "RewardsMay21MerkleDistributor",
       "timestamp": 1623243711633,
@@ -934,7 +936,7 @@
       ],
       "libraries": {}
     },
-    "64": {
+    "67": {
       "id": "0x4bc645e615d6ddc309acea2e45024eff586aca0ea2920af6216a1f23709c47fd",
       "name": "IndexPowah",
       "timestamp": 1623449381468,
@@ -965,10 +967,42 @@
       ],
       "libraries": {}
     },
-    "65": {
+    "68": {
       "id": "0xebcb2baa2128c8dddb7f65865db3cd2d816292f313c8ec32d07db3f161aff832",
       "timestamp": 1622670268119,
       "description": "Add adapter on BaseManager"
+    },
+    "69": {
+      "id": "0x0a958f1af6090f4aadc3d8ed8d3781be26afcd3af65aa5977a18eeb4c59c3650",
+      "name": "BaseManager - DPI",
+      "timestamp": 1624561582949,
+      "verified": true,
+      "description": "Deployed BaseManager - DPI",
+      "contractAddress": "0x2B0Ff8429A19708D609106981CC80900F8f6FC2f",
+      "constructorArgs": [
+        "0x73BAA8A41ddA1Cbcae8C7709A2A7B171182A1D46",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3"
+      ],
+      "libraries": {}
+    },
+    "70": {
+      "id": "0x9e409aa995c2961b57f745e0db030a226a76bd33030d0ea54b5b3e5c8adca6a5",
+      "name": "GovernanceAdapter - DPI",
+      "timestamp": 1624561603013,
+      "verified": true,
+      "description": "Deployed GovernanceAdapter - DPI",
+      "contractAddress": "0x32393897E88aBeEF899F319a78D067099f2BFb1c",
+      "constructorArgs": [
+        "0x2B0Ff8429A19708D609106981CC80900F8f6FC2f",
+        "0x2944B59B2214eE6d3649Ca53A0648F6548B94F86"
+      ],
+      "libraries": {}
+    },
+    "71": {
+      "id": "0xb8ccf88a8924a45c71c2e1b11c38dc3cb1d83fd09d515a13bfdf265366cd0d77",
+      "timestamp": 1624561611930,
+      "description": "Add GovernanceAdapter - DPI on BaseManager - DPI"
     }
   }
 }
