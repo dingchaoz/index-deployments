@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 18
+    "last_deployment_stage": 20
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -56,7 +56,16 @@
     "INDEX_ETH_SUSHISWAP": "0x6EC40Dd7f20Bcf94F196Db79096dc139F6c645bd",
     "IndexPowah": "0xB2c66F9AB9f2Bc37cA365beAD5084FBAAC621Cb5",
     "FlexibleLeverageStrategyAdapter": "0xcf723bF22996bC99B07d2f53e3eD7a1A290581D3",
-    "BTCFlexibleLeverageStrategyAdapter": "0xa9C70ba8b174F2Ba846d3ba3e1E4DEAa20BDa485"
+    "BTCFlexibleLeverageStrategyAdapter": "0xa9C70ba8b174F2Ba846d3ba3e1E4DEAa20BDa485",
+    "OtcEscrow - 0x5BCF61c5E5C72457003feD3d292AAEA1c06f3691": "0xF991EEAC6b4654098e49dE48DcA127a78F5171C8",
+    "OtcEscrow - 0x7E2E80E8250844Dd4E558f13850380D5af8F0C61": "0x42d14c47FDd68c131b7eB6e386dD02085e01337d",
+    "OtcEscrow - 0xe1B6e4C28127C4704838A0a2d6c6F7c344944B22": "0xB5537C70222F399eC63DA01d6c0fB3DBd1A1FA93",
+    "OtcEscrow - 0xd16295DEA1115C9df62FC35017bB359fb1E6d639": "0x71dF89713Cae94425844E67cF390F5b3E7f7558B",
+    "OtcEscrow - 0xAA023910e301E23400bc4871c3cCCD58997E2327": "0x6955Ab0a033b782958f6ea11DaE8ED15dF690b05",
+    "OtcEscrow - 0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5": "0xBc568CaDEA028CD4E1478c9216337Dd583d876f6",
+    "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f": "0xcB97e3e5a8F4Fc51f3BEC253e336E655BEcB6618",
+    "BaseManager - DPI": "0x350bE5A3306C62CBf958Fca20eE99214fEC8D2dc",
+    "GovernanceAdapter - DPI": "0x425f512E4996CeE632f852A05f2cDfE3578C83b2"
   },
   "transactions": {
     "0": {
@@ -908,13 +917,13 @@
       "id": "0x6462c997321b0fb35f884a8f055595748911aa0c4f09667dccad7e736f240dbd",
       "name": "RewardsMay21MerkleDistributor",
       "timestamp": 1623243166103,
-      "verified": false,
+      "verified": true,
       "description": "Deployed RewardsMay21MerkleDistributor",
       "contractAddress": "0xb2226DdC01da96fedA304291Bc175E9e13f75a77",
       "constructorArgs": [
         "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
         "0x92b11e89f00e1c7fe75a4236766401d86e826593bd77da32181b80242dbeb36c"
-      ],
+      ]
     },
     "131": {
       "id": "0x622487c16ecda9be3b25ace4ca8bd304cdbc9ab0f3fc96c5264241ad81c913ba",
@@ -1031,7 +1040,7 @@
       "id": "0xceddf212d2965c4b3b569920b1313f82aece927364629cb4a45aeba04aa6e315",
       "name": "IndexPowah",
       "timestamp": 1623449258496,
-      "verified": false,
+      "verified": true,
       "description": "Deployed IndexPowah",
       "contractAddress": "0xB2c66F9AB9f2Bc37cA365beAD5084FBAAC621Cb5",
       "constructorArgs": [
@@ -1163,6 +1172,220 @@
       "id": "0x4b14a2b4785ecb42ebac4d0a7178a3b2361618e5b0d9526bb8f69850b00f84b6",
       "timestamp": 1622589079167,
       "description": "Add adapter on BaseManager"
+    },
+    "139": {
+      "id": "0x7a0241b00a7569f62ead76800ece7191723d94c4bf77f6eb047062ed50623328",
+      "name": "OtcEscrow - 0x5BCF61c5E5C72457003feD3d292AAEA1c06f3691",
+      "timestamp": 1624559973979,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xF991EEAC6b4654098e49dE48DcA127a78F5171C8",
+      "constructorArgs": [
+        "0x5BCF61c5E5C72457003feD3d292AAEA1c06f3691",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1624060800,
+        1655596800,
+        1671408000,
+        {
+          "type": "BigNumber",
+          "hex": "0x45d964b800"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x029e6a9a10d367dc0000"
+        },
+        "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C"
+      ],
+      "libraries": {}
+    },
+    "140": {
+      "id": "0x72f36138d6a84341f64f6cb8496051e4dc517d989529a34d55c706f9c841c866",
+      "name": "OtcEscrow - 0x7E2E80E8250844Dd4E558f13850380D5af8F0C61",
+      "timestamp": 1624559985148,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0x42d14c47FDd68c131b7eB6e386dD02085e01337d",
+      "constructorArgs": [
+        "0x7E2E80E8250844Dd4E558f13850380D5af8F0C61",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1624060800,
+        1655596800,
+        1671408000,
+        {
+          "type": "BigNumber",
+          "hex": "0xae9f7bcc00"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x068c1f523c1dfebc0000"
+        },
+        "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C"
+      ],
+      "libraries": {}
+    },
+    "141": {
+      "id": "0x3f80b199049bc036c42e42183398e5e15672366c2040d9de752e8a93aa935ee8",
+      "name": "OtcEscrow - 0xe1B6e4C28127C4704838A0a2d6c6F7c344944B22",
+      "timestamp": 1624559994845,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xB5537C70222F399eC63DA01d6c0fB3DBd1A1FA93",
+      "constructorArgs": [
+        "0xe1B6e4C28127C4704838A0a2d6c6F7c344944B22",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1624060800,
+        1655596800,
+        1671408000,
+        {
+          "type": "BigNumber",
+          "hex": "0xe8d4a51000"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x08baddae1f4a6de80000"
+        },
+        "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C"
+      ],
+      "libraries": {}
+    },
+    "142": {
+      "id": "0x4f578d2ee2cdcabdca63456830ef3af6e46c5e84048facb31b83d9d2b8d8e992",
+      "name": "OtcEscrow - 0xd16295DEA1115C9df62FC35017bB359fb1E6d639",
+      "timestamp": 1624560006339,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0x71dF89713Cae94425844E67cF390F5b3E7f7558B",
+      "constructorArgs": [
+        "0xd16295DEA1115C9df62FC35017bB359fb1E6d639",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1624060800,
+        1655596800,
+        1671408000,
+        {
+          "type": "BigNumber",
+          "hex": "0x06fc23ac00"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x4300f21b642ed00000"
+        },
+        "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C"
+      ],
+      "libraries": {}
+    },
+    "143": {
+      "id": "0x600df2a49f1157e5b53bd37422c8392e55b050432e4114c58975417babc1ce58",
+      "name": "OtcEscrow - 0xAA023910e301E23400bc4871c3cCCD58997E2327",
+      "timestamp": 1624560017596,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0x6955Ab0a033b782958f6ea11DaE8ED15dF690b05",
+      "constructorArgs": [
+        "0xAA023910e301E23400bc4871c3cCCD58997E2327",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1624060800,
+        1655596800,
+        1671408000,
+        {
+          "type": "BigNumber",
+          "hex": "0x05d21dba00"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x37d61f16d37c580000"
+        },
+        "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C"
+      ],
+      "libraries": {}
+    },
+    "144": {
+      "id": "0x119c1aab57d202ea7e18e6622a610efd296fffcd6d461a18cb12a670a23bc5db",
+      "name": "OtcEscrow - 0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5",
+      "timestamp": 1624560039366,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xBc568CaDEA028CD4E1478c9216337Dd583d876f6",
+      "constructorArgs": [
+        "0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1624060800,
+        1655596800,
+        1671408000,
+        {
+          "type": "BigNumber",
+          "hex": "0x05d21dba00"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x37d61f16d37c580000"
+        },
+        "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C"
+      ],
+      "libraries": {}
+    },
+    "145": {
+      "id": "0x114a9ef781649d72ee0eae347a1ae2199d19f3b5594bbe63b3a8a8177bd3e9a7",
+      "name": "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f",
+      "timestamp": 1624560052651,
+      "verified": true,
+      "description": "Deployed OtcEscrow",
+      "contractAddress": "0xcB97e3e5a8F4Fc51f3BEC253e336E655BEcB6618",
+      "constructorArgs": [
+        "0x0C497bD20de89D9b14637415405690Ce1B1fD62f",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        1624060800,
+        1655596800,
+        1671408000,
+        {
+          "type": "BigNumber",
+          "hex": "0x0ba43b7400"
+        },
+        {
+          "type": "BigNumber",
+          "hex": "0x6fba1ee45aa0140000"
+        },
+        "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C"
+      ],
+      "libraries": {}
+    },
+    "146": {
+      "id": "0x3d1974e93b69c0682f9430f8c1914fa3a0cecdcd5456f956431dcda8ec068e98",
+      "name": "BaseManager - DPI",
+      "timestamp": 1624560067989,
+      "verified": true,
+      "description": "Deployed BaseManager - DPI",
+      "contractAddress": "0x350bE5A3306C62CBf958Fca20eE99214fEC8D2dc",
+      "constructorArgs": [
+        "0xEA41F11c916813EDa966a4e1a0b09c98C4bbC555",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3"
+      ],
+      "libraries": {}
+    },
+    "147": {
+      "id": "0xd9544df8f2ff51f37663b0a0e279eb695809f5beb470c151931918f08b292e10",
+      "name": "GovernanceAdapter - DPI",
+      "timestamp": 1624560075348,
+      "verified": true,
+      "description": "Deployed GovernanceAdapter - DPI",
+      "contractAddress": "0x425f512E4996CeE632f852A05f2cDfE3578C83b2",
+      "constructorArgs": [
+        "0x350bE5A3306C62CBf958Fca20eE99214fEC8D2dc",
+        "0x936Ffda1C892a7c65777b14C1D71fD2C79222099"
+      ],
+      "libraries": {}
+    },
+    "148": {
+      "id": "0xc83e40516f510c41f6b74f5d1d4f3a260079085fb6874027cd98eab3600d19bb",
+      "timestamp": 1624560081900,
+      "description": "Add GovernanceAdapter - DPI on BaseManager - DPI"
     }
   }
 }
