@@ -3,7 +3,10 @@ export default {
   // TOKENS
 
   DPI: {
-    1: "0x1494CA1F11D487c2bBe4543E90080AeBa4BA3C2b",
+    1: {
+      production: "0x1494CA1F11D487c2bBe4543E90080AeBa4BA3C2b",
+      staging: "0x73BAA8A41ddA1Cbcae8C7709A2A7B171182A1D46",
+    },
     42: "0xEA41F11c916813EDa966a4e1a0b09c98C4bbC555",
   },
   WBTC: {
@@ -87,6 +90,13 @@ export default {
       staging: "0x53ea895f0c152eea8b103092d3a1327fe53b580a",
     },
     42: "0x8398f4710d35c8f15a7e4eced3e7b6a0e909d019",
+  },
+  GOVERNANCE_MODULE: {
+    1: {
+      production: "0x5C87b042494cDcebA44C541fbB3BC8bFF179d500",
+      staging: "0x2944B59B2214eE6d3649Ca53A0648F6548B94F86",
+    },
+    42: "0x936Ffda1C892a7c65777b14C1D71fD2C79222099",
   },
 
   // Compound Contracts
@@ -177,6 +187,7 @@ export const DEPENDENCY = {
   COMPOUND_LEVERAGE_MODULE: "COMPOUND_LEVERAGE_MODULE",
   SINGLE_INDEX_MODULE: "SINGLE_INDEX_MODULE",
   STREAMING_FEE_MODULE: "STREAMING_FEE_MODULE",
+  GOVERNANCE_MODULE: "GOVERNANCE_MODULE",
   // Compound Contracts
   C_ETH: "C_ETH",
   C_USDC: "C_USDC",
